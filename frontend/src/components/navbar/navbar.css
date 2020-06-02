@@ -1,0 +1,19 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    height: 4rem;
+    width: 100%;
+}
+
+.navbar .navbar__inner {
+    height: 100%;
+    padding: 2rem 3rem;
+}
+
+.navbar .navbar__brand {
+    height: 100%;
+}
+
+.navbar .navbar__logo{
+    height: 64%;
+}
