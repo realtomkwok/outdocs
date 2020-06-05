@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/outdocs/static/css/main.8e984b88.chunk.css",
-    "main.js": "/outdocs/static/js/main.dfd6f744.chunk.js",
-    "main.js.map": "/outdocs/static/js/main.dfd6f744.chunk.js.map",
-    "runtime-main.js": "/outdocs/static/js/runtime-main.58ed297a.js",
-    "runtime-main.js.map": "/outdocs/static/js/runtime-main.58ed297a.js.map",
-    "static/js/2.c046ee42.chunk.js": "/outdocs/static/js/2.c046ee42.chunk.js",
-    "static/js/2.c046ee42.chunk.js.map": "/outdocs/static/js/2.c046ee42.chunk.js.map",
-    "index.html": "/outdocs/index.html",
-    "precache-manifest.811dc513f238ddc147f91e5e5cedc115.js": "/outdocs/precache-manifest.811dc513f238ddc147f91e5e5cedc115.js",
-    "service-worker.js": "/outdocs/service-worker.js",
-    "static/css/main.8e984b88.chunk.css.map": "/outdocs/static/css/main.8e984b88.chunk.css.map",
-    "static/js/2.c046ee42.chunk.js.LICENSE.txt": "/outdocs/static/js/2.c046ee42.chunk.js.LICENSE.txt",
-    "static/media/styles.scss": "/outdocs/static/media/jeremy-bishop-_CFv3bntQlQ-unsplash.18919976.jpg"
+    "main.css": "/realtomkwok.github.io/outdocs/static/css/main.d52513e8.chunk.css",
+    "main.js": "/realtomkwok.github.io/outdocs/static/js/main.2cc07e86.chunk.js",
+    "main.js.map": "/realtomkwok.github.io/outdocs/static/js/main.2cc07e86.chunk.js.map",
+    "runtime-main.js": "/realtomkwok.github.io/outdocs/static/js/runtime-main.b9c788bf.js",
+    "runtime-main.js.map": "/realtomkwok.github.io/outdocs/static/js/runtime-main.b9c788bf.js.map",
+    "static/js/2.c046ee42.chunk.js": "/realtomkwok.github.io/outdocs/static/js/2.c046ee42.chunk.js",
+    "static/js/2.c046ee42.chunk.js.map": "/realtomkwok.github.io/outdocs/static/js/2.c046ee42.chunk.js.map",
+    "index.html": "/realtomkwok.github.io/outdocs/index.html",
+    "precache-manifest.502e4af7f964872d6bb20fb9398df1ef.js": "/realtomkwok.github.io/outdocs/precache-manifest.502e4af7f964872d6bb20fb9398df1ef.js",
+    "service-worker.js": "/realtomkwok.github.io/outdocs/service-worker.js",
+    "static/css/main.d52513e8.chunk.css.map": "/realtomkwok.github.io/outdocs/static/css/main.d52513e8.chunk.css.map",
+    "static/js/2.c046ee42.chunk.js.LICENSE.txt": "/realtomkwok.github.io/outdocs/static/js/2.c046ee42.chunk.js.LICENSE.txt",
+    "static/media/styles.scss": "/realtomkwok.github.io/outdocs/static/media/jeremy-bishop-_CFv3bntQlQ-unsplash.18919976.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.58ed297a.js",
+    "static/js/runtime-main.b9c788bf.js",
     "static/js/2.c046ee42.chunk.js",
-    "static/css/main.8e984b88.chunk.css",
-    "static/js/main.dfd6f744.chunk.js"
+    "static/css/main.d52513e8.chunk.css",
+    "static/js/main.2cc07e86.chunk.js"
   ]
 }
