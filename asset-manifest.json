@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/outdocs/static/css/main.25670393.chunk.css",
+    "main.css": "/outdocs/static/css/main.a6665151.chunk.css",
     "main.js": "/outdocs/static/js/main.85517401.chunk.js",
     "main.js.map": "/outdocs/static/js/main.85517401.chunk.js.map",
     "runtime-main.js": "/outdocs/static/js/runtime-main.58ed297a.js",
@@ -8,16 +8,16 @@
     "static/js/2.c046ee42.chunk.js": "/outdocs/static/js/2.c046ee42.chunk.js",
     "static/js/2.c046ee42.chunk.js.map": "/outdocs/static/js/2.c046ee42.chunk.js.map",
     "index.html": "/outdocs/index.html",
-    "precache-manifest.fe87ff93f90865119b1672b6a3663f03.js": "/outdocs/precache-manifest.fe87ff93f90865119b1672b6a3663f03.js",
+    "precache-manifest.188761790178a9463a3e7a14d4a250ce.js": "/outdocs/precache-manifest.188761790178a9463a3e7a14d4a250ce.js",
     "service-worker.js": "/outdocs/service-worker.js",
-    "static/css/main.25670393.chunk.css.map": "/outdocs/static/css/main.25670393.chunk.css.map",
+    "static/css/main.a6665151.chunk.css.map": "/outdocs/static/css/main.a6665151.chunk.css.map",
     "static/js/2.c046ee42.chunk.js.LICENSE.txt": "/outdocs/static/js/2.c046ee42.chunk.js.LICENSE.txt",
     "static/media/styles.scss": "/outdocs/static/media/jeremy-bishop-_CFv3bntQlQ-unsplash.18919976.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.58ed297a.js",
     "static/js/2.c046ee42.chunk.js",
-    "static/css/main.25670393.chunk.css",
+    "static/css/main.a6665151.chunk.css",
     "static/js/main.85517401.chunk.js"
   ]
 }
