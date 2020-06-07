@@ -1,0 +1,53 @@
+{
+	"primary_btn": [
+		{
+			"displayText": "全球征集",
+            "path": "#",
+            "component": ""
+		}
+	],
+	"menuItems": [
+		{
+			"id": 1,
+			"displayText": "我们是谁",
+			"path": "/about",
+			"component": ""
+		},
+		{
+			"id": 2,
+			"displayText": "作品展示",
+			"path": "/showcase",
+			"component": ""
+		},
+		{
+			"id": 3,
+			"displayText": "嘉年华",
+			"path": "/carnival",
+			"component": ""
+		},
+		{
+			"id": 4,
+			"displayText": "有玩人物",
+			"path": "/figures",
+			"component": ""
+		},
+		{
+			"id": 5,
+			"displayText": "有趣机构",
+			"path": "/sponsors",
+			"component": ""
+		},
+		{
+			"id": 6,
+			"displayText": "活动报名",
+			"path": "/events",
+			"component": ""
+		},
+		{
+			"id": 7,
+			"displayText": "新闻中心",
+			"path": "/newsroom",
+			"component": ""
+		}
+	]
+}
