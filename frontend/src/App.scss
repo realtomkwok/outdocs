@@ -9,14 +9,26 @@ $green: #31FF0E;
 $blue: #0EFFFA;
 $violet: #5C0EFF;
 $pink: #FF0E80;
+$grey: grey;
 
-$v-padding-desktop: 2rem;
-$h-padding-desktop: 3rem;
-$v-padding-mobile: 1.5rem;
+$v-padding-desktop: 2.5rem;
+$h-padding-desktop: 4rem;
+$v-padding-mobile: 3rem;
 $h-padding-mobile: 1.5rem;
 
 .container {
   position: relative;
+}
+
+.container .contents {
+  position: relative;
+  top: 8rem
+}
+
+@media screen and (max-width: 600px) {
+  .container .contents {
+    top: 5rem
+  }
 }
 
 .btn {

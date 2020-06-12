@@ -19,7 +19,7 @@
 }
 
 .section__header {
-    padding: 2rem 3rem;
+    padding: $v-padding-desktop $h-padding-desktop;
     font-weight: 800;
 }
 
@@ -46,7 +46,7 @@
 .card {
     position: relative;
     flex: 1 1 auto;
-    left: 3rem;
+    left: $h-padding-desktop;
     min-width: 40vw;
     margin-right: 2rem;
 }
@@ -122,7 +122,7 @@
 }
 
 .sponsors {
-    padding: 2rem 3rem 5rem 3rem;
+    padding: 2rem $h-padding-desktop 5rem $h-padding-desktop;
     // width: 100%;
 }
 

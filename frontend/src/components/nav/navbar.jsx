@@ -1,8 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom';
 
 import Logo from '../logos/cinemadow';
 import Menu from './menu';
+
 import './styles.scss';
 import colorConfigs from '../../configs';
 import navData from '../../data/zh-cn/navigation.json';
@@ -13,44 +14,50 @@ class Navbar extends React.Component {
 		this.state = {
 			isOpen: false,
 			isTop: true,
-			isEng: false,
+			// isEng: false,
 		};
 	}
 
-	componentDidMount() {
-		document.addEventListener('scroll', () => {
-			const isTop = window.scrollY < 500;
+	handleScroll = () => {
+		document.addEventListener("scroll", () => {
+			const isTop = window.scrollY < 50;
 			if (isTop !== this.state.isTop) {
-				this.setState({ isTop })
+				this.setState({ isTop });
 			}
-		})
+		});
+	};
+
+	componentDidMount() {
+		this.handleScroll();
 	}
 
-	handleLangSwitch = () => {
-		this.setState(
-			{ isEng: !this.state.isEng }
-		)
+	componentWillUnmount() {
+		this.handleScroll();
 	}
+
+	// handleLangSwitch = () => {
+	// 	this.setState({ isEng: !this.state.isEng });
+	// };
 
 	handleMenuClick = () => {
-		this.setState({isOpen: !this.state.isOpen})
-	}
-	
+		this.setState({ isOpen: !this.state.isOpen });
+	};
+
 	render() {
-		let className = 'navbar';
+		let className = "navbar";
 		if (!this.state.isTop) {
-			className += ' navbar__bkgd-active'
+			className += " navbar__bkgd-active";
 		}
 		return (
 			<div className="nav">
 				<nav className={className}>
 					<div className="navbar__inner">
-						<a className="navbar__brand">
+						<Link className="navbar__brand" to="/">
 							<Logo
 								className="navbar__logo"
 								fill={colorConfigs.black}
 							></Logo>
-						</a>
+						</Link>
 						<div className="navbar__btns">
 							<a
 								className="navbar__primary-btn btn"

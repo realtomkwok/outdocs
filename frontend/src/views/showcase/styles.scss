@@ -1,0 +1,45 @@
+@import '../../App.scss';
+
+.search__container {
+    position: relative;
+    height: 10vh;
+    padding: 0 $h-padding-desktop $v-padding-desktop $h-padding-desktop;
+}
+
+.search__container .search__input {
+    width: 96%;
+    border-width: 0;
+    border-style: none;
+    border-image: none;
+    color: $grey;
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: transparentize($color: $black, $amount: 0.95);
+    padding: 1rem;
+    // border-bottom-width: 3px;
+    // border-bottom-style: solid;
+    // border-bottom-color: $grey;
+    transition-duration: 0.1s;
+}
+
+.search__container .search__input:hover {
+    transform: scale(1.05);
+    border: 3px solid $black;
+    background-color: transparent;
+    color: $black;
+}
+
+.search__container .search__input:focus {
+    border: 3px solid $black;
+    background-color: transparent;
+    outline: 0;
+    color: $black;
+}
+
+.search__container .search__input::after {
+    border: 3px solid $black;
+    background-color: transparent;
+    outline: 0;
+    color: $black;
+}

@@ -15,7 +15,7 @@
 
 .navbar .navbar__inner {
     height: 100%;
-    padding: 2rem 3rem 1rem 3rem;
+    padding: $v-padding-desktop $h-padding-desktop 1rem $h-padding-desktop;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -79,7 +79,7 @@
     height: 60vh;
     list-style: none;
     margin-block-start: 2rem;
-    padding-inline-start: 3rem;
+    padding-inline-start: $h-padding-desktop;
 }
 
 .menu .menu__links > * {
@@ -113,7 +113,7 @@
 .menu .menu__bottom {
     position: absolute;
     bottom: 0;
-    padding: 2rem 3rem;
+    padding: $v-padding-desktop $h-padding-desktop;
     width: 100%;
     height: 10vh;
 }
@@ -136,7 +136,7 @@
     }
 
     .navbar__primary-btn {
-        // display: none;
+        display: none;
         position: fixed;
         width: 4rem;
         bottom: $v-padding-mobile;
@@ -146,7 +146,7 @@
     }
 
     .menu .menu__links {
-        top: 5rem;
+        top: 3rem;
         margin-block-start: $v-padding-mobile;
         padding-inline-start: $h-padding-mobile;
         flex-wrap: nowrap;
@@ -166,6 +166,14 @@
         padding: 1.5rem $h-padding-mobile;
         width: 100%;
         height: 10vh;
-        bottom: 5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .menu .menu__text {
+        font-size: 5.5vh;
+    }    
+    .menu .menu__bottom {
+        padding: $h-padding-desktop;
     }
 }

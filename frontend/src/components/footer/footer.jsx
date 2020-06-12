@@ -2,8 +2,6 @@ import React from 'react';
 import FullNameLogo from '../logos/fullNameLogo'
 import SNSData from '../../data/socialNetworks.json'
 import SNSIcon from './socialNetworks'
-import OutdocsTextLogo from '../logos/outdocsTextLogo';
-
 
 import './styles.scss'
 
@@ -14,14 +12,14 @@ const Footer = ({ props }) => (
             </div> */}
 			<div className="footer__socialNetworks">
 				{SNSData.map(({ url, icon_path }, index) => (
-					<div className="icon_holder">
-						<a href={url} key={index}>
+					<div className="icon_holder" key={index}>
+						<a href={url}>
 							<SNSIcon d={icon_path}></SNSIcon>
 						</a>
 					</div>
 				))}
 			</div>
-			<a href="#" className="btn footer__backToTop">
+			<a href="/#" className="btn footer__backToTop">
 				<div className="icon_holder">↑</div>
 			</a>
 		</div>
@@ -38,10 +36,7 @@ const Footer = ({ props }) => (
 			</ul>
 			<div className="footer__copyrights">
 				©2020 OUTDOCS. Site by{" "}
-				<a href="https://realtomkwok.github.io/portfolio/">
-					Tom Kwok
-				</a>
-				.
+				<a href="https://realtomkwok.github.io/portfolio/">Tom Kwok</a>.
 			</div>
 		</div>
 	</footer>
