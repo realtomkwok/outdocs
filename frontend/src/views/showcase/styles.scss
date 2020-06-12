@@ -43,3 +43,13 @@
     outline: 0;
     color: $black;
 }
+
+.showcase__gallery {
+    position: relative;
+    display: flex;
+}
+
+.film-card__container {
+    position: relative;
+    width: 45%;
+}
