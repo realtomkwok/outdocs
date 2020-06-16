@@ -1,5 +1,7 @@
 @import '../../App.scss';
 
+$yOffset: -6vw;
+
 .section__container {
     &-black {
         background-color: $black;
@@ -19,56 +21,92 @@
 }
 
 .section__header {
-    padding: $v-padding-desktop $h-padding-desktop;
-    font-weight: 800;
+    padding: $v-padding-desktop $h-padding-desktop 0 $h-padding-desktop;
+    font-weight: 900;
 }
 
-.cards__scroll {
-    overflow-x: auto;
+.section__header .section__name {
+    font-size: 3rem;
+    z-index: 10;
+}
+
+.section__header .section__name-alt {
+    position: relative;
+    z-index: 0;
     width: 100%;
+    top: $yOffset;
+    //cancel the white space left by moving up the element
+    margin-bottom: $yOffset;
+    font-size: 12vw;
+    text-transform: uppercase;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: $black 1px;
+    transition-duration: 0.3s;
+}
+
+.section__header .section__name-alt:hover {
+    -webkit-text-stroke-color: $theme-color;
 }
 
 .cards__container {
     position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 0 3rem 4rem 0;
-    width: fit-content;
-    overflow: hidden;
-    -ms-overflow-style: none;
+    top: $yOffset * 2;
+    margin-bottom: $yOffset * 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding: 0 $h-padding-desktop $v-padding-desktop $h-padding-desktop;
 }
 
-.cards__container::-webkit-scrollbar {
-    display: none;
-}
+// .cards__scroll {
+//     overflow-x: auto;
+// }
+
+// .cards__scroll{
+//     &::-webkit-scrollbar {
+//     display: none;
+//     }
+//   }
+
+// .cards__container {
+//     position: relative;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     padding: 0 3rem 4rem 0;
+//     overflow: auto;
+// }
+
+// .cards__container::-webkit-scrollbar {
+//     display: none;
+// }
+
+// .cards__container::after {
+//   content: "";
+//   flex: 0 0 2rem;
+// }
 
 .card {
     position: relative;
-    flex: 1 1 auto;
-    left: $h-padding-desktop;
-    min-width: 40vw;
+    height: 40vw;
+    width: 100%;
     margin-right: 2rem;
-}
-
-.card .card__img-holder {
-    width: 100%;
-}
-
-.card .card__img {
-    width: 100%;
-    object-fit: cover;
-    // transition-property: transform;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     transition-duration: 0.3s;
 }
 
-.card .card__img:hover {
+.card:hover {
     transform: scale(1.05);
-    box-shadow: 20px 20px 50px rgba($color: $black, $alpha: 0.15);
+    box-shadow: 20px 20px 50px rgba($color: $black, $alpha: 0.10);
 }
 
 .card .card__description {
-    margin-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    padding: 2rem 1rem;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.46) 71%);
 }
 
 .card__eyebrow {
@@ -101,25 +139,11 @@
     }
 }
 
-.card .card__title {
+.card__title {
     font-weight: 500;
+    color: $white;
 }
 
-.card .card__learnMore {
-    margin-block-start: 1rem;
-}
-
-.card > a {
-    font-weight: 700;
-    text-decoration: none;
-    color: inherit;
-    transition-duration: 0.1s;
-    transition-property: color;
-}
-
-.card > a:hover {
-    color: $theme-color;
-}
 
 .sponsors {
     padding: 2rem $h-padding-desktop 5rem $h-padding-desktop;

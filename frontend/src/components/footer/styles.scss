@@ -1,7 +1,7 @@
 @import '../../App.scss';
 
 footer {
-    height: 40vh;
+    height: 48vh;
     padding: $v-padding-desktop $h-padding-desktop;
     background: $theme-color;
 }
@@ -56,7 +56,7 @@ footer .footer__backToTop {
 
 footer .footer__info {
     position: absolute;
-    bottom: 1rem;
+    bottom: 4rem;
     margin: 2rem 0;
     height: 22vh;
     font-size: 0.8rem;
@@ -87,6 +87,7 @@ footer .footer__contacts {
 
 .footer__copyrights {
     height: 10%;
+    margin-block-start: 2rem;
     color: $black;
     font-weight: 700;
 }

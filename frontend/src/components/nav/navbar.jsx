@@ -9,6 +9,8 @@ import colorConfigs from '../../configs';
 import navData from '../../data/zh-cn/navigation.json';
 
 class Navbar extends React.Component {
+	_isMounted = false;
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -18,21 +20,18 @@ class Navbar extends React.Component {
 		};
 	}
 
-	handleScroll = () => {
+	componentDidMount() {
+		this._isMounted = true;
 		document.addEventListener("scroll", () => {
 			const isTop = window.scrollY < 50;
 			if (isTop !== this.state.isTop) {
 				this.setState({ isTop });
 			}
 		});
-	};
-
-	componentDidMount() {
-		this.handleScroll();
 	}
 
 	componentWillUnmount() {
-		this.handleScroll();
+		this._isMounted = false;
 	}
 
 	// handleLangSwitch = () => {

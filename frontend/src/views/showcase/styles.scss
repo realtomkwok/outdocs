@@ -7,7 +7,8 @@
 }
 
 .search__container .search__input {
-    width: 96%;
+    width: 100%;
+    overflow: hidden;
     border-width: 0;
     border-style: none;
     border-image: none;
@@ -46,10 +47,42 @@
 
 .showcase__gallery {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    padding: $v-padding-desktop $h-padding-desktop 5rem $h-padding-desktop;
 }
 
 .film-card__container {
     position: relative;
-    width: 45%;
+    height: 30vw;
+    transition-duration: 0.3s;
+}
+
+.film-card__container:hover {
+    transform: scale(1.05);
+    box-shadow: 20px 20px 50px rgba($color: $black, $alpha: 0.15);
+}
+
+.film-card__content {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.film-card__info {
+    padding: 2rem;
+    color: $black;
+    // background: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.46) 80%)
+}
+
+.film-card__title {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.film-card__director {
+    font-size: 1.5rem;
+    font-weight: 400;
 }
