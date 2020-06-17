@@ -86,3 +86,39 @@
     font-size: 1.5rem;
     font-weight: 400;
 }
+
+.description__container {
+    padding: $v-padding-desktop $h-padding-desktop;
+    overflow: hidden;
+}
+
+.description__left {
+    display: inline-block;
+    width: 40%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.description__right {
+    width: 48%;
+    float: right;
+}
+
+.film-detail__description {
+    font-size: 1.2rem;
+    font-weight: 300;
+    white-space: pre-line;
+    margin-block-end: 4rem;
+}
+
+.description__heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.description__right img {
+    width: 100%;
+    display: block;
+    margin-block-end: 2rem;
+}

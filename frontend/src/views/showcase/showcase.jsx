@@ -6,7 +6,7 @@ import './styles.scss';
 
 import Navbar from '../../components/nav/navbar';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import { Header } from '../../components/header/header';
 import { FilmCard } from '../../components/sections/cards';
 
 import filmData from '../../data/zh-cn/filmData.json';
@@ -26,13 +26,13 @@ function Showcase() {
 			<div className="contents">
 				<Header
 					title="作品展示"
-					// description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+					// subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 				/>
 				{/* <SearchBar /> */}
 				<div className="showcase__gallery">
 					{filmData.map(
 						(
-							{ title, director, img_url, award, path_name },
+							{ title, director, hero_url, award, path_name, text_color },
 							index
 						) => (
 							<Link
@@ -43,10 +43,11 @@ function Showcase() {
 								key={index}
 							>
 								<FilmCard
-									imageURL={img_url}
+									imageURL={hero_url}
 									title={title}
 									director={director}
 									award={award}
+									textColor={text_color}
 								></FilmCard>
 							</Link>
 						)

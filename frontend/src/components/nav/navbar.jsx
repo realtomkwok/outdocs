@@ -9,7 +9,7 @@ import colorConfigs from '../../configs';
 import navData from '../../data/zh-cn/navigation.json';
 
 class Navbar extends React.Component {
-	_isMounted = false;
+	// _isMounted = false;
 
 	constructor(props) {
 		super(props);
@@ -20,19 +20,19 @@ class Navbar extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		this._isMounted = true;
-		document.addEventListener("scroll", () => {
-			const isTop = window.scrollY < 50;
-			if (isTop !== this.state.isTop) {
-				this.setState({ isTop });
-			}
-		});
-	}
+	// componentDidMount() {
+	// 	this._isMounted = true;
+	// 	document.addEventListener("scroll", () => {
+	// 		const isTop = window.scrollY < 50;
+	// 		if (isTop !== this.state.isTop) {
+	// 			this.setState({ isTop });
+	// 		}
+	// 	});
+	// }
 
-	componentWillUnmount() {
-		this._isMounted = false;
-	}
+	// componentWillUnmount() {
+	// 	this._isMounted = false;
+	// }
 
 	// handleLangSwitch = () => {
 	// 	this.setState({ isEng: !this.state.isEng });
@@ -44,9 +44,9 @@ class Navbar extends React.Component {
 
 	render() {
 		let className = "navbar";
-		if (!this.state.isTop) {
-			className += " navbar__bkgd-active";
-		}
+		// if (!this.state.isTop) {
+		// 	className += " navbar__bkgd-active";
+		// }
 		return (
 			<div className="nav">
 				<nav className={className}>
@@ -54,7 +54,7 @@ class Navbar extends React.Component {
 						<Link className="navbar__brand" to="/">
 							<Logo
 								className="navbar__logo"
-								fill={colorConfigs.black}
+								fill={this.props.logoColor}
 							></Logo>
 						</Link>
 						<div className="navbar__btns">

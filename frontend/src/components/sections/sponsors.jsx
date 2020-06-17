@@ -9,7 +9,7 @@ const Sponsors = ({ props }) => (
 			<span>感谢以下有趣机构支持</span>
 		</div>
 		<div className="sponsors__container">
-			{sponsorsData.map(({ name, logo_path, alt }, index) => (
+			{sponsorsData.map(({ logo_path, alt }, index) => (
 				<img className="sponsors__logo" src={logo_path} key={index} alt={alt}></img>
 			))}
 		</div>

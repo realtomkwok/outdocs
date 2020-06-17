@@ -41,7 +41,7 @@ const FilmCard = (props) => (
 		className="film-card__content"
 		style={{ backgroundImage: `url('${props.imageURL}')` }}
 	>
-		<div className="film-card__info">
+		<div className="film-card__info" style={{ color: `${props.textColor}` }}>
 			<div className="film-card__title">{props.title}</div>
 			<div className="film-card__director">{props.director}</div>
 			<div className="film-card__award">{props.award}</div>

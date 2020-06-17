@@ -31,22 +31,29 @@ $h-padding-mobile: 1.5rem;
   }
 }
 
-.btn {
-  background-color: $black;
-  /* display: inline-block; */
-  border: solid 2px transparent;
+//button
+
+@mixin resetButton {
   outline: none;
   padding: 0.5rem;
   /* font settings */
-  color: $white;
+  color: $black;
   font-family: 'Inter', 'source-han-sans-simplified-c', sans-serif; 
   font-weight: 900;
+  font-size: 1.2rem;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: ease;
   transition-duration: 0.1s;
+}
+
+.btn {
+  @include resetButton;
+  background-color: $black;
+  color: $white;
+  border: solid 2px transparent;
 }
 
 .btn:hover {
@@ -70,6 +77,18 @@ $h-padding-mobile: 1.5rem;
 .text_btn__chn {
     position: relative;
     top: -0.2rem;
+}
+
+.text_btn {
+  @include resetButton;
+  border: 0;
+  font-size: 1.2rem;
+}
+
+.text_btn:hover {
+    background: rgba($color: $white, $alpha: 0.2);
+    border: 0;
+    transform: unset;
 }
 
 a {
