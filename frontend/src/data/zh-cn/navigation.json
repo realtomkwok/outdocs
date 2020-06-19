@@ -15,7 +15,7 @@
 		},
 		{
 			"id": 2,
-			"displayText": "作品展示",
+			"displayText": "参展作品",
 			"path": "/showcase",
 			"component": "Showcase"
 		},

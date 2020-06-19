@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.scss';
 
 
-function Hero({ height, imageURL }: { height: string; imageURL: string }) {
+function Hero({ height, imagePosition, imageURL }: { height: string; imagePosition:string; imageURL: string }) {
 	return(
 		<section
 			className="hero__container"
@@ -10,7 +10,7 @@ function Hero({ height, imageURL }: { height: string; imageURL: string }) {
 		>
 			<div
 				className="hero__img"
-				style={{ backgroundImage: `url('${imageURL}')` }}
+				style={{ backgroundImage: `url('${imageURL}')`, backgroundPosition: `${imagePosition}`}}
 			></div>
 		</section>
 	)
@@ -19,6 +19,7 @@ function Hero({ height, imageURL }: { height: string; imageURL: string }) {
 Hero.defaultProps = {
 	height: '100vh',
 	imageURL: undefined,
+	imagePosition: 'center'
 };
 
 export default Hero

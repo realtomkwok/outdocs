@@ -1,21 +1,20 @@
-import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom'
+import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
-import '../../App.scss';
-import './styles.scss';
+import "../../App.scss";
+import "./styles.scss";
 
-import Navbar from '../../components/nav/navbar';
-import Footer from '../../components/footer/footer';
-import { Header } from '../../components/header/header';
-import { FilmCard } from '../../components/sections/cards';
+import Navbar from "../../components/nav/navbar";
+import Footer from "../../components/footer/footer";
+import { Header } from "../../components/header/header";
 
-import filmData from '../../data/zh-cn/filmData.json';
+import Gallery from "../../components/sections/gallery";
 
 const SearchBar = (props) => (
-    <div className="search__container">
-        <input className="search__input" type="text" placeholder='搜寻'></input>
-    </div>
-)
+	<div className="search__container">
+		<input className="search__input" type="text" placeholder="搜寻"></input>
+	</div>
+);
 
 function Showcase() {
 	let { url } = useRouteMatch();
@@ -25,33 +24,22 @@ function Showcase() {
 			<Navbar />
 			<div className="contents">
 				<Header
-					title="作品展示"
+					title="参展作品"
 					// subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 				/>
 				{/* <SearchBar /> */}
-				<div className="showcase__gallery">
-					{filmData.map(
-						(
-							{ title, director, hero_url, award, path_name, text_color },
-							index
-						) => (
-							<Link
-								to={{
-									pathname: `${url}/${path_name}`,
-								}}
-								className="film-card__container"
-								key={index}
-							>
-								<FilmCard
-									imageURL={hero_url}
-									title={title}
-									director={director}
-									award={award}
-									textColor={text_color}
-								></FilmCard>
-							</Link>
-						)
-					)}
+				<Gallery category="winners"></Gallery>
+				<Gallery category="finalist"></Gallery>
+				<div id="showcase_semi-finalist" className="showcase">
+					<Link to={`${url}/semi-finalists`}>
+						<div className="showcase__heading">
+							<h2>复评入围影片↗</h2>
+							<h2></h2>
+						</div>
+						<h3 className="showcase__heading-alt">
+							Semi-finalists
+						</h3>
+					</Link>
 				</div>
 				<Footer />
 			</div>

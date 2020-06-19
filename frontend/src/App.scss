@@ -79,13 +79,13 @@ $h-padding-mobile: 1.5rem;
     top: -0.2rem;
 }
 
-.text_btn {
+.text-btn {
   @include resetButton;
   border: 0;
   font-size: 1.2rem;
 }
 
-.text_btn:hover {
+.text-btn:hover {
     background: rgba($color: $white, $alpha: 0.2);
     border: 0;
     transform: unset;

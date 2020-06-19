@@ -2,6 +2,8 @@ import React from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
+import { Prize } from '../../components/logos/prize';
+
 const Card = ({ cards }) => (
 	<React.Fragment>
 		{cards.map(
@@ -36,17 +38,36 @@ const Card = ({ cards }) => (
 	</React.Fragment>
 );
 
-const FilmCard = (props) => (
-	<div
-		className="film-card__content"
-		style={{ backgroundImage: `url('${props.imageURL}')` }}
-	>
-		<div className="film-card__info" style={{ color: `${props.textColor}` }}>
-			<div className="film-card__title">{props.title}</div>
-			<div className="film-card__director">{props.director}</div>
-			<div className="film-card__award">{props.award}</div>
+const FilmCard = (props) => {
+	let styleProperty = {
+		backgroundImage: `url(${props.imageURL})`,
+		backgroundPosition: `${props.heroPosition}`
+	};
+
+	return (
+		<div
+			className="film-card__content"
+			style={styleProperty}
+		>
+			<div
+				className="film-card__info"
+				style={{ color: `${props.textColor}` }}
+			>
+				<div className="film-card__title">{props.title}</div>
+				<div className="film-card__director">{props.director}</div>
+				<Prize
+					className="film-card__award"
+					fill={props.textColor}
+					award={props.award}
+				></Prize>
+				<Prize
+					className="film-card__award"
+					fill={props.textColor}
+					award={props.award_2}
+				></Prize>
+			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 export { Card, FilmCard }

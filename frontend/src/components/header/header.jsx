@@ -15,7 +15,7 @@ function GoBack(props) {
 	return (
 		<div style={{ display: `${displayAttr}` }}>
 			<button
-				className="back-btn text_btn"
+				className="back-btn text-btn"
 				onClick={() => history.goBack()}
 			>
 				← {props.text}
@@ -48,7 +48,14 @@ const DetailHeader = (props) => (
 				</div>
 			</div>
 			<div className="detail-header__right">
-				<Prize award={props.award}></Prize>
+				<Prize
+					className="detail-header__prize"
+					award={props.award}
+				></Prize>
+				<Prize
+					className="detail-header_prize"
+					award={props.award_2}
+				></Prize>
 			</div>
 		</div>
 	</div>
