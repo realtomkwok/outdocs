@@ -1,104 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
-import Logo from '../logos/cinemadow';
-import Menu from './menu';
+import LangContext from "../../locale/langContext";
+import Logo from "../logos/cinemadow";
+import Menu from "./menu";
+import Navigation from "../../locale/navigations.json";
 
-import './styles.scss';
-import colorConfigs from '../../configs';
-import navData from '../../data/zh-cn/navigation.json';
+import "./styles.scss";
 
-class Navbar extends React.Component {
-	// _isMounted = false;
+const Navbar = (props) => {
+	const [menuIsOpen, toggleMenu] = useState(false);
+	const { isEng, setLanguage } = useContext(LangContext);
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			isOpen: false,
-			isTop: true,
-			// isEng: false,
-		};
-	}
-
-	// componentDidMount() {
-	// 	this._isMounted = true;
-	// 	document.addEventListener("scroll", () => {
-	// 		const isTop = window.scrollY < 50;
-	// 		if (isTop !== this.state.isTop) {
-	// 			this.setState({ isTop });
-	// 		}
-	// 	});
-	// }
-
-	// componentWillUnmount() {
-	// 	this._isMounted = false;
-	// }
-
-	// handleLangSwitch = () => {
-	// 	this.setState({ isEng: !this.state.isEng });
-	// };
-
-	handleMenuClick = () => {
-		this.setState({ isOpen: !this.state.isOpen });
-	};
-
-	render() {
-		let className = "navbar";
-		// if (!this.state.isTop) {
-		// 	className += " navbar__bkgd-active";
-		// }
-		return (
-			<div className="nav">
-				<nav className={className}>
-					<div className="navbar__inner">
-						<Link className="navbar__brand" to="/">
-							<Logo
-								className="navbar__logo"
-								fill={this.props.logoColor}
-							></Logo>
+	return (
+		<div className="nav">
+			<nav className="navbar">
+				<div className="navbar__inner">
+					<Link className="navbar__brand" to="/">
+						<Logo
+							className="navbar__logo"
+							fill={props.logoColor}
+						></Logo>
+					</Link>
+					<div className="navbar__btns">
+						<Link
+							className="navbar__primary-btn btn"
+							to={Navigation.primaryBtn.path}
+						>
+							<span className="text_btn__primary">
+								{isEng ? (
+									<span className="text_btn__eng">
+										{Navigation.primaryBtn.engName}
+									</span>
+								) : (
+									<span className="text_btn__chn">
+										{Navigation.primaryBtn.chnName}
+									</span>
+								)}
+							</span>
 						</Link>
-						<div className="navbar__btns">
-							<a
-								className="navbar__primary-btn btn"
-								href={navData.primary_btn[0].path}
-							>
-								<span className="btn-text">
-									{navData.primary_btn[0].displayText}
-								</span>
-							</a>
-							{/* <button className="navbar__icon btn">
-								<div 
-									className="icon_holder"
-									onClick={(this.handleLangSwitch)}
-								>
-									{!this.state.isEng ? (
-										<span className="text_btn__chn">中</span>
-									) : (
-										<span className="text_btn__eng">En</span>
-									)}
-								</div>
-							</button> */}
-							<button
-								className="navbar__icon btn"
-								onClick={this.handleMenuClick}
-							>
-								<div className="icon_holder">
-									{!this.state.isOpen ? "⌘" : "✗"}
-								</div>
-							</button>
-						</div>
+						<button
+							className="navbar__icon btn"
+							onClick={setLanguage}
+						>
+							<div className="icon_holder">
+								{isEng ? (
+									<span className="text_btn__chn">中</span>
+								) : (
+									<span className="text_btn__eng">En</span>
+								)}
+							</div>
+						</button>
+						<button
+							className="navbar__icon btn"
+							onClick={() => toggleMenu(!menuIsOpen)}
+						>
+							<div className="icon_holder">
+								{!menuIsOpen ? "⌘" : "✗"}
+							</div>
+						</button>
 					</div>
-				</nav>
-				<Menu
-					className={
-						(!this.state.isOpen && "menu menu-inactive") ||
-						"menu menu-active"
-					}
-					navs={navData.menuItems}
-				></Menu>
-			</div>
-		);
-	}
-}
+				</div>
+			</nav>
+			<Menu
+				className={
+					!menuIsOpen ? "menu menu-inactive" : "menu menu-active"
+				}
+				navs={Navigation.menuItem}
+			></Menu>
+		</div>
+	);
+};
 
 export default Navbar;

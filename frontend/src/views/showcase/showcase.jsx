@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
-import "../../App.scss";
 import "./styles.scss";
 
 import Navbar from "../../components/nav/navbar";
 import Footer from "../../components/footer/footer";
 import { Header } from "../../components/header/header";
 
-import Gallery from "../../components/sections/gallery";
+import { FilmGallery } from "../../components/sections/gallery";
 
 const SearchBar = (props) => (
 	<div className="search__container">
@@ -16,35 +15,31 @@ const SearchBar = (props) => (
 	</div>
 );
 
-function Showcase() {
+const Showcase = (props) => {
 	let { url } = useRouteMatch();
-
+	
 	return (
 		<div className="container">
 			<Navbar />
 			<div className="contents">
-				<Header
-					title="参展作品"
-					// subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-				/>
+				<Header title={props.title} />
 				{/* <SearchBar /> */}
-				<Gallery category="winners"></Gallery>
-				<Gallery category="finalist"></Gallery>
+				<FilmGallery category="winners"></FilmGallery>
+				<FilmGallery category="finalist"></FilmGallery>
 				<div id="showcase_semi-finalist" className="showcase">
 					<Link to={`${url}/semi-finalists`}>
-						<div className="showcase__heading">
-							<h2>复评入围影片↗</h2>
-							<h2></h2>
-						</div>
+						<h2 className="showcase__heading">
+							2019复评入围影片↗
+						</h2>
 						<h3 className="showcase__heading-alt">
 							Semi-finalists
 						</h3>
 					</Link>
 				</div>
-				<Footer />
 			</div>
+			<Footer />
 		</div>
 	);
-}
+};
 
 export default Showcase;

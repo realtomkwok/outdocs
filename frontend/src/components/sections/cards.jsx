@@ -1,60 +1,48 @@
-import React from 'react';
-import './styles.scss';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./styles.scss";
+import { Link } from "react-router-dom";
 
-import { Prize } from '../../components/logos/prize';
+import { Prize } from "../../components/logos/prize";
 
-const Card = ({ cards }) => (
-	<React.Fragment>
-		{cards.map(
-			(
-				{
-					img_url,
-					img_alt,
-					tag_color,
-					tag,
-					article_title,
-					article_url,
-				},
-				index
-			) => (
-				<Link
-					to={article_url}
-					className="card"
-					key={index}
-					style={{ backgroundImage: `url('${img_url}')` }}
-				>
-					<div className="card__description">
-						<div className="card__eyebrow">
-							<div className={`card__tag card__tag-${tag_color}`}>
-								{tag}
-							</div>
-						</div>
-						<h3 className="card__title">{article_title}</h3>
-					</div>
-				</Link>
-			)
-		)}
-	</React.Fragment>
-);
-
-const FilmCard = (props) => {
-	let styleProperty = {
-		backgroundImage: `url(${props.imageURL})`,
-		backgroundPosition: `${props.heroPosition}`
+const Card = (props) => {
+	const styleConfigs = {
+		backgroundImage: `url("${props.heroURL}"), linear-gradient(${props.preLoadColor})`,
+		backgroundPosition: `${props.heroPosition}`,
+		color: `${props.textColor}`
 	};
 
 	return (
-		<div
-			className="film-card__content"
-			style={styleProperty}
-		>
+		<div className="card__content" style={styleConfigs}>
 			<div
-				className="film-card__info"
+				className="card__info"
 				style={{ color: `${props.textColor}` }}
 			>
-				<div className="film-card__title">{props.title}</div>
-				<div className="film-card__director">{props.director}</div>
+				<div className="card__eyebrow">
+					<div className="card__tag">{props.tag}</div>
+				</div>
+				<h2 className="card__title">{props.title}</h2>
+				<h3 className="card__subtitle">{props.subtitle}</h3>
+			</div>
+		</div>
+	);
+};
+
+const FilmCard = (props) => {
+	let styleProperty = {
+		backgroundImage: `url(${props.imageURL}), linear-gradient(${props.preLoadColor})`,
+		backgroundPosition: `${props.heroPosition}`,
+	};
+
+	return (
+		<div className="film-card__content" style={styleProperty}>
+			<div
+				className="film-card__info card__info"
+				style={{ color: `${props.textColor}` }}
+			>
+				<div className="film-card__title card__title">
+					{props.title}
+				</div>
+				<div className="film-card__director card__subtitle">{props.director}</div>
 				<Prize
 					className="film-card__award"
 					fill={props.textColor}
@@ -70,4 +58,4 @@ const FilmCard = (props) => {
 	);
 };
 
-export { Card, FilmCard }
+export { Card, FilmCard };

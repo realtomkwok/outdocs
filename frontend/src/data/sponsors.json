@@ -1,7 +1,90 @@
 [
-    {
-        "id": 1,
-        "name": "Discovery",
-        "logo_path": "https://upload.wikimedia.org/wikipedia/commons/f/f1/2019_Discovery_logo.svg"
-    }
+	{
+		"id": 1,
+		"sponsor_name": "Discovery",
+		"sponsor_website": "https://www.discovery.com/",
+		"category": "内容支持机构",
+		"logo_path": "https://upload.wikimedia.org/wikipedia/commons/f/f1/2019_Discovery_logo.svg",
+		"logo_width": "50%"
+	},
+	{
+		"id": 2,
+		"sponsor_name": "PADI",
+		"sponsor_website": "https://www.padi.com/",
+		"category": "支持机构",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797785700_7316.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "40%"
+	},
+	{
+		"id": 3,
+		"sponsor_name": "bilibili",
+		"sponsor_website": "https://www.bilibili.com/",
+		"category": "视频内容合作平台",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592817139348_5567.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "40%"
+	},
+	{
+		"id": 4,
+		"sponsor_name": "知乎",
+		"sponsor_website": "https://www.zhihu.com/",
+		"category": "互动知识内容合作",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797644953_2182.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "25%"
+	},
+	{
+		"id": 5,
+		"sponsor_name": "磨房",
+		"sponsor_website": "http://www.doyouhike.net/",
+		"category": "深度户外平台合作",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797867999_6591.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "25%"
+	},
+	{
+		"id": 6,
+		"sponsor_name": "户外探险",
+		"sponsor_website": "http://www.outdoormag.cn/",
+		"category": "户外合作媒体",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797673123_7434.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "30%"
+	},
+	{
+		"id": 7,
+		"sponsor_name": "凹凸镜DOC",
+		"sponsor_website": "https://weibo.com/u/6808141045",
+		"category": "专业合作媒体",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797855822_6923.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "30%"
+	},
+	{
+		"id": 8,
+		"sponsor_name": "捷豹路虎",
+		"sponsor_website": "https://media.jaguarlandrover.com/zh-cn",
+		"category": "官方指定用车",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797516751_3761.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "60%"
+	},
+	{
+		"id": 9,
+		"sponsor_name": "茶界中国",
+		"sponsor_website": "https://www.weibo.com/chajiezhongguo",
+		"category": "官方指定茶礼",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797511921_1746.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "30%"
+	},
+	{
+		"id": 10,
+		"sponsor_name": "CBD Times",
+		"sponsor_website": "http://www.oeeee.com/",
+		"category": "合作媒体",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592797529366_4293.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "35%"
+	},
+	{
+		"id": 11,
+		"sponsor_name": "山野",
+		"sponsor_website": "https://www.weibo.com/shanyechina",
+		"category": "合作媒体",
+		"logo_path": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592799403422_2104.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
+		"logo_width": "35%"
+	}
 ]

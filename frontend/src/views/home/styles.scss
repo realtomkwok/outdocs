@@ -1,0 +1,93 @@
+@import "../../App.scss";
+
+.card__container {
+	height: 35vw;
+}
+
+.hero__text {
+	position: absolute;
+	top: $topOffset-desktop;
+	padding-left: $h-padding-desktop;
+	animation: 3s ease 0s normal forwards 1 fadein;
+	// -webkit-animation: 3s ease 0s normal forwards 1 fadein;
+}
+
+@keyframes fadein {
+	0% {
+		opacity: 0;
+		top: 20rem;
+	}
+	60% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		top: $topOffset-desktop;
+	}
+}
+
+.hero__text .hero__title {
+	font-size: 3rem;
+	font-weight: 900;
+}
+
+.hero__text .hero__link {
+	padding-right: 1rem;
+}
+
+@media only screen and (max-device-width: 600px) {
+	.hero__title {
+		margin-block-end: 0.5rem;
+	}
+
+	.hero__text {
+		position: absolute;
+		top: 6rem;
+		padding: 0 $h-padding-mobile;
+	}
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+			top: 20rem;
+		}
+		60% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+			top: $topOffset-mobile;
+		}
+	}
+
+	.hero__text .hero__title {
+		font-size: 2rem;
+		font-weight: 900;
+	}
+}
+
+@media only screen and (min-device-width: 600px) and (max-device-width: 1024px) and (orientation: portrait) {
+	.hero__text {
+		position: absolute;
+		top: 6rem;
+		padding: 0 $h-padding-mobile;
+	}
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+			top: 20rem;
+		}
+		60% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+			top: $topOffset-tablet;
+		}
+	}
+	.hero__text .hero__title {
+		font-size: 3rem;
+		font-weight: 900;
+	}
+}

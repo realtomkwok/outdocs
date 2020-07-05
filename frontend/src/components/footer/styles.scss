@@ -1,8 +1,8 @@
-@import '../../App.scss';
+@import "../../App.scss";
 
 footer {
     position: relative;
-    height: 48vh;
+    height: 35vh;
     padding: $v-padding-desktop $h-padding-desktop;
     background: $theme-color;
 }
@@ -35,8 +35,6 @@ footer .footer__socialNetworks .icon_holder {
 }
 
 footer .footer__backToTop {
-    width: 1.5rem;
-    height: 1.5rem;
     background-color: $black;
     font-size: 1.5rem;
 }
@@ -57,9 +55,8 @@ footer .footer__backToTop {
 
 footer .footer__info {
     position: absolute;
-    bottom: 4rem;
+    bottom: 0rem;
     margin: 2rem 0;
-    height: 22vh;
     font-size: 0.8rem;
     font-weight: 700;
 }
@@ -78,7 +75,6 @@ footer .footer__contacts {
     margin-block-start: 1rem;
     margin-block-end: 1rem;
     color: $black
-    // margin
 }
 
 
@@ -101,7 +97,7 @@ footer .footer__contacts {
     bottom: -0.03rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     footer {
         padding: 1.5rem $h-padding-mobile;
     }

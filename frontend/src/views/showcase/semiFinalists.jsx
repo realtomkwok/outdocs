@@ -21,22 +21,36 @@ const FilmList = (props) => {
 
     const renderRows = (props) => (
 		<React.Fragment>
-			<tbody>
+			<tbody className="table__row">
 				{FilmData.map(
 					(
 						{ title, title_eng, duration, director, director_eng },
 						index
 					) => (
 						<tr key={index}>
-							<tr className="table__film-title">
-								<td className="chn">{title}</td>
-								<td className="eng">{title_eng}</td>
-							</tr>
+							<td>
+								<table className="table__film-title">
+									<tbody>
+										<tr>
+											<td className="chn">{title}</td>
+											<td className="eng">{title_eng}</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
 							<td>{duration}</td>
-							<tr className="table__film-director">
-								<td className="chn">{director}</td>
-								<td className="eng">{director_eng}</td>
-							</tr>
+							<td>
+								<table>
+									<tbody>
+										<tr className="table__film-director">
+											<td className="chn">{director}</td>
+											<td className="eng">
+												{director_eng}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
 						</tr>
 					)
 				)}
@@ -60,13 +74,13 @@ const SemiFinalist = (props) => (
 		<div className="contents">
 			<Header
 				title="复评入围影片"
+				subtitle="经过 2019 OUTDOCS 初评委员会的多轮严格筛选，以下 63 部作品脱颖而出，入围复评。这些影片兼具艺术价值与人文关怀，在展现体育文化、自然奇观、讲述户外探险奇遇的同时，传递极具感染力的体育精神，启发大众对生命的敬畏与热爱。"
 				displayBackBtn={true}
 				prevPage="参展作品"
-				// subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 			></Header>
-            <FilmList id="semi-finalists"></FilmList>
-			<Footer></Footer>
+			<FilmList id="semi-finalists"></FilmList>
 		</div>
+		<Footer></Footer>
 	</div>
 );
 

@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import "./styles.scss";
 import FilmData from "../../data/zh-cn/filmData/finalists.json";
+import LangContext from "../../locale/langContext";
 
 import Navbar from "../../components/nav/navbar";
 import Hero from "../../components/hero/hero";
 import { DetailHeader } from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
-const FilmDetail = ({ props }) => {
+const FilmDetail = (props) => {
 	let content;
 	let isDisplay = 'block';
 	let { id } = useParams();
+	const { isEng } = useContext(LangContext);
 
 	for (var i = 0; i < FilmData.length; i++) {
 		if (FilmData[i].path_name === id) {
 			content = FilmData[i];
-			// console.log(data)
 		}
 	}
 
@@ -34,14 +35,16 @@ const FilmDetail = ({ props }) => {
 				imagePosition={content.hero_position}
 			></Hero>
 			<DetailHeader
+				className="film-header"
 				displayBackBtn={true}
-				prevPage="参展作品"
-				title={content.title}
+				prevPage={props.prevPage}
+				title={content.title_chn}
 				subtitle={content.title_eng}
 				award={content.award}
 				award_2={content.award_2}
-				info={content.info}
+				info={isEng ? content.info_eng : content.info_chn}
 				production={content.production}
+				isVisible={true}
 			/>
 			<div className="description__container">
 				<div className="description__left">
@@ -49,16 +52,30 @@ const FilmDetail = ({ props }) => {
 						id="film-synopsis"
 						className="film-detail__description"
 					>
-						<h2 className="description__heading">简介</h2>
-						<p>{content.description}</p>
+						<h2 className="description__heading">
+							{isEng ? "Synopsis" : "简介"}
+						</h2>
+						<p>
+							{isEng
+								? content.description_eng
+								: content.description_chn}
+						</p>
 					</div>
 					<div
 						id="film-director"
 						className="film-detail__description"
 					>
-						<h2 className="description__heading">导演</h2>
-						<h1>{content.director}</h1>
-						<p>{content.director_info}</p>
+						<h2 className="description__heading">
+							{isEng
+								? "Director"
+								: "导演"}
+						</h2>
+						<h1>
+							{isEng
+								? content.director_eng
+								: content.director_chn}
+						</h1>
+						<p>{isEng? content.director_info_eng : content.director_info_chn}</p>
 					</div>
 				</div>
 				<div className="description__right">
@@ -76,7 +93,7 @@ const FilmDetail = ({ props }) => {
 						style={{
 							backgroundImage: `url(${content.img_alt2})`,
 							backgroundPosition: `${content.img_position}`,
-							display: `${isDisplay}`
+							display: `${isDisplay}`,
 						}}
 					></div>
 				</div>

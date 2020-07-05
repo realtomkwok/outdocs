@@ -1,0 +1,14 @@
+@import "../../App.scss";
+
+article .highlight {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0) 50%,
+		$theme-color 50%
+	);
+}
+
+article .gallery {
+    float: right;
+    width: 50%;
+}
