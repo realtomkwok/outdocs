@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b69a38caaab3dd30d591fcb8f244c1f0",
+    "revision": "31eb04c680416fd42d1862965286b7db",
     "url": "/www.outdocs.cn/index.html"
   },
   {
-    "revision": "77914c56ddcb6ee97e2b",
+    "revision": "e436f2cf8c99ad297025",
     "url": "/www.outdocs.cn/static/css/main.754ae001.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/www.outdocs.cn/static/js/2.2992225c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "77914c56ddcb6ee97e2b",
-    "url": "/www.outdocs.cn/static/js/main.a3796abf.chunk.js"
+    "revision": "e436f2cf8c99ad297025",
+    "url": "/www.outdocs.cn/static/js/main.c94bd7ca.chunk.js"
   },
   {
     "revision": "ce59a7c185e56032b39c",
