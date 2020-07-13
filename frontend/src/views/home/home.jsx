@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import "./styles.scss";
 
 import LangContext from "../../locale/langContext";
 import newsData from "../../data/zh-cn/news.json";
 
+import Navigation from "../../locale/navigations.json";
 import Hero from "../../components/hero/hero";
 import NavBar from "../../components/nav/navbar";
 import SectionOfCards from "../../components/sections/SectionOfCards";
@@ -18,13 +20,26 @@ const Home = () => {
 
 	return (
 		<div className="container">
+			<div className="hero__contents">
+				<div className="hero__text">
+					<h1 className="hero__title">
+						{isEng ? "Submissions Now Open." : "全球征集现已开始。"}
+					</h1>
+					<Link
+						to={Navigation.primaryBtn.path}
+						className="hero__link text-btn"
+					>
+						{isEng ? "Learn More↗" : "请即报名↗"}
+					</Link>
+				</div>
+			</div>
 			<Hero imageURL={heroImageURL}></Hero>
 			<NavBar></NavBar>
 			<div className="contents home__contents">
 				<SectionOfCards
 					toPath="/newsroom"
 					bkgdColor="white"
-				name={isEng ? "Newsroom" : "新闻中心"}
+					name={isEng ? "Newsroom" : "新闻中心"}
 					nameAlt={isEng ? "新闻中心" : "Newsroom"}
 					data={newsData}
 					sectionClassName="card__newsroom"
