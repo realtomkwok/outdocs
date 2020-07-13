@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import { Prize } from "../../components/logos/prize";
 

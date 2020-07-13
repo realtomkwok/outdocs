@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+// import { Link, useRouteMatch } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -13,7 +13,7 @@ const reverseData = newsData.reverse();
 
 const Newsroom = (props) => {
 	const NewsGallery = (props) => {
-		let { url } = useRouteMatch();
+		// let { url } = useRouteMatch();
 
 		return (
 			<div className="gallery">

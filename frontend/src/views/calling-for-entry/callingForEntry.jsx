@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { HashLink } from "react-router-hash-link";
-import StickyBox from "react-sticky-box";
 
 import "./styles.scss";
 import LangContext from "../../locale/langContext";
@@ -8,7 +7,6 @@ import LangContext from "../../locale/langContext";
 import Navbar from "../../components/nav/navbar";
 import Footer from "../../components/footer/footer";
 import { Header } from "../../components/header/header";
-import { useHistory } from "react-router-dom";
 
 const submissionForm = {
 	eng:
@@ -753,7 +751,6 @@ const ArticleENG = () => (
 );
 
 const Sidebar = (props) => {
-	const url = useHistory().location.pathname;
 	const anchors = [
 		{
 			id: 1,
@@ -853,11 +850,6 @@ const Sidebar = (props) => {
 const CallingForEntry = (props) => {
 	const { isEng } = useContext(LangContext);
 	const [isExpanded, toggleExpansion] = useState(false);
-
-	// function scrollThere() {
-	// 	let rem = 16;
-	// 	window.scrollTo({ top: 20 * rem, behavior: "smooth" });
-	// }
 
 	return (
 		<div className="container">

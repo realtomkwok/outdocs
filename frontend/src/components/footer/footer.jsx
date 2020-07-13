@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FullNameLogo from "../logos/fullNameLogo";
 import SNSData from "../../data/socialNetworks.json";
 import SNSIcon from "./socialNetworks";

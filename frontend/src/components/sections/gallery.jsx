@@ -8,7 +8,6 @@ import FilmData from "../../data/zh-cn/filmData/finalists.json"
 
 const Gallery = (props) => {
 	let { url } = useRouteMatch();
-	const { isEng } = useContext(LangContext);
 
 	return (
 		<div className={`gallery ${props.galleryClassName}`}>

@@ -39,7 +39,7 @@ class DetailHeader extends React.Component {
 			hasPrize: "block",
 			hasPrize2: "none"
 		}
-		if (props.award != undefined) {
+		if (props.award !== undefined) {
 			this.state.hasPrize = "block";
 		} else {
 			this.state.hasPrize = "none";
