@@ -28,6 +28,8 @@ $h1-mobile: 1.5rem;
 $h2-dekstop: 1.5rem;
 $h2-mobile: 1.2rem;
 
+$max-width: 1280px;
+
 h1 {
 	font-size: $h1-desktop;
 	margin-block-end: 1rem;
@@ -52,6 +54,11 @@ h2 {
 	}
 }
 
+@mixin maxWidth {
+	margin: 0 auto;
+	max-width: $max-width;
+}
+
 .container {
 	position: relative;
 }
@@ -59,6 +66,8 @@ h2 {
 .container .contents {
 	position: relative;
 	top: $topOffset-desktop;
+	@include maxWidth;
+	margin-bottom: $topOffset-desktop;
 }
 
 @media screen and (max-width: 600px) {

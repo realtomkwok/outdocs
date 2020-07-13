@@ -8,20 +8,22 @@ const Menu = (props) => {
 	const { isEng } = useContext(LangContext);
 	return (
 		<div className={props.className}>
-			<ul className="menu__links">
-				{props.navs.map(({ chnName, engName, path }, index) => (
-					<li className="menu__link" key={index}>
-						<Link to={path}>
-							<span className="menu__text">
-								{isEng ? engName : chnName}
-								<span>↗</span>
-							</span>
-						</Link>
-					</li>
-				))}
-			</ul>
-			<div className="menu__bottom">
-				<FullNameLogo className="text-logo"></FullNameLogo>
+			<div className="menu__contents">
+				<ul className="menu__links">
+					{props.navs.map(({ chnName, engName, path }, index) => (
+						<li className="menu__link" key={index}>
+							<Link to={path}>
+								<span className="menu__text">
+									{isEng ? engName : chnName}
+									<span>↗</span>
+								</span>
+							</Link>
+						</li>
+					))}
+				</ul>
+				<div className="menu__bottom">
+					<FullNameLogo className="text-logo"></FullNameLogo>
+				</div>
 			</div>
 		</div>
 	);

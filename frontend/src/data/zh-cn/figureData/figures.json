@@ -2,7 +2,7 @@
 	{
 		"id": 1,
 		"name": "黄鹤",
-		"article_title": "对自然的探索，是人类前进的驱动力",
+		"article_title": "对自然的探索，是人类前进的驱动力。",
 		"path_name": "huang-he",
 		"hero_img": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592558969399_3481.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
 		"hero_position": "center top",
@@ -21,7 +21,7 @@
 	{
 		"id": 2,
 		"name": "李宗利",
-		"article_title": "失去了一只胳膊一条腿，都不可怕 \n失去信心才最可怕",
+		"article_title": "失去了一只胳膊一条腿，都不可怕 \n失去信心才最可怕。",
 		"path_name": "li-zong-li",
 		"hero_img": "https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592558002428_6089.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0",
 		"hero_position": "center top",

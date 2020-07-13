@@ -88,7 +88,7 @@ const FilmDetail = (props) => {
 							backgroundPosition: `${content.img_position}`,
 						}}
 					>
-						<div className="vid__playBtn">↗观赏预告片</div>
+						{/* <div className="vid__playBtn">↗观赏预告片</div> */}
 					</div>
 					<div
 						className="description__img"

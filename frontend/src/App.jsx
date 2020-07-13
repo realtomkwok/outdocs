@@ -146,15 +146,16 @@ class App extends React.Component {
 							<Route
 								path={Navigations.menuItem[5].path}
 								render={() => (
-									<Events
-										title={
-											this.state.isEng
-												? Navigations.menuItem[5]
-														.engName
-												: Navigations.menuItem[5]
-														.chnName
-										}
-									/>
+									<NotFoundPage />
+									// <Events
+									// 	title={
+									// 		this.state.isEng
+									// 			? Navigations.menuItem[5]
+									// 					.engName
+									// 			: Navigations.menuItem[5]
+									// 					.chnName
+									// 	}
+									// />
 								)}
 							></Route>
 							<Route

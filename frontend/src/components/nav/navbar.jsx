@@ -13,61 +13,67 @@ const Navbar = (props) => {
 	const { isEng, setLanguage } = useContext(LangContext);
 
 	return (
-		<div className="nav">
-			<nav className="navbar">
-				<div className="navbar__inner">
-					<Link className="navbar__brand" to="/">
-						<Logo
-							className="navbar__logo"
-							fill={props.logoColor}
-						></Logo>
-					</Link>
-					<div className="navbar__btns">
-						<Link
-							className="navbar__primary-btn btn"
-							to={Navigation.primaryBtn.path}
-						>
-							<span className="text_btn__primary">
-								{isEng ? (
-									<span className="text_btn__eng">
-										{Navigation.primaryBtn.engName}
-									</span>
-								) : (
-									<span className="text_btn__chn">
-										{Navigation.primaryBtn.chnName}
-									</span>
-								)}
-							</span>
+		<div className="nav__container">
+			<div className="nav">
+				<nav className="navbar">
+					<div className="navbar__inner">
+						<Link className="navbar__brand" to="/">
+							<Logo
+								className="navbar__logo"
+								fill={props.logoColor}
+							></Logo>
 						</Link>
-						<button
-							className="navbar__icon btn"
-							onClick={setLanguage}
-						>
-							<div className="icon_holder">
-								{isEng ? (
-									<span className="text_btn__chn">中</span>
-								) : (
-									<span className="text_btn__eng">En</span>
-								)}
-							</div>
-						</button>
-						<button
-							className="navbar__icon btn"
-							onClick={() => toggleMenu(!menuIsOpen)}
-						>
-							<div className="icon_holder">
-								{!menuIsOpen ? "⌘" : "✗"}
-							</div>
-						</button>
+						<div className="navbar__btns">
+							<Link
+								className="navbar__primary-btn btn"
+								to={Navigation.primaryBtn.path}
+							>
+								<span className="text_btn__primary">
+									{isEng ? (
+										<span className="text_btn__eng">
+											{Navigation.primaryBtn.engName}
+										</span>
+									) : (
+										<span className="text_btn__chn">
+											{Navigation.primaryBtn.chnName}
+										</span>
+									)}
+								</span>
+							</Link>
+							<button
+								className="navbar__icon btn"
+								onClick={setLanguage}
+							>
+								<div className="icon_holder">
+									{isEng ? (
+										<span className="text_btn__chn">
+											中
+										</span>
+									) : (
+										<span className="text_btn__eng">
+											En
+										</span>
+									)}
+								</div>
+							</button>
+							<button
+								className="navbar__icon btn"
+								onClick={() => toggleMenu(!menuIsOpen)}
+							>
+								<div className="icon_holder">
+									{!menuIsOpen ? "⌘" : "✗"}
+								</div>
+							</button>
+						</div>
 					</div>
-				</div>
-			</nav>
-			<Menu
-				className={
-					!menuIsOpen ? "menu menu-inactive" : "menu menu-active"
-				}
-				navs={Navigation.menuItem}
-			></Menu>
+				</nav>
+				<Menu
+					className={
+						!menuIsOpen ? "menu menu-inactive" : "menu menu-active"
+					}
+					navs={Navigation.menuItem}
+				></Menu>
+			</div>
 		</div>
 	);
 };

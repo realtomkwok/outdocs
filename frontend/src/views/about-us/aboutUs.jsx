@@ -106,8 +106,8 @@ const About = (props) => {
 
 	return (
 		<div className="container">
-			<NavBar></NavBar>
 			<div className="contents">
+				<NavBar></NavBar>
 				<Header title={props.title}></Header>
 				<div className="article__container">
 					{isEng ? <AboutENG /> : <AboutCHN />}

@@ -29,35 +29,39 @@ const NotFoundPage = () => {
 	};
 
 	return (
-		<div className="not-found__container">
-			<Navbar></Navbar>
-			<div className="not-found__left">
-				<div className="not-found__left-content">
-					{/* <div className="not-found__404">404</div> */}
-					<h1 className="not-found__title">
-						{isEng
-							? "We can't seem to find the page you're looking for."
-							: "很抱歉，你要查找的网页找不到。"}
-					</h1>
-					<Link to="/" className="not-found__links text-btn">
-						← {isEng ? "Back to Home" : "返回主页"}
-					</Link>
-					<div className="not-found__film-info">
-						<Link to={`showcase/film/${bkgd.pagePath}`}>
-							<h2>
-								{isEng ? bkgd.filmTitleENG : bkgd.filmTitleCHN}{" "}
-								↗
-							</h2>
-						</Link>
-						<div>
+		<div className="container">
+			<div className="not-found__container">
+				<Navbar></Navbar>
+				<div className="not-found__left">
+					<div className="not-found__left-content">
+						{/* <div className="not-found__404">404</div> */}
+						<h1 className="not-found__title">
 							{isEng
-								? bkgd.filmDirectorENG
-								: bkgd.filmDirectorCHN}
+								? "We can't seem to find the page you're looking for."
+								: "很抱歉，你要查找的网页找不到。"}
+						</h1>
+						<Link to="/" className="not-found__links text-btn">
+							← {isEng ? "Back to Home" : "返回主页"}
+						</Link>
+						<div className="not-found__film-info">
+							<Link to={`showcase/film/${bkgd.pagePath}`}>
+								<h2>
+									{isEng
+										? bkgd.filmTitleENG
+										: bkgd.filmTitleCHN}{" "}
+									↗
+								</h2>
+							</Link>
+							<div>
+								{isEng
+									? bkgd.filmDirectorENG
+									: bkgd.filmDirectorCHN}
+							</div>
 						</div>
 					</div>
 				</div>
+				<div className="not-found__right" style={bkgdStyle}></div>
 			</div>
-			<div className="not-found__right" style={bkgdStyle}></div>
 		</div>
 	);
 };

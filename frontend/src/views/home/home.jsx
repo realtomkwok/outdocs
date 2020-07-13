@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 
 import "./styles.scss";
+
 import LangContext from "../../locale/langContext";
-import Navigation from "../../locale/navigations.json";
 import newsData from "../../data/zh-cn/news.json";
 
 import Hero from "../../components/hero/hero";
@@ -20,34 +19,25 @@ const Home = () => {
 	return (
 		<div className="container">
 			<Hero imageURL={heroImageURL}></Hero>
-			<div className="hero__text">
-				<h1 className="hero__title">
-					{isEng ? "Submissions Now Open." : "全球征集现已开始。"}
-				</h1>
-				<Link
-					to={Navigation.primaryBtn.path}
-					className="hero__link text-btn"
-				>
-					{isEng ? "Learn More↗" : "请即报名↗"}
-				</Link>
-			</div>
 			<NavBar></NavBar>
-			<SectionOfCards
-				toPath="/newsroom"
-				bkgdColor="white"
+			<div className="contents home__contents">
+				<SectionOfCards
+					toPath="/newsroom"
+					bkgdColor="white"
 				name={isEng ? "Newsroom" : "新闻中心"}
-				nameAlt={isEng ? "新闻中心" : "Newsroom"}
-				data={newsData}
-				sectionClassName="card__newsroom"
-			></SectionOfCards>
-			{/* <SectionOfCards
+					nameAlt={isEng ? "新闻中心" : "Newsroom"}
+					data={newsData}
+					sectionClassName="card__newsroom"
+				></SectionOfCards>
+				{/* <SectionOfCards
 				toPath="/events"
 				bkgdColor="white"
 				name="最新活动"
 				nameAlt="Events"
 				data={newsData}
 			></SectionOfCards> */}
-			<Sponsors></Sponsors>
+				<Sponsors></Sponsors>
+			</div>
 			<Footer></Footer>
 		</div>
 	);
