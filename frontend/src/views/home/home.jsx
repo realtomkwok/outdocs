@@ -22,7 +22,7 @@ const Home = () => {
 			<Hero imageURL={heroImageURL}></Hero>
 			<div className="hero__text">
 				<h1 className="hero__title">
-					{isEng ? "Film Submission Now Open." : "全球征集现已开始。"}
+					{isEng ? "Submissions Now Open." : "全球征集现已开始。"}
 				</h1>
 				<Link
 					to={Navigation.primaryBtn.path}

@@ -66,23 +66,25 @@ const FilmDetail = (props) => {
 						className="film-detail__description"
 					>
 						<h2 className="description__heading">
-							{isEng
-								? "Director"
-								: "导演"}
+							{isEng ? "Director" : "导演"}
 						</h2>
 						<h1>
 							{isEng
 								? content.director_eng
 								: content.director_chn}
 						</h1>
-						<p>{isEng? content.director_info_eng : content.director_info_chn}</p>
+						<p>
+							{isEng
+								? content.director_info_eng
+								: content.director_info_chn}
+						</p>
 					</div>
 				</div>
 				<div className="description__right">
 					<div
 						className="description__vid"
 						style={{
-							backgroundImage: `url(${content.img_alt1})`,
+							backgroundImage: `url(${content.img_alt1}), linear-gradient(${content.imgPreload_alt1})`,
 							backgroundPosition: `${content.img_position}`,
 						}}
 					>
@@ -91,7 +93,7 @@ const FilmDetail = (props) => {
 					<div
 						className="description__img"
 						style={{
-							backgroundImage: `url(${content.img_alt2})`,
+							backgroundImage: `url(${content.img_alt2}), linear-gradient(${content.imgPreload_alt2})`,
 							backgroundPosition: `${content.img_position}`,
 							display: `${isDisplay}`,
 						}}

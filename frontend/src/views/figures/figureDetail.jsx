@@ -30,23 +30,25 @@ const FigureDetail = (props) => {
     }
 
     for (var i = 0; i < 3; i++) {
-        let order = 2 * i + 8
-        let img = Object.values(content)[order];
-        let imgPosition = Object.values(content)[order + 1];
-        let isDisplay = (img !== "") ? "block" : "none"
+        let order = 8 + i
+		let img = Object.values(content)[order];
+		let imgPreload = Object.values(content)[order + 3];
+        let imgPosition = Object.values(content)[order + 6];
+		let isDisplay = (img !== "") ? "block" : "none"
+		console.log(imgPreload)
 
         articleImages.push(
 			<div
 				className="description__img"
 				style={{
-					backgroundImage: `url(${img})`,
-                    backgroundPosition: `${imgPosition}`,
-                    display: `${isDisplay}`
-                }}
-                key={i}
+					backgroundImage: `url("${img}"), linear-gradient(${imgPreload})`,
+					backgroundPosition: `${imgPosition}`,
+					display: `${isDisplay}`,
+				}}
+				key={i}
 			></div>
 		);
-    }
+	}
 
 	return (
 		<div className="container">

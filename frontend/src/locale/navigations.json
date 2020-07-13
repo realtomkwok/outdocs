@@ -1,8 +1,8 @@
 {
 	"primaryBtn": {
 		"chnName": "全球征集",
-		"engName": "Film Submission",
-		"path": "/film-submission"
+		"engName": "Film Submissions",
+		"path": "/film-submissions"
 	},
 	"menuItem": [
 		{
