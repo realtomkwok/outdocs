@@ -101,6 +101,33 @@ const AboutENG = () => (
 	</article>
 );
 
+const addresses = [
+	{
+		id: "0",
+		prefixCHN: "评优展映",
+		prefixENG: "Competition & Screening",
+		address: "film@outdocs.cn",
+	},
+	{
+		id: "1",
+		prefixCHN: "商务合作",
+		prefixENG: "Marketing",
+		address: "biz@outdocs.cn",
+	},
+	{
+		id: "2",
+		prefixCHN: "媒体联系",
+		prefixENG: "Press",
+		address: "press@outdocs.cn",
+	},
+	{
+		id: "3",
+		prefixCHN: "版权事务",
+		prefixENG: "Copyright Issues",
+		address: "content@outdocs.cn",
+	},
+];
+
 const About = (props) => {
 	const { isEng } = useContext(LangContext);
 
@@ -111,6 +138,25 @@ const About = (props) => {
 				<Header title={props.title}></Header>
 				<div className="article__container">
 					{isEng ? <AboutENG /> : <AboutCHN />}
+					<aside className="contact-aside">
+						<h2>{isEng ? "Contact Us" : "与我们联系"}</h2>
+						<div className="contact-list">
+							{addresses.map((i) => (
+								<div key={i.id}>
+									<div className="contact-list__item">
+										<p className="contact-name">
+											{isEng
+												? `${i.prefixENG}`
+												: `${i.prefixCHN}`}
+										</p>
+										<a href={`mailto:${i.address}`} target="_blank">
+											{i.address}
+										</a>
+									</div>
+								</div>
+							))}
+						</div>
+					</aside>
 				</div>
 			</div>
 			<Footer></Footer>

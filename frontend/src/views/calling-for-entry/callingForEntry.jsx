@@ -839,7 +839,10 @@ const Sidebar = (props) => {
 						{props.isEng ? "Tel: " : "联系电话："}020-38780150-815
 					</p>
 					<p>
-						{props.isEng ? "Email: " : "工作邮箱："}outdocs@gzdoc.cn
+						{props.isEng ? "Email: " : "工作邮箱："}
+						<a href="mailto:film@outdocs.cn" target="_blank">
+							film@outdocs.cn
+						</a>
 					</p>
 				</div>
 			</div>

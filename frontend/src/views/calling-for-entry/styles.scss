@@ -141,7 +141,9 @@ article .contact-block {
 	.fast-links {
 		padding: 0 $h-padding-mobile $v-padding-mobile $h-padding-mobile;
 	}
-
+	.article__container {
+		flex-wrap: nowrap;
+	}
 	article {
 		width: 100%;
 	}

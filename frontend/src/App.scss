@@ -163,6 +163,7 @@ article {
 .article__container {
 	padding: 0 $h-padding-desktop $v-padding-desktop $h-padding-desktop;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 @media screen and (max-width: 600px) {
