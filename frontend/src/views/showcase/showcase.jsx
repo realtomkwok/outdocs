@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
+import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 
 import "../../App.scss";
 import "./styles.scss";
@@ -16,6 +17,15 @@ const SearchBar = (props) => (
 	</div>
 );
 
+// const Showcase = (props) => {
+
+// 	return(
+// 		<ParallaxProvider>
+
+// 		</ParallaxProvider>
+// 	)
+// }
+// 
 function Showcase() {
 	let { url } = useRouteMatch();
 

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://realtomkwok.github.io/outdocs/",
+  "homepage": "https://outdocs.cn",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -25,6 +25,7 @@
     "react-router-restore-scroll": "0.0.1",
     "react-router-transition": "^2.0.0",
     "react-scripts": "3.4.1",
+    "react-scroll-parallax": "^2.3.3",
     "typescript": "^3.9.3"
   },
   "scripts": {
