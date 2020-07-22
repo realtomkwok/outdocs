@@ -60,7 +60,7 @@ const ArticleCHN = () => (
 			</li>
 			<li>
 				将填写完整的报名表及以下报名材料发送至指定邮箱
-				<a href="mailto:outdocs@gzdoc.cn">outdocs@gzdoc.cn↗</a>
+				<a href="mailto:film@outdocs.cn">film@outdocs.cn↗</a>
 			</li>
 			<ul>
 				<li>
@@ -116,8 +116,8 @@ const ArticleCHN = () => (
 							<span className="highlight">网络传输</span>
 							<p>
 								将影片评审版本等报名材料上传至网盘（如：百度网盘），并将分享链接及密码随报名表一起通过电子邮件发送至邮箱
-								<a href="mailto:outdocs@gzdoc.cn">
-									outdocs@gzdoc.cn↗
+								<a href="mailto:film@outdocs.cn">
+									film@outdocs.cn↗
 								</a>{" "}
 								（请标注影片名、联系人及联系电话）
 							</p>
@@ -174,12 +174,12 @@ const ArticleCHN = () => (
 		<ol>
 			<li>
 				如报名完成后需进行报名信息或材料更替，请发送电子邮件至
-				<a href="mailto:outdocs@gzdoc.cn">outdocs@gzdoc.cn↗</a>
+				<a href="mailto:film@outdocs.cn">film@outdocs.cn↗</a>
 				并以更替前后对照的方式详细说明更替需求，经组委会常务办公室审核同意后方可进行材料更替。
 			</li>
 			<li>
 				如有影片后续报名材料（如海报、剧照、宣传资料包、获奖情况等）需补充，请发送材料至
-				<a href="mailto:outdocs@gzdoc.cn">outdocs@gzdoc.cn↗</a>
+				<a href="mailto:film@outdocs.cn">film@outdocs.cn↗</a>
 				并加以说明。
 			</li>
 			<li>
@@ -463,8 +463,8 @@ const ArticleENG = () => (
 								Upload the film’s preview version and trailer
 								into Cloud Storage (such as WeTransfer) and send
 								the download link and password to{" "}
-								<a href="mailto:outdocs@gzdoc.cn">
-									outdocs@gzdoc.cn↗
+								<a href="mailto:film@outdocs.cn">
+									film@outdocs.cn↗
 								</a>
 								along with film title and contact information.{" "}
 							</p>
@@ -548,14 +548,14 @@ const ArticleENG = () => (
 			<li>
 				If applicant wants to update information or material after
 				submission, please send an email to{" "}
-				<a href="mailto:outdocs@gzdoc.cn">outdocs@gzdoc.cn↗</a> and
+				<a href="mailto:film@outdocs.cn">film@outdocs.cn↗</a> and
 				explain the update in detail. After reviewed and approved by the
 				Organizing Committee, the update will be completed.
 			</li>
 			<li>
 				If there are follow-up materials (such as posters, stills,
 				promotional materials, awards, etc.), please send the materials
-				to <a href="mailto:outdocs@gzdoc.cn">outdocs@gzdoc.cn↗</a> and
+				to <a href="mailto:film@outdocs.cn">film@outdocs.cn↗</a> and
 				explain the updated materials.{" "}
 			</li>
 			<li>
