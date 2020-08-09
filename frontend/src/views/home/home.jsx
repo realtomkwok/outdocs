@@ -18,6 +18,11 @@ const Home = () => {
 	const heroImageURL =
 		"https://dev.azure.com/junhaotom/9b1798c6-e4d0-474b-bffe-2a2fc6de65cf/_apis/git/repositories/aa86caed-bb30-46c9-ae95-f7078c2c018a/items?path=%2F1592275549054_6946.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&resolveLfs=true&%24format=octetStream&api-version=5.0";
 
+	const newsCards = [];
+	for (var x = 0; x < 3; x++) {
+		newsCards.push(newsData[x])
+	}
+
 	return (
 		<div className="container">
 			<div className="hero__contents">
@@ -41,7 +46,7 @@ const Home = () => {
 					bkgdColor="white"
 					name={isEng ? "Newsroom" : "新闻中心"}
 					nameAlt={isEng ? "新闻中心" : "Newsroom"}
-					data={newsData}
+					data={newsCards}
 					sectionClassName="card__newsroom"
 				></SectionOfCards>
 				{/* <SectionOfCards
