@@ -17,13 +17,13 @@ export default function NavBar() {
         query menuLinks {
           allContentfulMenuLinks(
             sort: { fields: order, order: ASC }
-            filter: { category: { eq: "navbar" } }
           ) {
             nodes {
               name
               link
               node_locale
               order
+              category
             }
           }
         }
@@ -33,7 +33,7 @@ export default function NavBar() {
           <Link to="/">
             <Logo src={logo}></Logo>
           </Link>
-          <NavMenu menuLinks={data.allContentfulMenuLinks.nodes} />
+          <NavMenu category="navbar" menuLinks={data.allContentfulMenuLinks.nodes} />
         </Container>
       )}
     />

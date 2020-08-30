@@ -48,13 +48,13 @@ export default function Header(props: HeaderProps) {
           }
           menuLinks: allContentfulMenuLinks(
             sort: { fields: order, order: ASC }
-            filter: { category: { ne: "navbar" } }
           ) {
             nodes {
               name
               link
               node_locale
               order
+              category
             }
           }
         }
@@ -62,7 +62,7 @@ export default function Header(props: HeaderProps) {
       render={data => (
         <Container>
           <Title titleId={props.titleId} rawData={data.titles.nodes}></Title>
-          <NavMenu menuLinks={data.menuLinks.nodes} />
+          <NavMenu category={props.category} menuLinks={data.menuLinks.nodes} />
         </Container>
       )}
     />
