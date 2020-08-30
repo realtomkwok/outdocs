@@ -17,7 +17,7 @@ export default function NavBar() {
         query menuLinks {
           allContentfulMenuLinks(
             sort: { fields: order, order: ASC }
-            filter: {}
+            filter: { category: { eq: "navbar" } }
           ) {
             nodes {
               name
@@ -28,7 +28,7 @@ export default function NavBar() {
           }
         }
       `}
-      render={data => (
+      render={(data) => (
         <Container>
           <Link to="/">
             <Logo src={logo}></Logo>

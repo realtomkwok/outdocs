@@ -3,11 +3,17 @@ import { Link } from "gatsby"
 import tw, { css } from "twin.macro"
 
 type MenuProps = {
-  menuLinks: any // why not declare as 'Array'?
+    // the solution to declare an array of objects correctly except 'any': https://github.com/typescript-cheatsheets/react#basic-prop-types-examples
+  menuLinks: {
+      name: string,
+      link: string,
+      node_locale: string,
+      order: number
+  }[] // don't forget the bracket at last!
 }
 
 type ItemProps = {
-  to: string
+  to: string,
   name: string
 }
 
