@@ -1,26 +1,16 @@
 module.exports = {
-  purge: [],
+  purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
+    screens: {
+      'sm': '320px',
+      'md': '768px',
+      'lg': '1028px',
+      'xl': '1440px',
+    },
     fontFamily: {
-      bigHeading: [
-        "NimbusSansExtd-Bla",
-        "source-han-sans-simplified-c",
-        "Helvetica Neue",
-        "Helvetica",
-        "system-ui",
-        "sans-serif",
-      ],
-      heading: [
-        "NimbusSansExtd-Bol",
-        "source-han-sans-simplified-c",
-        "Helvetica Neue",
-        "Helvetica",
-        "system-ui",
-        "sans-serif",
-      ],
-      body: [
-        "NimbusSansExtd-Reg",
-        "source-han-sans-simplified-c",
+      'sans': [
+        "Nimbus Sans Ext D",
+        "Noto Sans SC",
         "Helvetica Neue",
         "Helvetica",
         "system-ui",
@@ -32,6 +22,8 @@ module.exports = {
     },
     extend: {},
   },
-  variants: {},
+  variants: {
+    textDecoration: ['responsive', 'hover', 'focus']
+  },
   plugins: [],
 }

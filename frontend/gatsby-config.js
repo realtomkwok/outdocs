@@ -5,8 +5,11 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: "OUTDOCS Film Festival",
+  },
   plugins: [
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-sass`,
@@ -17,6 +20,21 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `dptre6qdgst5`,
+        accessToken: `tKR8cP5Wpy49RIzS7pWmwa-bclLB_kg4PC514BDaNsc`,
+        downloadLocal: true,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-i18n",
+      options: {
+        langKeyDefault: 'zh-CN',
+        useLangKeyLayout: false,
+        prefixDefault: false
+      },
+    },
   ],
 }
-npm
