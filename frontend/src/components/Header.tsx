@@ -25,7 +25,6 @@ const Title = (props: TitleProps) => {
   const title = props.rawData.filter(function (el) {
     return el.order === props.titleId
   })
-  console.log(title)
   // ⚠️ displaying only Chinese title rn
   return <h1 css={styles}>{title[0].name}</h1>
 }

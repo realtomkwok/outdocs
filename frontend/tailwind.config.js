@@ -10,6 +10,7 @@ module.exports = {
     fontFamily: {
       'sans': [
         "Nimbus Sans Ext D",
+        "Glow Sans SC",
         "Noto Sans SC",
         "Helvetica Neue",
         "Helvetica",

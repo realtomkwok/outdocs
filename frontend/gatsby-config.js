@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const path = require(`path`)
+
 module.exports = {
   siteMetadata: {
     title: "OUTDOCS Film Festival",
@@ -11,6 +13,8 @@ module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-emotion`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
@@ -29,11 +33,18 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-i18n",
+      resolve: `gatsby-plugin-i18n`,
       options: {
         langKeyDefault: 'zh-CN',
         useLangKeyLayout: false,
         prefixDefault: false
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `img`),
       },
     },
   ],
