@@ -17,7 +17,7 @@ function Footnote() {
 }
 
 export default function Footer() {
-    const Container = tw.footer`container mx-auto w-full p-16 absolute bottom-0 grid grid-cols-1 gap-32`
+    const Container = tw.footer`container mx-auto w-full p-16 bottom-0 grid grid-cols-1 gap-32`
     const Row = styled.div<{ itemsStart: boolean }>`
         ${tw`flex justify-between`} ${({ itemsStart }) =>
             itemsStart ? tw`items-start` : tw`items-end`}

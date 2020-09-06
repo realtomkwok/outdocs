@@ -4,7 +4,7 @@ import tw from 'twin.macro'
 export default function SponsorLogos() {
     const Container = tw.div`grid grid-cols-1 gap-6`
     //⚠️ fixed height may be not compatible for every logo
-    const Logos = tw.div`bg-gray-500 h-12`
+    const Logos = tw.div`bg-gray-300 h-12`
     
     return (
         <Container>
