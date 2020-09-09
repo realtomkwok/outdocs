@@ -29,7 +29,7 @@ function SNSIcon(props: IconProps) {
 
 function WeChat(props: WeChatProps) {
     const [hoverRef, isHovered] = useHover()
-    const PopUp = tw.img`h-20 w-20`
+    const PopUp = tw.img`h-24 w-24`
 
     return (
         <div ref={hoverRef}>

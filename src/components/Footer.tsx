@@ -17,12 +17,12 @@ function Footnote() {
 }
 
 export default function Footer() {
-    const Container = tw.footer`container mx-auto w-full p-16 bottom-0 grid grid-cols-1 gap-32`
+    const Container = tw.footer`container mx-auto w-full p-16 bottom-0 grid grid-rows-2 gap-20`
     const Row = styled.div<{ itemsStart: boolean }>`
-        ${tw`flex justify-between`} ${({ itemsStart }) =>
+        ${tw`flex justify-between h-24 `} ${({ itemsStart }) =>
             itemsStart ? tw`items-start` : tw`items-end`}
     `
-    const Logo = tw.img`h-20 `
+    const Logo = tw.img`h-20`
 
     return (
         <Container>
