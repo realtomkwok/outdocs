@@ -1,25 +1,25 @@
 import React from "react"
-import tw from "twin.macro"
-import Link from "../utils/Link"
+import tw, { TwComponent, styled, TwStyle } from "twin.macro"
+import { Tag as TagText } from "../utils/typography"
 
 type TagProps = {
-    to: string
     children: React.ReactNode
+    tagStyle: string
 }
 
-function TagStyle02(props: TagProps) {
-    const Container = tw.div`inline-block bg-black border-black border-2 px-3 py-2`
-    const Text = tw.span`text-tag text-white font-bold`
+const styleMap: TwStyle = {
+    primary: tw`inline-block w-16 border-b-2 border-black`,
+    secondary: tw`inline-block bg-black border-black border-2 px-3 py-2 text-white overflow-auto`,
+}
+const getStyleName = ({ tagStyle }) => styleMap[tagStyle]
+const Container: TwComponent<"div"> = styled.div(getStyleName)
 
+export default function Tag(props: TagProps) {
     return (
-        <Container>
-            <Link
-                to={props.to}
-            >
-                <Text>{props.children}</Text>
-            </Link>
+        // 🐛 fix "Property does not exist on type..." https://stackoverflow.com/a/46216024
+        // ❓ how to register a customized property?
+        <Container tagStyle={props.tagStyle}>
+            <TagText>{props.children}</TagText>
         </Container>
     )
 }
-
-export { TagStyle02 }

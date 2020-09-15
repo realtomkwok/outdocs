@@ -1,7 +1,10 @@
 import React from "react"
 import Img, { FluidObject } from "gatsby-image"
 import tw, { styled } from "twin.macro"
+
+import { Heading4 } from "../utils/typography"
 import { TextBtn } from "../components/Buttons"
+import Tag from "../components/Tags"
 
 type HeroType = {
     imgSrc: FluidObject
@@ -11,7 +14,6 @@ type HeroType = {
     cardBtnText: string
     cardLinkedPage: string
 }
-
 
 function HeroImage(props: Pick<HeroType, "imgSrc" | "imgAlt">) {
     const Grid = styled.div`
@@ -44,14 +46,12 @@ function HeroImage(props: Pick<HeroType, "imgSrc" | "imgAlt">) {
 function HeroCard(props: Omit<HeroType, "imgSrc" | "imgAlt">) {
     const CardContainer = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
     const Card = tw.div`flex flex-col p-8 bg-white col-span-4 space-y-4`
-    const Tag = tw.div`flex-auto w-12 border-b-2 border-black text-tag font-bold uppercase`
-    const Headline = tw.p`flex-auto font-bold text-heading4`
 
     return (
         <CardContainer>
             <Card>
-                <Tag>{props.cardTag}</Tag>
-                <Headline>{props.cardHeadline}</Headline>
+                <Tag tagStyle="primary">{props.cardTag}</Tag>
+                <Heading4>{props.cardHeadline}</Heading4>
                 <TextBtn
                     to={props.cardLinkedPage}
                     activeClassName={undefined}

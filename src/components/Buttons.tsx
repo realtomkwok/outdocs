@@ -14,14 +14,21 @@ type BtnProps = {
     partiallyActive: boolean
 }
 
+const defaultProps: Pick<BtnProps, "activeClassName" | "partiallyActive"> = {
+    activeClassName: undefined,
+    partiallyActive: undefined
+}
 
-function Button(props: Omit<BtnProps, "isActive">) {
+TextBtn.defaultProps = defaultProps
+OutlinedBtn.defaultProps = defaultProps
+
+function ButtonBase(props: Omit<BtnProps, "isActive">) {
     const TextWrapper = styled.div`${tw`inline-flex flex-row items-start`}` 
     const Text = styled.div`${tw`flex-auto font-bold text-button`}; baseline-shift:10%`
     const Icon = styled.div`${tw`flex-auto`}`
     
     return (
-        <button css={[tw`w-40 py-2`, props.styles]}>
+        <button css={[tw`py-2`, props.styles]}>
             <Link
                 to={props.to}
                 activeClassName={props.activeClassName}
@@ -45,7 +52,7 @@ function TextBtn(props: Omit<BtnProps, "styles">) {
             : tw`text-gray-500`}
     `
     return (
-        <Button
+        <ButtonBase
             styles={styles}
             to={props.to}
             activeClassName={props.activeClassName}
@@ -63,7 +70,7 @@ function OutlinedBtn(props: BtnProps) {
     `
 
     return (
-        <Button
+        <ButtonBase
             styles={styles}
             to={props.to}
             activeClassName={props.activeClassName}

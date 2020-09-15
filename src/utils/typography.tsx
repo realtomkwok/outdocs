@@ -30,7 +30,7 @@ const Subheading2 = ({ children }: childrenProps) => (
 )
 
 const Button = ({ children }: childrenProps) => (
-    <div tw="font-bold text-button">{children}</div>
+    <div tw="font-bold text-button uppercase">{children}</div>
 )
 
 const Body = ({ children }: childrenProps) => (
@@ -38,7 +38,11 @@ const Body = ({ children }: childrenProps) => (
 )
 
 const Tag = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tag">{children}</div>
+    <div tw="font-bold text-tag uppercase whitespace-no-wrap">{children}</div>
+)
+
+const Tag2 = ({ children }: childrenProps) => (
+    <div tw="font-bold text-tagSmall uppercase whitespace-no-wrap">{children}</div>
 )
 
 export {
@@ -51,4 +55,5 @@ export {
     Button,
     Body,
     Tag,
+    Tag2
 }
