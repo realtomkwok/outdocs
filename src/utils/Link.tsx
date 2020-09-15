@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link as GatsbyLink} from 'gatsby'
-
+``
 type LinkProps = {
     children: React.ReactNode
     to: string
@@ -10,7 +10,7 @@ type LinkProps = {
 
 const defaultProps: Pick<LinkProps, "activeClassName" | "partiallyActive"> = {
     activeClassName: undefined,
-    partiallyActive: undefined
+    partiallyActive: true
 }
 
 // 📖 How to specify an optional default props with TS: https://stackoverflow.com/a/40209674

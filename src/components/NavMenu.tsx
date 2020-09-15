@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import tw, { css } from "twin.macro"
+import tw, { styled, TwComponent } from "twin.macro"
 
 type MenuProps = {
     category: string
@@ -21,19 +21,48 @@ type ItemProps = {
 
 function MenuItem(props: ItemProps) {
     //⚠️ 'hover:underline' needs to optimized
-    const style = css`
-        ${tw`p-4 inline-flex font-bold hover:underline`}
+
+    const Item: TwComponent<"li"> = styled.li`
+    // 
+        ${tw`p-4 inline-flex font-bold relative`}
+        &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            visibility: visible;
+            transition: all 150ms ease-in-out;
+        }
+        &:hover&:before {
+            visibility: visibile;
+            width: 100%;
+        }
     `
-    const activeStyles = {
-        textDecoration: "underline",
-    }
+    // 📖 How to create a CSS class for use in activeClassName: https://stackoverflow.com/questions/57117445/how-to-create-a-css-class-for-use-in-activeclassname
+    const NavLink = styled(Link)`
+        position: relative;
+        &.active {
+            &:before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: #000;
+                visibility: visible;
+                width: 100%;
+            }
+        }
+    `
 
     return (
-        <li css={style}>
-            <Link to={props.to} activeStyle={activeStyles}>
-                {props.name}
-            </Link>
-        </li>
+        <NavLink to={props.to} activeClassName="active">
+            <Item>{props.name}</Item>
+        </NavLink>
     )
 }
 

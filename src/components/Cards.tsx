@@ -4,12 +4,7 @@ import Img, { FluidObject } from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
 
 import Tag from "./Tags"
-import {
-    Heading4,
-    Subheading1,
-    Subheading2,
-    Body
-} from "../utils/typography"
+import { Heading4, Subheading1, Subheading2, Body } from "../utils/typography"
 import { TextBtn } from "../components/Buttons"
 import Link from "../utils/Link"
 
@@ -35,6 +30,7 @@ type IndexHeroProps = {
 type FotProps = {
     chnTitle: string
     engTitle: string
+    detailPage: string
     info: string[]
 }
 
@@ -81,7 +77,7 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
 
 function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
     const CardContainer: TwComponent<"div"> = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white col-span-4 space-y-4`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4 space-y-4`
 
     return (
         <CardContainer>
@@ -102,19 +98,23 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
 
 function FotCard(props: FotProps) {
     const CardContainer: TwComponent<"div"> = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white col-span-4 space-y-4`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4`
     const Titles: TwComponent<"div"> = tw.div``
     const info: string = props.info.join(" | ")
 
     return (
         <CardContainer>
             <Card>
-                <Tag tagStyle="primary">Film Of Today</Tag>
-                <Titles>
-                    <Heading4>{props.chnTitle}</Heading4>
-                    <Heading4>{props.engTitle}</Heading4>
-                </Titles>
-                <Subheading1>{info}</Subheading1>
+                <Link to={props.detailPage}>
+                    <div tw="space-y-4">
+                        <Tag tagStyle="primary">Film Of Today</Tag>
+                        <Titles>
+                            <Heading4>{props.chnTitle}</Heading4>
+                            <Heading4>{props.engTitle}</Heading4>
+                        </Titles>
+                        <Subheading1>{info}</Subheading1>
+                    </div>
+                </Link>
             </Card>
         </CardContainer>
     )

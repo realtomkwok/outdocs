@@ -12,8 +12,7 @@ import {
     FotCard,
     SessionCard,
 } from "../components/Cards"
-import { Heading2, Button } from "../utils/typography"
-
+import { Heading2, Button as BtnText, Heading4 } from "../utils/typography"
 
 type dataType = {
     data: {
@@ -63,6 +62,7 @@ type FotType = {
         node: {
             filmTitle: string
             filmInfo: string[]
+            detailPage: string
             filmHeroImage: {
                 fluid: FluidObject
                 description: string
@@ -138,16 +138,16 @@ function News(props: { data: NewsType[] }) {
 }
 
 function FilmOfToday(props: { data: FotType[] }) {
-    const randomOrder: number = Math.floor(
+    const selectedFilm: number = Math.floor(
         Math.random() * Math.floor(props.data.length)
     )
 
     const img: { fluid: FluidObject; description: string } =
-        props.data[randomOrder].edges[0].node.filmHeroImage
+        props.data[selectedFilm].edges[0].node.filmHeroImage //🚩 edges[locale]
 
-    const info: { filmTitle: string; filmInfo: string[] } =
-        props.data[randomOrder].edges[0].node
-    const engTitle: string = props.data[randomOrder].edges[1].node.filmTitle
+    const info: { filmTitle: string; filmInfo: string[], detailPage: string } =
+        props.data[selectedFilm].edges[0].node
+    const engTitle: string = props.data[selectedFilm].edges[1].node.filmTitle
 
     return (
         <div tw="w-full h-auto relative">
@@ -155,6 +155,7 @@ function FilmOfToday(props: { data: FotType[] }) {
             <FotCard
                 chnTitle={info.filmTitle}
                 engTitle={engTitle}
+                detailPage={info.detailPage}
                 info={info.filmInfo}
             />
         </div>
@@ -165,11 +166,11 @@ function Carnival(props: {
     sessions: SessionType[]
     screenings: ScreeningType[]
 }) {
-    const HeadingWrapper: TwComponent<"div"> = tw.div`flex flex-row justify-between`
+    const HeadingWrapper: TwComponent<"div"> = tw.div`flex flex-row justify-between items-start`
     const BtnWrapper: TwComponent<"div"> = tw.div`inline-flex space-x-4`
     const CardsContainer: TwComponent<"div"> = tw.div`grid grid-cols-2 grid-flow-row gap-10`
 
-    const [isTabOne, renderTab] = React.useState(true);
+    const [isTabOne, renderTab] = React.useState(true)
     const RenderScreening = () => {
         return props.screenings[1].nodes.map((item, i) => (
             <SessionCard
@@ -184,7 +185,6 @@ function Carnival(props: {
                 key={i}
             />
         ))
-
     }
     const RenderSessions = () => {
         return props.sessions[1].nodes.map((item, i) => (
@@ -219,7 +219,7 @@ function Carnival(props: {
                                 : tw`text-gray-500 hover:text-black transition duration-150 focus:outline-none`
                         }
                     >
-                        <Button>展映</Button>
+                        <BtnText>展映</BtnText>
                     </button>
                     <button
                         disabled={!isTabOne}
@@ -230,7 +230,7 @@ function Carnival(props: {
                                 : tw`text-gray-500 hover:text-black transition duration-150 focus:outline-none`
                         }
                     >
-                        <Button>活动</Button>
+                        <BtnText>活动</BtnText>
                     </button>
                 </BtnWrapper>
             </HeadingWrapper>
@@ -238,6 +238,19 @@ function Carnival(props: {
                 {isTabOne ? RenderScreening() : RenderSessions()}
             </CardsContainer>
         </div>
+    )
+}
+
+function AboutUs() {
+    const Container: TwComponent<"div"> = tw.div`h-24 w-full bg-gray-200 grid items-center`
+    const Title: TwComponent<"div"> = tw.div`mx-auto`
+
+    return (
+        <Container>
+            <Title>
+                <Heading4>我们是谁？</Heading4>
+            </Title>
+        </Container>
     )
 }
 
@@ -270,6 +283,7 @@ export default function Home({ data }: dataType) {
             <Main>
                 <Carnival sessions={sessionData} screenings={screeningData} />
             </Main>
+            <AboutUs />
         </Layout>
     )
 }
@@ -316,6 +330,7 @@ export const query = graphql`
                         contentfulid
                         filmTitle
                         filmInfo
+                        detailPage
                         filmHeroImage {
                             fluid(quality: 100, cropFocus: CENTER) {
                                 ...GatsbyContentfulFluid_withWebp

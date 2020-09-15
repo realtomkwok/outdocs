@@ -11,7 +11,9 @@ const Container = styled.nav<{
 }>`
     ${tw`container mx-auto max-w-screen-xl w-full flex h-32 p-16 z-50 items-center justify-between bg-transparent`} ${({
         isTop,
-    }) => isTop && tw`absolute top-0 left-0 right-0 `}
+    }) =>
+        isTop &&
+        tw`absolute top-0 left-0 right-0 hover:bg-white transition duration-300`}
 `
 const Logo = tw.img`h-12`
 // const MenuList = tw.div`flex items-center text-center`
