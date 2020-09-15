@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import tw, { css } from "twin.macro"
+import tw from "twin.macro"
 
 import NavMenu from "./NavMenu"
+import { Heading1 } from '../utils/typography'
 
 type HeaderProps = {
   titleId: number
@@ -19,14 +20,11 @@ type TitleProps = {
 }
 
 const Title = (props: TitleProps) => {
-  const styles = css`
-    ${tw`font-black text-6xl`}
-  `
   const title = props.rawData.filter(function (el) {
     return el.order === props.titleId
   })
   // ⚠️ displaying only Chinese title rn
-  return <h1 css={styles}>{title[0].name}</h1>
+  return <Heading1>{title[0].name}</Heading1>
 }
 
 export default function Header(props: HeaderProps) {

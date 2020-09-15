@@ -13,6 +13,8 @@ import {
     SessionCard,
 } from "../components/Cards"
 import { Heading2, Button as BtnText, Heading4 } from "../utils/typography"
+import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 type dataType = {
     data: {
@@ -255,6 +257,7 @@ function AboutUs() {
 }
 
 export default function Home({ data }: dataType) {
+    const Container: TwComponent<"body"> = tw.body`mx-auto font-sans h-full`
     const Main: TwComponent<"main"> = tw.main`container mx-auto p-16 grid grid-cols-12 gap-10`
     const hero: heroType = data.Hero
     const newsData: NewsType[] = data.News.nodes
@@ -263,7 +266,8 @@ export default function Home({ data }: dataType) {
     const screeningData: ScreeningType[] = data.Screenings.group
 
     return (
-        <Layout isTop={true}>
+        <Container>
+            <NavBar isTop={true}/>
             <div tw="w-full h-auto relative">
                 <HeroImage
                     imgSrc={hero.heroImage.fluid}
@@ -284,7 +288,8 @@ export default function Home({ data }: dataType) {
                 <Carnival sessions={sessionData} screenings={screeningData} />
             </Main>
             <AboutUs />
-        </Layout>
+            <Footer />
+        </Container>
     )
 }
 

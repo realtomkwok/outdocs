@@ -1,5 +1,5 @@
 import React from "react"
-import tw, { styled } from "twin.macro"
+import tw, { TwComponent } from "twin.macro"
 
 import NavBar from "./NavBar"
 import Footer from "./Footer"
@@ -10,14 +10,13 @@ type LayoutProps = {
 }
 
 export default function Layout(props: LayoutProps) {
-    const Container = tw.div`mx-auto font-sans h-full`
-    const Content = styled.div<{ isTop: boolean }>`
-        ${tw`mx-auto h-auto overflow-auto`} ${({ isTop }) => isTop && tw`top-0`}
-    `
+    const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
+    const Content: TwComponent<"div"> = tw.div`container mx-auto p-16`
+
     return (
         <Container>
             <NavBar isTop={props.isTop} />
-            <Content isTop={props.isTop}>{props.children}</Content>
+            <Content>{props.children}</Content>
             <Footer />
         </Container>
     )
