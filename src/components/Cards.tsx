@@ -45,6 +45,16 @@ type EventProps = {
     imgAlt: string
 }
 
+type FilmProps = {
+    category: string
+    year: string
+    imgSrc: FluidObject
+    imgAlt: string
+    filmTitle: string
+    filmInfo: string
+    detailPage: string
+}
+
 function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
     const Grid: TwComponent<"div"> = styled.div`
         display: grid;
@@ -185,4 +195,16 @@ function SessionCard(props: EventProps) {
     )
 }
 
-export { HeroImage, IndexHeroCard, NewsCard, NewsStrip, FotCard, SessionCard }
+function FilmCard(props: FilmProps) {
+    const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
+
+    return(
+        <Link to={props.detailPage}>
+            <Container>
+                <BackgroundImage fluid={props.imgSrc} tw="h-64 bg-center bg-cover" />
+            </Container>
+        </Link>
+    )
+}
+
+export { HeroImage, IndexHeroCard, NewsCard, NewsStrip, FotCard, SessionCard, FilmCard }

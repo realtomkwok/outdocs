@@ -3,7 +3,7 @@ import { Link, StaticQuery, graphql } from "gatsby"
 import tw, { styled } from "twin.macro"
 
 import logo from "../img/logo/outdocs-logo-cinemadow.svg"
-import NavMenu from "./NavMenu"
+import NavMenu from "components/NavMenu"
 
 //styles
 const Container = styled.nav<{
@@ -48,6 +48,7 @@ export default function NavBar(props: NavBarProps) {
                     <NavMenu
                         category="navbar"
                         menuLinks={data.allContentfulMenuLinks.nodes}
+                        partiallyActive={true}
                     />
                 </Container>
             )}

@@ -59,7 +59,7 @@ export default function Header(props: HeaderProps) {
       render={data => (
         <Container>
           <Title titleId={props.titleId} rawData={data.titles.nodes}></Title>
-          <NavMenu category={props.category} menuLinks={data.menuLinks.nodes} />
+          <NavMenu category={props.category} menuLinks={data.menuLinks.nodes} partiallyActive={false} />
         </Container>
       )}
     />

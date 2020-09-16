@@ -6,7 +6,7 @@ type childrenProps = {
 }
 
 const Heading1 = ({ children }: childrenProps) => (
-    <div tw="font-black text-heading1">{children}</div>
+    <div tw="font-black text-heading1 ">{children}</div>
 )
 
 const Heading2 = ({ children }: childrenProps) => (
@@ -18,7 +18,7 @@ const Heading3 = ({ children }: childrenProps) => (
 )
 
 const Heading4 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-heading4">{children}</div>
+    <div tw="font-bold text-heading4 relative top-1">{children}</div>
 )
 
 const Subheading1 = ({ children }: childrenProps) => (
@@ -38,7 +38,9 @@ const Body = ({ children }: childrenProps) => (
 )
 
 const Tag = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tag uppercase whitespace-no-wrap">{children}</div>
+    <div tw="font-bold text-tag uppercase whitespace-no-wrap">
+        {children}
+    </div>
 )
 
 const Tag2 = ({ children }: childrenProps) => (

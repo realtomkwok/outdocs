@@ -12,16 +12,16 @@ type MenuProps = {
         order: number
         category: string
     }[] // don't forget the bracket at last!
+    partiallyActive: boolean
 }
 
 type ItemProps = {
     to: string
     name: string
+    partiallyActive: boolean
 }
 
 function MenuItem(props: ItemProps) {
-    //⚠️ 'hover:underline' needs to optimized
-
     const Item: TwComponent<"li"> = styled.li`
     // 
         ${tw`p-4 inline-flex font-bold relative`}
@@ -45,6 +45,7 @@ function MenuItem(props: ItemProps) {
     const NavLink = styled(Link)`
         position: relative;
         &.active {
+            cursor: default;
             &:before {
                 content: "";
                 position: absolute;
@@ -60,24 +61,24 @@ function MenuItem(props: ItemProps) {
     `
 
     return (
-        <NavLink to={props.to} activeClassName="active">
+        <NavLink to={props.to} activeClassName="active" partiallyActive={props.partiallyActive}>
             <Item>{props.name}</Item>
         </NavLink>
     )
 }
 
 export default function NavMenu(props: MenuProps) {
-    type linkType = {
+    type LinkType = {
         order: number
         link: string
         name: string
         node_locale: string
-        category: string
+        category: string,
     }
 
     const Menu = tw.ul`flex list-none`
     //⚠️ filter by locale
-    const menuLinks: Array<linkType> = props.menuLinks.filter(function (el) {
+    const menuLinks: Array<LinkType> = props.menuLinks.filter(function (el) {
         return el.node_locale === "zh-Hans" && el.category === props.category
     })
     //   const menuLinks_eng = props.menuLinks.filter(function (el) {
@@ -86,11 +87,12 @@ export default function NavMenu(props: MenuProps) {
     return (
         <>
             <Menu>
-                {menuLinks.map(item => (
+                {menuLinks.map((item) => (
                     <MenuItem
                         key={item.order}
                         to={item.link}
                         name={item.name}
+                        partiallyActive={props.partiallyActive}
                     />
                 ))}
             </Menu>

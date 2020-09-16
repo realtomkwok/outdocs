@@ -1,31 +1,37 @@
 import React from "react"
-import tw, { css, styled } from "twin.macro"
+import tw, { css, styled, TwComponent } from "twin.macro"
 import { SerializedStyles } from "@emotion/core"
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import Link from '../utils/Link'
+// import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
+// import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import Link from 'utils/Link'
 
 type BtnProps = {
     to: string
     btnText: string
     styles: SerializedStyles,
     isActive: boolean
+    disabled: boolean
     activeClassName: undefined
     partiallyActive: boolean
 }
 
-const defaultProps: Pick<BtnProps, "activeClassName" | "partiallyActive"> = {
+const defaultProps: Omit<BtnProps, "btnText" | "styles"> = {
     activeClassName: undefined,
-    partiallyActive: undefined
+    partiallyActive: true,
+    disabled: false,
+    isActive: true,
+    to: undefined
 }
 
 TextBtn.defaultProps = defaultProps
 OutlinedBtn.defaultProps = defaultProps
 
-function ButtonBase(props: Omit<BtnProps, "isActive">) {
-    const TextWrapper = styled.div`${tw`inline-flex flex-row items-start`}` 
-    const Text = styled.div`${tw`flex-auto font-bold text-button`}; baseline-shift:10%`
-    const Icon = styled.div`${tw`flex-auto`}`
+function ButtonBase(props: Omit<BtnProps, "isActive" | "disabled">) {
+    const TextWrapper: TwComponent<"div"> = styled.div`
+        ${tw`inline-flex flex-row items-start relative top-1`}
+    ` 
+    const Text: TwComponent<"div"> = styled.div`${tw`flex-auto font-bold text-button`}; baseline-shift:10%`
+    // const Icon: TwComponent<"div"> = styled.div`${tw`flex-auto`}`
     
     return (
         <button css={[tw`py-2`, props.styles]}>
@@ -49,7 +55,7 @@ function TextBtn(props: Omit<BtnProps, "styles">) {
     const styles = css`
         ${tw`text-left`} ${props.isActive
             ? tw`text-black`
-            : tw`text-gray-500`}
+            : tw`text-inactive`}
     `
     return (
         <ButtonBase
@@ -64,9 +70,9 @@ function TextBtn(props: Omit<BtnProps, "styles">) {
 
 function OutlinedBtn(props: BtnProps) {
     const styles = css`
-        ${tw`px-3 border-2 border-solid`} ${props.isActive
+        ${tw`px-3 border-2 border-solid`} ${!props.disabled
             ? tw`bg-transparent border-black text-black`
-            : tw`bg-gray-400 border-gray-400 text-gray-700`}
+            : tw`bg-disabled border-disabled text-disabledText cursor-not-allowed`}
     `
 
     return (
@@ -80,5 +86,7 @@ function OutlinedBtn(props: BtnProps) {
     )
 }
 
+TextBtn.defaultProps = defaultProps
+OutlinedBtn.defaultProps = defaultProps
 
 export { TextBtn, OutlinedBtn }

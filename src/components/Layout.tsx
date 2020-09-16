@@ -1,8 +1,8 @@
 import React from "react"
 import tw, { TwComponent } from "twin.macro"
 
-import NavBar from "./NavBar"
-import Footer from "./Footer"
+import NavBar from "components/NavBar"
+import Footer from "components/Footer"
 
 type LayoutProps = {
     isTop: boolean,

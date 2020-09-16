@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import tw, { TwComponent } from "twin.macro"
 import { FluidObject } from "gatsby-image"
 
-import Layout from "../components/Layout"
 import {
     HeroImage,
     IndexHeroCard,
@@ -11,14 +10,14 @@ import {
     NewsStrip,
     FotCard,
     SessionCard,
-} from "../components/Cards"
-import { Heading2, Button as BtnText, Heading4 } from "../utils/typography"
-import NavBar from "../components/NavBar"
-import Footer from "../components/Footer"
+} from "components/Cards"
+import { Heading2, Button as BtnText, Heading4 } from "utils/typography"
+import NavBar from "components/NavBar"
+import Footer from "components/Footer"
 
-type dataType = {
+type DataType = {
     data: {
-        Hero: heroType
+        Hero: HeroType
         News: {
             nodes: NewsType[]
         }
@@ -34,7 +33,7 @@ type dataType = {
     }
 }
 
-type heroType = {
+type HeroType = {
     heroImage: {
         fluid: FluidObject
         description: string
@@ -217,8 +216,8 @@ function Carnival(props: {
                         onClick={handleClick}
                         css={
                             isTabOne
-                                ? tw`text-black`
-                                : tw`text-gray-500 hover:text-black transition duration-150 focus:outline-none`
+                                ? tw`text-black cursor-default`
+                                : tw`text-inactive hover:text-black transition duration-150 focus:outline-none`
                         }
                     >
                         <BtnText>展映</BtnText>
@@ -228,8 +227,8 @@ function Carnival(props: {
                         onClick={handleClick}
                         css={
                             !isTabOne
-                                ? tw`text-black`
-                                : tw`text-gray-500 hover:text-black transition duration-150 focus:outline-none`
+                                ? tw`text-black cursor-default`
+                                : tw`text-inactive hover:text-black transition duration-150 focus:outline-none`
                         }
                     >
                         <BtnText>活动</BtnText>
@@ -256,10 +255,11 @@ function AboutUs() {
     )
 }
 
-export default function Home({ data }: dataType) {
+export default function Home({ data }: DataType) {
     const Container: TwComponent<"body"> = tw.body`mx-auto font-sans h-full`
     const Main: TwComponent<"main"> = tw.main`container mx-auto p-16 grid grid-cols-12 gap-10`
-    const hero: heroType = data.Hero
+
+    const hero: HeroType = data.Hero
     const newsData: NewsType[] = data.News.nodes
     const fotData: FotType[] = data.FilmOfToday.group
     const sessionData: SessionType[] = data.Sessions.group
