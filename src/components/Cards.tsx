@@ -197,14 +197,30 @@ function SessionCard(props: EventProps) {
 
 function FilmCard(props: FilmProps) {
     const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
+    const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
 
-    return(
+    return (
         <Link to={props.detailPage}>
             <Container>
-                <BackgroundImage fluid={props.imgSrc} tw="h-64 bg-center bg-cover" />
+                <BackgroundImage
+                    fluid={props.imgSrc}
+                    tw="h-64 bg-center bg-cover"
+                />
+                <InfoWrapper>
+                    <Heading4>{props.filmTitle}</Heading4>
+                    <Body>{props.filmInfo}</Body>
+                </InfoWrapper>
             </Container>
         </Link>
     )
 }
 
-export { HeroImage, IndexHeroCard, NewsCard, NewsStrip, FotCard, SessionCard, FilmCard }
+export {
+    HeroImage,
+    IndexHeroCard,
+    NewsCard,
+    NewsStrip,
+    FotCard,
+    SessionCard,
+    FilmCard,
+}

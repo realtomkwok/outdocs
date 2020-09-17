@@ -78,7 +78,7 @@ export default function NavMenu(props: MenuProps) {
 
     const Menu = tw.ul`flex list-none`
     //⚠️ filter by locale
-    const menuLinks: Array<LinkType> = props.menuLinks.filter(function (el) {
+    const menuLinks: LinkType[] = props.menuLinks.filter(function (el) {
         return el.node_locale === "zh-Hans" && el.category === props.category
     })
     //   const menuLinks_eng = props.menuLinks.filter(function (el) {
