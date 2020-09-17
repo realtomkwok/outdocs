@@ -8,6 +8,7 @@ type DropdownType = {
     defaultValue: string
     value: string
     onChange: (newValue: string) => void
+    allowUndefined: boolean
 }
 
 // 📖 Use generics in props in a functional component: https://stackoverflow.com/questions/53958028/how-to-use-generics-in-props-in-react-in-a-functional-component
@@ -24,7 +25,7 @@ export default function Dropdown(props: DropdownType) {
             <Tag>{props.helperText}</Tag>
             <Select value={props.value} onChange={handleChange}>
                 {/* 🌎 i18n required! */}
-                <option value="">不限</option>
+                {props.allowUndefined ? (<option value="">不限</option>) : null}
                 {props.options.map((item, i) => (
                     <option value={item} key={i}>
                         {item}

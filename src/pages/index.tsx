@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import tw, { TwComponent } from "twin.macro"
 import { FluidObject } from "gatsby-image"
+import { Helmet } from "react-helmet"
 
 import {
     HeroImage,
@@ -14,6 +15,7 @@ import {
 import { Heading2, Button as BtnText, Heading4 } from "utils/typography"
 import NavBar from "components/NavBar"
 import Footer from "components/Footer"
+import EmptyState from "components/EmptyState"
 
 type DataType = {
     data: {
@@ -146,7 +148,7 @@ function FilmOfToday(props: { data: FotType[] }) {
     const img: { fluid: FluidObject; description: string } =
         props.data[selectedFilm].edges[0].node.filmHeroImage //🚩 edges[locale]
 
-    const info: { filmTitle: string; filmInfo: string[], detailPage: string } =
+    const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
         props.data[selectedFilm].edges[0].node
     const engTitle: string = props.data[selectedFilm].edges[1].node.filmTitle
 
@@ -164,43 +166,54 @@ function FilmOfToday(props: { data: FotType[] }) {
 }
 
 function Carnival(props: {
-    sessions: SessionType[]
     screenings: ScreeningType[]
+    sessions: SessionType[]
 }) {
     const HeadingWrapper: TwComponent<"div"> = tw.div`flex flex-row justify-between items-start`
     const BtnWrapper: TwComponent<"div"> = tw.div`inline-flex space-x-4`
     const CardsContainer: TwComponent<"div"> = tw.div`grid grid-cols-2 grid-flow-row gap-10`
 
+    const screeningData: ScreeningType = props.screenings[1] //0: en-US, 1: zh-Hans
+    const sessionData: SessionType = props.sessions[1]
+
     const [isTabOne, renderTab] = React.useState(true)
     const RenderScreening = () => {
-        return props.screenings[1].nodes.map((item, i) => (
-            <SessionCard
-                imgSrc={item.filmInfo.filmHeroImage.fluid}
-                imgAlt={item.filmInfo.filmHeroImage.description}
-                detailPage={item.filmInfo.detailPage}
-                title={item.filmInfo.filmTitle}
-                subtitle={item.filmInfo.filmInfo.join(" | ")}
-                dateAndTime={item.dateAndTime}
-                location={item.location}
-                tag={null}
-                key={i}
-            />
-        ))
+        return screeningData.nodes.length === 0 ? (
+            <EmptyState />
+        ) : (
+            screeningData.nodes.map((item, i) => (
+                <SessionCard
+                    imgSrc={item.filmInfo.filmHeroImage.fluid}
+                    imgAlt={item.filmInfo.filmHeroImage.description}
+                    detailPage={item.filmInfo.detailPage}
+                    title={item.filmInfo.filmTitle}
+                    subtitle={item.filmInfo.filmInfo.join(" | ")}
+                    dateAndTime={item.dateAndTime}
+                    location={item.location}
+                    tag={null}
+                    key={i}
+                />
+            ))
+        )
     }
     const RenderSessions = () => {
-        return props.sessions[1].nodes.map((item, i) => (
-            <SessionCard
-                imgSrc={item.heroImage.fluid}
-                imgAlt={item.heroImage.description}
-                detailPage={item.detailePage}
-                tag={item.category}
-                title={item.name}
-                subtitle={null}
-                dateAndTime={item.dateAndTime}
-                location={item.location}
-                key={i}
-            />
-        ))
+        return screeningData.nodes.length === 0 ? (
+            <EmptyState />
+        ) : (
+            sessionData.nodes.map((item, i) => (
+                <SessionCard
+                    imgSrc={item.heroImage.fluid}
+                    imgAlt={item.heroImage.description}
+                    detailPage={item.detailePage}
+                    tag={item.category}
+                    title={item.name}
+                    subtitle={null}
+                    dateAndTime={item.dateAndTime}
+                    location={item.location}
+                    key={i}
+                />
+            ))
+        )
     }
     function handleClick() {
         renderTab(!isTabOne)
@@ -267,7 +280,11 @@ export default function Home({ data }: DataType) {
 
     return (
         <Container>
-            <NavBar isTop={true}/>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>OUTDOCS | 中国国际户外影像嘉年华</title>
+            </Helmet>
+            <NavBar isTop={true} />
             <div tw="w-full h-auto relative">
                 <HeroImage
                     imgSrc={hero.heroImage.fluid}

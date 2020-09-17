@@ -1,5 +1,5 @@
 import React from "react"
-import tw, { styled, TwComponent } from "twin.macro"
+import tw, { styled, TwComponent, css } from "twin.macro"
 import Img, { FluidObject } from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
 
@@ -53,6 +53,13 @@ type FilmProps = {
     filmTitle: string
     filmInfo: string
     detailPage: string
+}
+
+type PersonProps = {
+    imgSrc: FluidObject
+    imgAlt: string
+    name: string
+    titles: string
 }
 
 function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
@@ -215,6 +222,28 @@ function FilmCard(props: FilmProps) {
     )
 }
 
+function PersonCard3Cols(props: PersonProps) {
+    const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
+    const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
+    const imgStyles = css`
+        height: 24rem;
+    `
+
+    return (
+        <Container>
+            <BackgroundImage
+                fluid={props.imgSrc}
+                alt={props.imgAlt}
+                css={[tw`bg-center bg-cover`, imgStyles]}
+            />
+            <InfoWrapper>
+                <Heading4>{props.name}</Heading4>
+                <Body>{props.titles}</Body>
+            </InfoWrapper>
+        </Container>
+    )
+}
+
 export {
     HeroImage,
     IndexHeroCard,
@@ -223,4 +252,5 @@ export {
     FotCard,
     SessionCard,
     FilmCard,
+    PersonCard3Cols,
 }

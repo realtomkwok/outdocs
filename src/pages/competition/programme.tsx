@@ -7,6 +7,7 @@ import Layout from "components/Layout"
 import Header from "components/Header"
 import { FilmCard } from "components/Cards"
 import Dropdown from "components/Selects"
+import EmptyState from "components/EmptyState"
 
 type DataType = {
     FilmLibrary: {
@@ -40,7 +41,7 @@ export default function Index(props: { data: DataType }) {
     const yearsOptions: string[] = [
         ...new Set(filmData.map(x => x.yearOfCompetition)),
     ]
-    const defaultYear: string = yearsOptions[1] // set default value of the 'Year' dropdown filter.
+    const defaultYear: string = yearsOptions[0] // set default value of the 'Year' dropdown filter.
     const [year, setYear] = useState(defaultYear)
     function handleYearChange(newValue: string) {
         setYear(newValue)
@@ -67,11 +68,12 @@ export default function Index(props: { data: DataType }) {
     })
 
     return (
-        <Layout isTop={false}>
+        <Layout isTop={false} title="入围影片">
             <Header category="competition" titleId={1} />
             <Main>
                 <Filters>
                     <Dropdown
+                        allowUndefined={false}
                         helperText="参赛年份"
                         options={yearsOptions}
                         defaultValue={defaultYear}
@@ -79,6 +81,7 @@ export default function Index(props: { data: DataType }) {
                         onChange={handleYearChange}
                     />
                     <Dropdown
+                        allowUndefined
                         helperText="入围类型"
                         options={categoryOptions}
                         defaultValue={defaultCategory}
@@ -88,7 +91,7 @@ export default function Index(props: { data: DataType }) {
                 </Filters>
                 <CardContainer>
                     {filteredFilmData.length === 0 ? (
-                        <p>Empty!</p>
+                        <EmptyState />
                     ) : (
                         filteredFilmData.map((item, i) => (
                             <FilmCard

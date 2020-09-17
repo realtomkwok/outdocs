@@ -1,12 +1,14 @@
 import React from "react"
 import tw, { TwComponent } from "twin.macro"
+import { Helmet } from "react-helmet"
 
 import NavBar from "components/NavBar"
 import Footer from "components/Footer"
 
 type LayoutProps = {
-    isTop: boolean,
+    isTop: boolean
     children: React.ReactNode
+    title: string
 }
 
 export default function Layout(props: LayoutProps) {
@@ -15,10 +17,13 @@ export default function Layout(props: LayoutProps) {
 
     return (
         <Container>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{`${props.title} | OUTDOCS`}</title>
+            </Helmet>
             <NavBar isTop={props.isTop} />
             <Content>{props.children}</Content>
             <Footer />
         </Container>
     )
 }
- 

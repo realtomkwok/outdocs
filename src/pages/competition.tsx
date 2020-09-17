@@ -36,9 +36,7 @@ function Intro() {
 
     return (
         <Container>
-            <Body>
-                {data.zhHans}
-            </Body>
+            <Body>{data.zhHans}</Body>
             <OutlinedBtn
                 disabled
                 btnText="全球征集已截止"
@@ -76,7 +74,7 @@ export default function Index({ data }: DataProps) {
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
 
     return (
-        <Layout isTop={false}>
+        <Layout isTop={false} title="全球征集">
             <Header category="competition" titleId={1} />
             <Main>
                 <Intro />
