@@ -8,6 +8,8 @@ import { Body, Heading4, Heading1 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import Link from "utils/Link"
 
+import intro from "content/Copy-Competition.yaml"
+
 type DataProps = {
     data: {
         allContentfulMenuLinks: {
@@ -27,16 +29,10 @@ type SectionProps = {
 
 function Intro() {
     const Container = tw.div`py-16 col-span-6 space-y-8`
-    const data = {
-        zhHans:
-            "中国国际户外影像嘉年华（OUTDOCS）旨在用纪录片定格与致敬壮美的世界景观和人类不断进取的探险精神，以影像的力量去传播人们以生命的敬畏与热爱，启发人们对生活的创造力。OUTDOCS通过挖掘、表彰兼具艺术价值和人文关怀的优秀作品、鼓励和支持世界各地优秀创作者，打造体育运动、户外文化、旅行人文、自然探险与环保等题材影像的人文价值高地。",
-        enUS:
-            "The International Outdoor Documentary Film Festival of China（OUTDOCS）adhered to its goal of recording and paying respect to magnificent nature landscape and indomitable spirit of human beings. With films,  we promotes a positive lifestyle for the public and inspires the creativity of life. By exploring, encouraging  excellent outdoor films and its artistic and cultural contribution, OUTDOCS is striving to  create a humanistic value highland for documentary films on outdoor adventures, sports, travel and humanities, as well as environmental protection.",
-    }
 
     return (
         <Container>
-            <Body>{data.zhHans}</Body>
+            <Body>{intro.zhHans}</Body>
             <OutlinedBtn
                 disabled
                 btnText="全球征集已截止"
@@ -74,7 +70,7 @@ export default function Index({ data }: DataProps) {
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
 
     return (
-        <Layout isTop={false} title="全球征集">
+        <Layout hasPadding isTop={false} title="全球征集">
             <Header category="competition" titleId={1} />
             <Main>
                 <Intro />

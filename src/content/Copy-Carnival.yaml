@@ -1,0 +1,15 @@
+---
+date: "2020/11/27 - 29"
+slogan:
+    zhHans: 在这要一句 Slogan。
+    enUS: We need a slogan here.
+body:
+    zhHans: 民公去大种持信其价社，市通边酸究争列长亲后，时天3NC茎原N。 研区性角技儿开受领需证即，高它八好放联行必程细验，提完N米好我然化伯证。 内金条节合素府大务压，统状连布史发造就，族社E教奇扯茎量花。
+    enUS: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+buttons:
+    - zhHans: 看场电影
+      enUS: Watch a movie
+      to: "/carnival/screenings"
+    - zhHans: 来个活动
+      enUS: Take an event
+      to: "/carnival/events"

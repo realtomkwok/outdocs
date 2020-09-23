@@ -19,7 +19,7 @@ type DataType = {
 
 type JuryType = {
     year: string
-    category: string
+    category: string[]
     name: string
     titles: string
     photo: {
@@ -42,7 +42,15 @@ export default function Index(props: { data: DataType }) {
         setYear(newValue)
     }
 
-    const categoryOption: string[] = [...new Set(juryData.map(x => x.category))]
+    // a new array contains all the data under the 'catergory' array in 'juryData'
+    const categories: string[] = []
+    for (let order: number = 0; order < juryData.length; order++) {
+        for (let item of juryData[order].category) {
+            categories.push(item)
+        }
+    }
+
+    const categoryOption: string[] = [...new Set(categories.map(x => x))]
     const defaultCategory: string = categoryOption[0]
     const [category, setCategory] = useState(defaultCategory)
     function handleCategoryChange(newValue: string) {
@@ -50,15 +58,11 @@ export default function Index(props: { data: DataType }) {
     }
 
     const filterJuryData: JuryType[] = juryData.filter(function (el) {
-        if (category === "") {
-            return el.year === year
-        } else {
-            return el.year === year && el.category === category
-        }
+        return el.category.find(el => el === category)
     })
 
     return (
-        <Layout isTop={false} title="竞赛评审">
+        <Layout hasPadding isTop={false} title="竞赛评审">
             <Header category="competition" titleId={1} />
             <Main>
                 <Filters>

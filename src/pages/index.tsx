@@ -269,7 +269,7 @@ function AboutUs() {
 }
 
 export default function Home({ data }: DataType) {
-    const Container: TwComponent<"body"> = tw.body`mx-auto font-sans h-full`
+    const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
     const Main: TwComponent<"main"> = tw.main`container mx-auto p-16 grid grid-cols-12 gap-10`
 
     const hero: HeroType = data.Hero
@@ -370,7 +370,10 @@ export const query = graphql`
                     detailPage
                     category
                     name
-                    dateAndTime(formatString: "YYYY/MM/DD HH:MM")
+                    dateAndTime(
+                        formatString: "MM/DD ddd HH:MM"
+                        locale: "zh-cn"
+                    )
                     location
                     heroImage {
                         description
@@ -397,7 +400,10 @@ export const query = graphql`
                             }
                         }
                     }
-                    dateAndTime(formatString: "YYYY/MM/DD HH:MM")
+                    dateAndTime(
+                        formatString: "MM/DD ddd HH:MM"
+                        locale: "zh-cn"
+                    )
                     location
                 }
             }

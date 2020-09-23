@@ -25,7 +25,7 @@ module.exports = {
                 ],
             },
         },
-      {
+        {
             resolve: `gatsby-source-contentful`,
             options: {
                 spaceId: `dptre6qdgst5`,
@@ -53,6 +53,7 @@ module.exports = {
             options: {
                 components: path.join(__dirname, "src/components"),
                 utils: path.join(__dirname, "src/utils"),
+                content: path.join(__dirname, "src/content"),
             },
         },
     ],

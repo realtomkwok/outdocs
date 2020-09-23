@@ -41,7 +41,7 @@ export default function Index(props: { data: DataType }) {
     const yearsOptions: string[] = [
         ...new Set(filmData.map(x => x.yearOfCompetition)),
     ]
-    const defaultYear: string = yearsOptions[0] // set default value of the 'Year' dropdown filter.
+    const defaultYear: string = yearsOptions[1] // set default value of the 'Year' dropdown filter.
     const [year, setYear] = useState(defaultYear)
     function handleYearChange(newValue: string) {
         setYear(newValue)
@@ -68,7 +68,7 @@ export default function Index(props: { data: DataType }) {
     })
 
     return (
-        <Layout isTop={false} title="入围影片">
+        <Layout hasPadding isTop={false} title="入围影片">
             <Header category="competition" titleId={1} />
             <Main>
                 <Filters>
@@ -100,7 +100,7 @@ export default function Index(props: { data: DataType }) {
                                 imgSrc={item.filmHeroImage.fluid}
                                 imgAlt={item.filmHeroImage.description}
                                 filmTitle={item.filmTitle}
-                                filmInfo={item.filmInfo.join(" | ")}
+                                filmInfo={item.filmInfo}
                                 detailPage={item.detailPage}
                                 key={i}
                             />

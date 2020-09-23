@@ -5,7 +5,7 @@ import BackgroundImage from "gatsby-background-image"
 
 import Tag from "./Tags"
 import { Heading4, Subheading1, Subheading2, Body } from "../utils/typography"
-import { TextBtn } from "../components/Buttons"
+import { OutlinedBtn, TextBtn } from "../components/Buttons"
 import Link from "../utils/Link"
 
 type NewsProps = {
@@ -51,7 +51,7 @@ type FilmProps = {
     imgSrc: FluidObject
     imgAlt: string
     filmTitle: string
-    filmInfo: string
+    filmInfo: string[]
     detailPage: string
 }
 
@@ -60,6 +60,18 @@ type PersonProps = {
     imgAlt: string
     name: string
     titles: string
+}
+
+type FSProps = {
+    filmImgSrc: FluidObject
+    filmImgAlt: string
+    filmTitle: string
+    filmInfo: string[]
+    filmDeatail: string
+    dnt: Date
+    location: string
+    btnText: string
+    btnTo: string
 }
 
 function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
@@ -117,7 +129,6 @@ function FotCard(props: FotProps) {
     const CardContainer: TwComponent<"div"> = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
     const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4`
     const Titles: TwComponent<"div"> = tw.div``
-    const info: string = props.info.join(" | ")
 
     return (
         <CardContainer>
@@ -129,7 +140,7 @@ function FotCard(props: FotProps) {
                             <Heading4>{props.chnTitle}</Heading4>
                             <Heading4>{props.engTitle}</Heading4>
                         </Titles>
-                        <Subheading1>{info}</Subheading1>
+                        <Subheading1>{props.info.join(" | ")}</Subheading1>
                     </div>
                 </Link>
             </Card>
@@ -215,7 +226,7 @@ function FilmCard(props: FilmProps) {
                 />
                 <InfoWrapper>
                     <Heading4>{props.filmTitle}</Heading4>
-                    <Body>{props.filmInfo}</Body>
+                    <Body>{props.filmInfo.join(" | ")}</Body>
                 </InfoWrapper>
             </Container>
         </Link>
@@ -244,6 +255,63 @@ function PersonCard3Cols(props: PersonProps) {
     )
 }
 
+function FilmScheduleCard(props: FSProps) {
+    const Container = styled.div`
+        ${tw`flex w-1/2`};
+        margin-left: 50%;
+    `
+    const InfoWrapper = styled.div`
+        ${tw`flex-1 grid grid-cols-3 space-x-8 justify-between`}
+    `
+    const MediaWrapper = styled.div`
+        ${tw`absolute left-0 w-1/2 px-16 opacity-0 invisible transition duration-150`};
+        height: 30%;
+        ${Container}:hover & {
+            ${tw`opacity-100 visible`}
+        }
+    `
+    const FilmInfo = tw.div`col-span-2`
+    const ScreeningInfo = tw.div``
+
+    return (
+        <Container>
+            <MediaWrapper>
+                <BackgroundImage
+                    fluid={props.filmImgSrc}
+                    alt={props.filmImgAlt}
+                    css={[
+                        tw`bg-center bg-cover`,
+                        css`
+                            height: 100%;
+                        `,
+                    ]}
+                />
+            </MediaWrapper>
+            <InfoWrapper>
+                <FilmInfo>
+                    <Link to={props.filmDeatail}>
+                        <div tw="space-y-2">
+                            <Heading4>{props.filmTitle}</Heading4>
+                            <Body>{props.filmInfo.join(" | ")}</Body>
+                        </div>
+                    </Link>
+                </FilmInfo>
+                <div tw="space-y-2">
+                    <ScreeningInfo>
+                        <Subheading2>{props.dnt}</Subheading2>
+                        <Subheading2>{props.location}</Subheading2>
+                    </ScreeningInfo>
+                    <OutlinedBtn
+                        to={props.btnTo}
+                        btnText={props.btnText}
+                        styles={undefined}
+                    ></OutlinedBtn>
+                </div>
+            </InfoWrapper>
+        </Container>
+    )
+}
+
 export {
     HeroImage,
     IndexHeroCard,
@@ -253,4 +321,5 @@ export {
     SessionCard,
     FilmCard,
     PersonCard3Cols,
+    FilmScheduleCard,
 }
