@@ -8,7 +8,7 @@ import { Body, Heading4, Heading1 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import Link from "utils/Link"
 
-import intro from "content/Copy-Competition.yaml"
+import intro from "content/Competition-Overview-Copy.yaml"
 
 type DataProps = {
     data: {

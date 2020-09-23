@@ -9,7 +9,7 @@ import { Heading2, Body, Heading4 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import { HeroImage, FotCard, PersonCard3Cols } from "components/Cards"
 
-import copy from "content/Copy-Carnival.yaml"
+import copy from "content/Carnival-Overview-Copy.yaml"
 
 type DataProps = {
     data: {
