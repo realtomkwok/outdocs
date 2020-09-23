@@ -56,5 +56,11 @@ module.exports = {
                 content: path.join(__dirname, "src/content"),
             },
         },
+        {
+            resolve: `gatsby-plugin-anchor-links`,
+            options: {
+                offset: -200
+            }
+        }
     ],
 }
