@@ -10,7 +10,7 @@ import {
     NewsCard,
     NewsStrip,
     FotCard,
-    SessionCard,
+    EventCard,
 } from "components/Cards"
 import { Heading2, Button as BtnText, Heading4 } from "utils/typography"
 import NavBar from "components/NavBar"
@@ -182,7 +182,7 @@ function Carnival(props: {
             <EmptyState />
         ) : (
             screeningData.nodes.map((item, i) => (
-                <SessionCard
+                <EventCard
                     imgSrc={item.filmInfo.filmHeroImage.fluid}
                     imgAlt={item.filmInfo.filmHeroImage.description}
                     detailPage={item.filmInfo.detailPage}
@@ -191,6 +191,9 @@ function Carnival(props: {
                     dateAndTime={item.dateAndTime}
                     location={item.location}
                     tag={null}
+                    hasButton
+                    btnText="详情"
+                    btnTo={item.filmInfo.detailPage}
                     key={i}
                 />
             ))
@@ -201,7 +204,7 @@ function Carnival(props: {
             <EmptyState />
         ) : (
             sessionData.nodes.map((item, i) => (
-                <SessionCard
+                <EventCard
                     imgSrc={item.heroImage.fluid}
                     imgAlt={item.heroImage.description}
                     detailPage={item.detailePage}
@@ -210,6 +213,9 @@ function Carnival(props: {
                     subtitle={null}
                     dateAndTime={item.dateAndTime}
                     location={item.location}
+                    hasButton
+                    btnText="详情"
+                    btnTo={item.detailePage}
                     key={i}
                 />
             ))

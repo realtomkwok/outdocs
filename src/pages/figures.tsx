@@ -4,7 +4,7 @@ import Header from "../components/Header"
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout isTop={false} hasPadding title='有玩人物'> 
       <Header category="figures" titleId={3} />
     </Layout>
   )

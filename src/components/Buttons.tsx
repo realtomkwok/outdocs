@@ -71,7 +71,7 @@ function TextBtn(props: Omit<BtnProps, "styles">) {
 
 function OutlinedBtn(props: BtnProps) {
     const styles = css`
-        ${tw`px-3 border-2 border-solid`} ${!props.disabled
+        ${tw`px-3 border-2 border-solid h-12`} ${!props.disabled
             ? tw`bg-transparent border-black text-black transition-colors duration-150 hover:text-white hover:bg-black `
             : tw`bg-disabled border-disabled text-disabledText cursor-not-allowed`}
     `

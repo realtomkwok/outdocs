@@ -34,7 +34,7 @@ const Button = ({ children }: childrenProps) => (
 )
 
 const Body = ({ children }: childrenProps) => (
-    <div tw="font-normal text-body">{children}</div>
+    <div tw="font-normal text-body leading-relaxed">{children}</div>
 )
 
 const Tag = ({ children }: childrenProps) => (

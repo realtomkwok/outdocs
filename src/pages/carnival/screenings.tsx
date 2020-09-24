@@ -44,7 +44,9 @@ function ScheduleList(props: { data: SchedulesProps }) {
         margin-left: 50%;
     `
     const Divider = tw.div`border-t-2 border-black `
-    const Item = tw.div`space-y-8 py-4`
+    const ItemWrapper = styled.div`
+        ${tw`space-y-8 py-4`};
+    `
 
     return (
         <Container>
@@ -54,14 +56,14 @@ function ScheduleList(props: { data: SchedulesProps }) {
                         <Subheading2>{list.nodes[0].date}</Subheading2>
                         <Divider />
                     </ListHeader>
-                    <Item>
+                    <ItemWrapper>
                         {list.nodes.map((item, i) => {
                             let btnText: string, btnTo: string
                             if (item.onlineUrl !== null) {
-                                btnText = "立即预约"
+                                btnText = "预约"
                                 btnTo = item.onlineUrl
                             } else {
-                                btnText = "立即购票"
+                                btnText = "购票"
                                 btnTo = item.ticketsUrl
                             }
 
@@ -84,7 +86,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                 />
                             )
                         })}
-                    </Item>
+                    </ItemWrapper>
                 </List>
             ))}
         </Container>
@@ -111,7 +113,7 @@ export const query = graphql`
             group(field: date) {
                 nodes {
                     contentfulid
-                    date(formatString: "MM/DD dddd", locale: "zh-cn")
+                    date(formatString: "MM/DD ddd", locale: "zh-cn")
                     dateAndTime(formatString: "HH:mm", locale: "zh-cn")
                     location
                     onlineUrl

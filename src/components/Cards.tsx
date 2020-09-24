@@ -39,10 +39,13 @@ type EventProps = {
     tag: string
     title: string
     subtitle: string
-    dateAndTime: Date
+    dateAndTime: Date | string
     location: string
     imgSrc: FluidObject
     imgAlt: string
+    hasButton: boolean
+    btnText: string
+    btnTo: string
 }
 
 type FilmProps = {
@@ -185,31 +188,41 @@ function NewsStrip(props: Omit<NewsProps, "imgSrc" | "imgAlt">) {
     )
 }
 
-function SessionCard(props: EventProps) {
+function EventCard(props: EventProps) {
     const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
     const InfoWrapper: TwComponent<"div"> = tw.div`mt-4`
+    const Actions = tw.div`flex flex-wrap justify-between items-center`
     const DateAndLocation: TwComponent<"div"> = tw.div`mt-4`
 
     return (
-        <Link to={props.detailPage}>
-            <Container>
-                <BackgroundImage
-                    fluid={props.imgSrc}
-                    tw="h-64 bg-center bg-cover"
-                />
-                <InfoWrapper>
-                    {props.tag !== null ? (
-                        <Tag tagStyle="secondary">{props.tag}</Tag>
-                    ) : null}
+        <Container>
+            <BackgroundImage
+                fluid={props.imgSrc}
+                tw="h-64 bg-center bg-cover"
+            />
+            <InfoWrapper>
+                {props.tag !== null ? (
+                    <Tag tagStyle="secondary">{props.tag}</Tag>
+                ) : null}
+                <Link to={props.detailPage}>
                     <Heading4>{props.title}</Heading4>
                     <Body>{props.subtitle}</Body>
+                </Link>
+                <Actions>
                     <DateAndLocation>
                         <Subheading2>{props.dateAndTime}</Subheading2>
                         <Subheading2>{props.location}</Subheading2>
                     </DateAndLocation>
-                </InfoWrapper>
-            </Container>
-        </Link>
+                    {props.hasButton ? (
+                        <OutlinedBtn
+                            btnText={props.btnText}
+                            to={props.btnTo}
+                            styles={undefined}
+                        />
+                    ) : null}
+                </Actions>
+            </InfoWrapper>
+        </Container>
     )
 }
 
@@ -318,7 +331,7 @@ export {
     NewsCard,
     NewsStrip,
     FotCard,
-    SessionCard,
+    EventCard,
     FilmCard,
     PersonCard3Cols,
     FilmScheduleCard,

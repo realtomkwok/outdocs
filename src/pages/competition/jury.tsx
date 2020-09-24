@@ -57,7 +57,7 @@ export default function Index(props: { data: DataType }) {
         setCategory(newValue)
     }
 
-    const filterJuryData: JuryType[] = juryData.filter(function (el) {
+    const filteredJuryData: JuryType[] = juryData.filter(function (el) {
         return el.category.find(el => el === category)
     })
 
@@ -84,10 +84,10 @@ export default function Index(props: { data: DataType }) {
                     />
                 </Filters>
                 <CardContainer>
-                    {filterJuryData.length === 0 ? (
+                    {filteredJuryData.length === 0 ? (
                         <EmptyState />
                     ) : (
-                        filterJuryData.map((item, i) => (
+                        filteredJuryData.map((item, i) => (
                             <PersonCard3Cols
                                 imgSrc={item.photo.fluid}
                                 imgAlt={item.photo.description}

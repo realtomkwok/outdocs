@@ -6,7 +6,7 @@ import { AnchorLink } from "gatsby-plugin-anchor-links"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
-import { Body, Button, Subheading2, Heading4 } from "utils/typography"
+import { Body, Button, Subheading2 } from "utils/typography"
 
 type DataProps = {
     data: {
@@ -28,8 +28,16 @@ type FaqProps = {
 
 function Sidebar(props: { data: FaqProps[] }) {
     const Container = tw.aside`fixed`
-    const List = tw.ul`flex flex-col space-y-2`
-    const Item = tw.li``
+    const Item = tw.li`text-black hover:opacity-50 transition duration-150`
+    const List = styled.ul`
+        ${tw`flex flex-col space-y-2`};
+        &:hover > li {
+            ${tw`opacity-50`}
+        }
+        &:hover > li:hover {
+            ${tw`opacity-100`}
+        }
+    `
 
     return (
         <Container>
@@ -38,7 +46,7 @@ function Sidebar(props: { data: FaqProps[] }) {
                     let category = item.nodes[0].category
                     return (
                         <Item key={i}>
-                            <AnchorLink to={`#${category}`}>
+                            <AnchorLink to={`/carnival/faq/#${category}`}>
                                 <Button>{category}</Button>
                             </AnchorLink>
                         </Item>

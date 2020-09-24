@@ -25,7 +25,7 @@ export default function Dropdown(props: DropdownType) {
             <Tag>{props.helperText}</Tag>
             <Select value={props.value} onChange={handleChange}>
                 {/* 🌎 i18n required! */}
-                {props.allowUndefined ? (<option value="">不限</option>) : null}
+                {props.allowUndefined ? (<option value="">全部</option>) : null}
                 {props.options.map((item, i) => (
                     <option value={item} key={i}>
                         {item}
