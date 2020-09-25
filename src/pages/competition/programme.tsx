@@ -33,7 +33,7 @@ type FilmType = {
 export default function Index(props: { data: DataType }) {
     const Main: TwComponent<"main"> = tw.main`container mx-auto`
     const CardContainer: TwComponent<"div"> = tw.div`grid grid-cols-3 grid-flow-row gap-10 py-16`
-    const Filters: TwComponent<"div"> = tw.div`flex flex-row space-x-4 py-8`
+    const Filters: TwComponent<"div"> = tw.div`flex flex-row space-x-4 py-8 justify-center`
 
     const filmData: FilmType[] = props.data.FilmLibrary.group[1].nodes //0: en-US 1: zh-Hans
 
@@ -68,7 +68,7 @@ export default function Index(props: { data: DataType }) {
     })
 
     return (
-        <Layout hasPadding isTop={false} title="入围影片">
+        <Layout hasPadding isTop={false} title="入围影片" isDark={false}>
             <Header category="competition" titleId={1} />
             <Main>
                 <Filters>

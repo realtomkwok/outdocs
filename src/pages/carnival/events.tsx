@@ -37,7 +37,7 @@ type EventProps = {
 
 export default function Index({ data }: DataProps) {
     const Main = tw.div`relative`
-    const Filter = tw.div`container mx-auto py-8`
+    const Filter = tw.div`flex justify-center py-8`
     const Content = tw.div`grid grid-cols-3 relative py-16`
     const List = tw.div`col-start-2 col-end-4`
     const Divider = tw.div`border-t-2 border-black`
@@ -67,7 +67,7 @@ export default function Index({ data }: DataProps) {
     })
 
     return (
-        <Layout hasPadding isTop={false} title="活动">
+        <Layout hasPadding isTop={false} title="活动" isDark={false}>
             <Header category="carnival" titleId={2} />
             <Main>
                 <Filter>

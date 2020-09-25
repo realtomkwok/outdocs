@@ -42,13 +42,6 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `images`,
-                path: path.join(__dirname, `src`, `img`),
-            },
-        },
-        {
             resolve: `gatsby-plugin-root-import`,
             options: {
                 components: path.join(__dirname, "src/components"),
