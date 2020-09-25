@@ -2,8 +2,8 @@ import React from "react"
 import tw, { styled } from "twin.macro"
 
 import { BrandName } from "assets/Logo"
-import SNSLinks from "../components/SNSLinks"
-import SponsorLogos from "../components/SponsorLogos"
+import SocialNetworks from "components/SocialNetworks"
+import SponsorLogos from "components/SponsorLogos"
 import { Body } from "utils/typography"
 
 type FooterProps = {
@@ -34,7 +34,8 @@ export default function Footer(props: FooterProps) {
                 <Logo>
                     <BrandName isWhite={props.isDark} />
                 </Logo>
-                <SNSLinks />
+                {/* <SNSLinks /> */}
+                <SocialNetworks isWhite={props.isDark} />
             </Row>
             <Row itemsStart={false}>
                 <SponsorLogos />

@@ -97,7 +97,7 @@ export default function Index({ data }: DataProps) {
     const scheduleData: SchedulesProps = data.Schedules
 
     return (
-        <Layout hasPadding isTop={false} title="展映">
+        <Layout hasPadding isTop={false} title="展映" isDark={false}>
             <Header category="carnival" titleId={2} />
             <ScheduleList data={scheduleData} />
         </Layout>

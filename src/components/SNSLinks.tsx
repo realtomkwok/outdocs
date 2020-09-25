@@ -46,27 +46,27 @@ export default function SNSLinks() {
     const IconList = tw.div`flex flex-row`
 
     //📖 Declare for nested objects: https://stackoverflow.com/questions/38245081/nested-objects-in-typescriptr
-    type imgType = {
-        file: fileType
-    }
-
-    type fileType = {
-        url: string
-    }
-
     type dataType = {
         platform: string
         link: string
-        platformIcon: imgType
+        platformIcon: {
+            file: {
+                url: string
+            }
+        }
         id: string
-        qrCode: imgType
+        qrCode: {
+            file: {
+                url: string
+            }
+        }
     }
 
     const rawSnsData = useStaticQuery(graphql`
         query {
             OtherData: allContentfulSocialNetworks(
                 sort: { fields: order, order: ASC }
-                filter: { node_locale: { eq: "en-US" }, order: {ne: 5} }
+                filter: { node_locale: { eq: "en-US" }, order: { ne: 5 } }
             ) {
                 nodes {
                     platform
