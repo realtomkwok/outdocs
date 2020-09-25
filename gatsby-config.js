@@ -54,13 +54,14 @@ module.exports = {
                 components: path.join(__dirname, "src/components"),
                 utils: path.join(__dirname, "src/utils"),
                 content: path.join(__dirname, "src/content"),
+                assets: path.join(__dirname, "src/assets"),
             },
         },
         {
             resolve: `gatsby-plugin-anchor-links`,
             options: {
-                offset: -200
-            }
-        }
+                offset: -200,
+            },
+        },
     ],
 }

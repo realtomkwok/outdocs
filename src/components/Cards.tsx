@@ -196,10 +196,13 @@ function EventCard(props: EventProps) {
 
     return (
         <Container>
-            <BackgroundImage
-                fluid={props.imgSrc}
-                tw="h-64 bg-center bg-cover"
-            />
+            <Link to={props.detailPage}>
+                <BackgroundImage
+                    fluid={props.imgSrc}
+                    tw="h-64 bg-center bg-cover"
+                />
+            </Link>
+
             <InfoWrapper>
                 {props.tag !== null ? (
                     <Tag tagStyle="secondary">{props.tag}</Tag>
@@ -231,7 +234,7 @@ function FilmCard(props: FilmProps) {
     const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
 
     return (
-        <Link to={props.detailPage}>
+        <Link to={`..${props.detailPage}`}>
             <Container>
                 <BackgroundImage
                     fluid={props.imgSrc}
@@ -302,7 +305,7 @@ function FilmScheduleCard(props: FSProps) {
             </MediaWrapper>
             <InfoWrapper>
                 <FilmInfo>
-                    <Link to={props.filmDeatail}>
+                    <Link to={`..${props.filmDeatail}`}>
                         <div tw="space-y-2">
                             <Heading4>{props.filmTitle}</Heading4>
                             <Body>{props.filmInfo.join(" | ")}</Body>

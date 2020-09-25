@@ -6,6 +6,11 @@ module.exports = {
         "./src/**/*.tsx",
     ],
     theme: {
+        fill: theme => ({
+            black: theme("colors.black"),
+            white: theme("colors.white"),
+            accentColor: theme("colors.accentColor"),
+        }),
         screens: {
             sm: "320px",
             md: "768px",

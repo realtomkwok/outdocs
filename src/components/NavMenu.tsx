@@ -13,17 +13,19 @@ type MenuProps = {
         category: string
     }[] // don't forget the bracket at last!
     partiallyActive: boolean
+    isDark: boolean
 }
 
 type ItemProps = {
     to: string
     name: string
     partiallyActive: boolean
+    isDark: boolean
 }
 
 function MenuItem(props: ItemProps) {
     const Item: TwComponent<"li"> = styled.li`
-    // 
+        //
         ${tw`p-4 inline-flex font-bold relative`}
         &:before {
             content: "";
@@ -32,7 +34,7 @@ function MenuItem(props: ItemProps) {
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #000;
+            background-color: ${props.isDark ? "#FFF" : "#000"};
             visibility: visible;
             transition: all 150ms ease-in-out;
         }
@@ -53,7 +55,7 @@ function MenuItem(props: ItemProps) {
                 height: 2px;
                 bottom: 0;
                 left: 0;
-                background-color: #000;
+                background-color: ${props.isDark ? "#FFF" : "#000"};
                 visibility: visible;
                 width: 100%;
             }
@@ -61,7 +63,11 @@ function MenuItem(props: ItemProps) {
     `
 
     return (
-        <NavLink to={props.to} activeClassName="active" partiallyActive={props.partiallyActive}>
+        <NavLink
+            to={props.to}
+            activeClassName="active"
+            partiallyActive={props.partiallyActive}
+        >
             <Item>{props.name}</Item>
         </NavLink>
     )
@@ -73,7 +79,7 @@ export default function NavMenu(props: MenuProps) {
         link: string
         name: string
         node_locale: string
-        category: string,
+        category: string
     }
 
     const Menu = tw.ul`flex list-none`
@@ -87,12 +93,13 @@ export default function NavMenu(props: MenuProps) {
     return (
         <>
             <Menu>
-                {menuLinks.map((item) => (
+                {menuLinks.map(item => (
                     <MenuItem
                         key={item.order}
                         to={item.link}
                         name={item.name}
                         partiallyActive={props.partiallyActive}
+                        isDark={props.isDark}
                     />
                 ))}
             </Menu>

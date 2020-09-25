@@ -290,7 +290,7 @@ export default function Home({ data }: DataType) {
                 <meta charSet="utf-8" />
                 <title>OUTDOCS | 中国国际户外影像嘉年华</title>
             </Helmet>
-            <NavBar isTop={true} />
+            <NavBar isTop={true} isDark={false} />
             <div tw="w-full h-auto relative">
                 <HeroImage
                     imgSrc={hero.heroImage.fluid}
