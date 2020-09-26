@@ -83,7 +83,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                     dnt={item.dateAndTime}
                                     location={item.location}
                                     btnText={btnText}
-                                    btnTo={btnTo} 
+                                    btnTo={btnTo}
                                     key={i}
                                 />
                             )
@@ -99,7 +99,7 @@ export default function Index({ data }: DataProps) {
     const scheduleData: SchedulesProps = data.Schedules
 
     return (
-        <Layout hasPadding isTop={false} title="展映" isDark={false}>
+        <Layout hasPadding title="展映">
             <Header category="carnival" titleId={2} />
             <ScheduleList data={scheduleData} />
         </Layout>

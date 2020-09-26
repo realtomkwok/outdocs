@@ -4,7 +4,7 @@ import Header from "../components/Header"
 
 export default function Home() {
     return (
-        <Layout isDark={false} isTop={false} title="新闻中心" hasPadding>
+        <Layout title="新闻中心" hasPadding>
             <Header category="newsroom" titleId={6} />
         </Layout>
     )

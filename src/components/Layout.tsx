@@ -14,7 +14,13 @@ type LayoutProps = {
     title: string
 }
 
-export default function Layout(props: LayoutProps) {
+const defalutProps: Pick<LayoutProps, "isTop" | "isDark" | "hasPadding"> = {
+    isTop: false,
+    isDark: false,
+    hasPadding: false,
+}
+
+function Layout(props: LayoutProps) {
     const GlobalStyle = createGlobalStyle`
         html {
             color: ${props.isDark ? "white" : "black"};
@@ -39,3 +45,6 @@ export default function Layout(props: LayoutProps) {
         </Container>
     )
 }
+
+Layout.defaultProps = defalutProps
+export default Layout

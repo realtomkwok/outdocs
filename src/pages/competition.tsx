@@ -71,7 +71,7 @@ export default function Index({ data }: DataProps) {
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
 
     return (
-        <Layout hasPadding isTop={false} title="全球征集" isDark={false}>
+        <Layout hasPadding title="全球征集">
             <Header category="competition" titleId={1} />
             <Main>
                 <Intro />

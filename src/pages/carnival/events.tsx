@@ -67,7 +67,7 @@ export default function Index({ data }: DataProps) {
     })
 
     return (
-        <Layout hasPadding isTop={false} title="活动" isDark={false}>
+        <Layout hasPadding title="活动">
             <Header category="carnival" titleId={2} />
             <Main>
                 <Filter>

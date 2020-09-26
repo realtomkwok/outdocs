@@ -31,7 +31,7 @@ export default function Index({ data }: DataProps) {
     const guestsData: GuestProps[] = data.Guests.nodes
 
     return (
-        <Layout hasPadding isTop={false} isDark={false} title="嘉宾">
+        <Layout hasPadding title="嘉宾">
             <Header category="carnival" titleId={2} />
             <Main>
                 <CardWrapper>

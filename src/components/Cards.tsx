@@ -25,6 +25,7 @@ type IndexHeroProps = {
     headline: string
     btnText: string
     btnLinkedPage: string
+    tagIsWhite: boolean
 }
 
 type FotProps = {
@@ -32,6 +33,7 @@ type FotProps = {
     engTitle: string
     detailPage: string
     info: string[]
+    tagIsWhite: boolean
 }
 
 type EventProps = {
@@ -46,6 +48,7 @@ type EventProps = {
     hasButton: boolean
     btnText: string
     btnTo: string
+    tagIsWhite: boolean
 }
 
 type FilmProps = {
@@ -121,7 +124,9 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
     return (
         <CardContainer>
             <Card>
-                <Tag tagStyle="primary">{props.tag}</Tag>
+                <Tag tagStyle="primary" isWhite={props.tagIsWhite}>
+                    {props.tag}
+                </Tag>
                 <Heading4>{props.headline}</Heading4>
                 <TextBtn
                     to={props.btnLinkedPage}
@@ -145,7 +150,9 @@ function FotCard(props: FotProps) {
             <Card>
                 <Link to={props.detailPage}>
                     <div tw="space-y-4">
-                        <Tag tagStyle="primary">Film Of Today</Tag>
+                        <Tag tagStyle="primary" isWhite={props.tagIsWhite}>
+                            Film Of Today
+                        </Tag>
                         <Titles>
                             <Heading4>{props.chnTitle}</Heading4>
                             <Heading4>{props.engTitle}</Heading4>

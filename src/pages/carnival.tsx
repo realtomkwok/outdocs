@@ -131,7 +131,7 @@ export default function Index({ data }: DataProps) {
     const filmData: FFProps[] = data.FeaturedFilm.group
 
     return (
-        <Layout hasPadding={false} isTop={false} title="嘉年华" isDark={false}>
+        <Layout title="嘉年华">
             <Container>
                 <Header category="carnival" titleId={2} />
                 <Main>

@@ -7,6 +7,7 @@ import Layout from "components/Layout"
 import { Heading2, Heading3 } from "utils/typography"
 import { HeroImage } from "components/Cards"
 import { FluidObject } from "gatsby-image"
+import Tag from "components/Tags"
 
 type DataType = {
     data: {
@@ -38,18 +39,15 @@ export default function FilmDetail({ data }: DataType) {
     const Award = tw.div`h-20`
     const Titles = tw.div`w-1/2`
     const HeroContainer = tw.div`w-full h-auto relative`
-    const Main = tw.div`p-16`
+    const Main = tw.div`p-16 grid grid-cols-3`
+    const ScreeningInfo = tw.div`col-span-1 flex flex-row`
+    const FilmInfo = tw.div`col-start-2 col-end-3`
 
     const filmData: FilmType = data.allContentfulLibraryFilm.nodes[0]
     const engTitle: string = data.allContentfulLibraryFilm.nodes[1].filmTitle
 
     return (
-        <Layout
-            isTop={false}
-            hasPadding={false}
-            title={filmData.filmTitle}
-            isDark
-        >
+        <Layout title={filmData.filmTitle} isDark>
             <Header>
                 <AwardsWrapper>
                     {filmData.filmAward &&
@@ -58,6 +56,7 @@ export default function FilmDetail({ data }: DataType) {
                                 <SVG
                                     src={item.file.url}
                                     style={tw`h-full fill-white`}
+                                    title={item.title}
                                     description={item.title}
                                 ></SVG>
                             </Award>
@@ -74,6 +73,14 @@ export default function FilmDetail({ data }: DataType) {
                     imgAlt={filmData.filmHeroImage.title}
                 />
             </HeroContainer>
+            <Main>
+                <ScreeningInfo>
+                    <Tag tagStyle="primary" isWhite>
+                        展映信息
+                    </Tag>
+                </ScreeningInfo>
+                <FilmInfo></FilmInfo>
+            </Main>
         </Layout>
     )
 }

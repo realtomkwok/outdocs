@@ -70,7 +70,7 @@ export default function Index(props: { data: DataType }) {
     })
 
     return (
-        <Layout hasPadding isTop={false} title="入围影片" isDark={false}>
+        <Layout hasPadding title="入围影片">
             <Header category="competition" titleId={1} />
             <Main>
                 <Filters>
