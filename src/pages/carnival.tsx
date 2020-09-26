@@ -40,8 +40,10 @@ type FFProps = {
         filmInfo: string[]
         detailPage: string
         filmHeroImage: {
-            fluid: FluidObject
-            description: string
+            title: string
+            image: {
+                fluid: FluidObject
+            }
         }
     }[]
 }
@@ -101,7 +103,7 @@ function FeaturedFilm(props: { data: FFProps[] }) {
     const selectedFilm: number = Math.floor(
         Math.random() * Math.floor(props.data[1].nodes.length)
     )
-    const img: { fluid: FluidObject; description: string } =
+    const img: { title: string; image: { fluid: FluidObject } } =
         props.data[1].nodes[selectedFilm].filmHeroImage
 
     const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
@@ -110,7 +112,7 @@ function FeaturedFilm(props: { data: FFProps[] }) {
 
     return (
         <Container>
-            <HeroImage imgSrc={img.fluid} imgAlt={img.description} />
+            <HeroImage imgSrc={img.image.fluid} imgAlt={img.title} />
             <FotCard
                 chnTitle={info.filmTitle}
                 engTitle={engTitle}
@@ -122,6 +124,7 @@ function FeaturedFilm(props: { data: FFProps[] }) {
 }
 
 export default function Index({ data }: DataProps) {
+    const Container = tw.div`container mx-auto p-16`
     const Main: TwComponent<"main"> = tw.main`container mx-auto grid grid-cols-12 gap-10`
 
     const guestData: GuestProps[] = data.Guests.group[1].nodes
@@ -129,13 +132,13 @@ export default function Index({ data }: DataProps) {
 
     return (
         <Layout hasPadding={false} isTop={false} title="嘉年华" isDark={false}>
-            <div tw="p-16">
+            <Container>
                 <Header category="carnival" titleId={2} />
                 <Main>
                     <Intro />
                 </Main>
                 <Guests data={guestData} />
-            </div>
+            </Container>
             <FeaturedFilm data={filmData} />
         </Layout>
     )
@@ -172,10 +175,12 @@ export const query = graphql`
                     filmInfo
                     detailPage
                     filmHeroImage {
-                        fluid(quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
+                        image {
+                            fluid {
+                                ...GatsbyContentfulFluid_withWebp
+                            }
+                            title
                         }
-                        description
                     }
                     contentfulid
                 }

@@ -28,8 +28,10 @@ type SchedulesProps = {
                 filmInfo: string[]
                 detailPage: string
                 filmHeroImage: {
-                    fluid: FluidObject
-                    description: string
+                    title: string
+                    image: {
+                        fluid: FluidObject
+                    }
                 }
             }
         }[]
@@ -38,7 +40,7 @@ type SchedulesProps = {
 
 function ScheduleList(props: { data: SchedulesProps }) {
     const Container = tw.div`py-16 gap-10`
-    const List = tw.div``
+    const List = tw.div`mb-16`
     const ListHeader = styled.div`
         ${tw`w-1/2`};
         margin-left: 50%;
@@ -70,10 +72,10 @@ function ScheduleList(props: { data: SchedulesProps }) {
                             return (
                                 <FilmScheduleCard
                                     filmImgSrc={
-                                        item.filmInfo.filmHeroImage.fluid
+                                        item.filmInfo.filmHeroImage.image.fluid
                                     }
                                     filmImgAlt={
-                                        item.filmInfo.filmHeroImage.description
+                                        item.filmInfo.filmHeroImage.title
                                     }
                                     filmTitle={item.filmInfo.filmTitle}
                                     filmInfo={item.filmInfo.filmInfo}
@@ -81,7 +83,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                     dnt={item.dateAndTime}
                                     location={item.location}
                                     btnText={btnText}
-                                    btnTo={btnTo}
+                                    btnTo={btnTo} 
                                     key={i}
                                 />
                             )
@@ -123,8 +125,11 @@ export const query = graphql`
                         filmInfo
                         detailPage
                         filmHeroImage {
-                            fluid(quality: 100) {
-                                srcSetWebp
+                            image {
+                                fluid {
+                                    ...GatsbyContentfulFluid_withWebp
+                                }
+                                title
                             }
                         }
                     }

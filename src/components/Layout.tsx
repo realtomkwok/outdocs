@@ -23,7 +23,7 @@ export default function Layout(props: LayoutProps) {
     `
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
     const Content: TwComponent<"div"> = styled.div`
-        ${tw`container mx-auto`} ${props.hasPadding && tw`p-16`}
+        ${props.hasPadding && tw`container mx-auto p-16 h-full`}
     `
 
     return (

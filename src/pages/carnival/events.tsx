@@ -39,7 +39,7 @@ export default function Index({ data }: DataProps) {
     const Main = tw.div`relative`
     const Filter = tw.div`flex justify-center py-8`
     const Content = tw.div`grid grid-cols-3 relative py-16`
-    const List = tw.div`col-start-2 col-end-4`
+    const List = tw.div`col-start-2 col-end-4 mb-16`
     const Divider = tw.div`border-t-2 border-black`
     const Date = tw.aside`col-span-1 w-3/5`
     const ItemWrapper = tw.div`py-8 grid grid-cols-2 gap-10`

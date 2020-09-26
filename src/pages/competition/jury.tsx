@@ -23,8 +23,10 @@ type JuryType = {
     name: string
     titles: string
     photo: {
-        fluid: FluidObject
-        description: string
+        title: string
+        image: {
+            fluid: FluidObject
+        }
     }
 }
 
@@ -89,8 +91,8 @@ export default function Index(props: { data: DataType }) {
                     ) : (
                         filteredJuryData.map((item, i) => (
                             <PersonCard3Cols
-                                imgSrc={item.photo.fluid}
-                                imgAlt={item.photo.description}
+                                imgSrc={item.photo.image.fluid}
+                                imgAlt={item.photo.title}
                                 name={item.name}
                                 titles={item.titles}
                                 key={i}
@@ -104,7 +106,7 @@ export default function Index(props: { data: DataType }) {
 }
 
 export const query = graphql`
-    query {
+    {
         Juries: allContentfulJuries(sort: { fields: name, order: ASC }) {
             group(field: node_locale) {
                 nodes {
@@ -113,10 +115,12 @@ export const query = graphql`
                     name
                     titles
                     photo {
-                        fluid(quality: 100, cropFocus: CENTER) {
-                            ...GatsbyContentfulFluid_withWebp
+                        title
+                        image {
+                            fluid {
+                                ...GatsbyContentfulFluid_withWebp
+                            }
                         }
-                        description
                     }
                 }
             }

@@ -84,6 +84,7 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
         grid-template-rows: repeat(12, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
+        height: 80vh;
         max-height: 800px;
     `
     const gridAreaSettings: Array<string> = []
@@ -94,14 +95,20 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
     return (
         <Grid>
             {gridAreaSettings.map((item, i) => (
-                <Img
+                <BackgroundImage
                     fluid={props.imgSrc}
                     alt={props.imgAlt}
-                    style={{
-                        gridArea: `${item}`,
-                    }}
+                    style={{ gridArea: `${item}`, height: "100%" }}
                     key={i}
                 />
+                // <Img
+                //     fluid={props.imgSrc}
+                //     alt={props.imgAlt}
+                //     style={{
+                //         gridArea: `${item}`,
+                //     }}
+                //     key={i}
+                // />
             ))}
         </Grid>
     )

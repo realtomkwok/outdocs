@@ -5,6 +5,8 @@ import SVG from "react-inlinesvg"
 
 import Layout from "components/Layout"
 import { Heading2, Heading3 } from "utils/typography"
+import { HeroImage } from "components/Cards"
+import { FluidObject } from "gatsby-image"
 
 type DataType = {
     data: {
@@ -22,13 +24,20 @@ type FilmType = {
             url: string
         }
     }[]
+    filmHeroImage: {
+        title: string
+        image: {
+            fluid: FluidObject
+        }
+    }
 }
 
 export default function FilmDetail({ data }: DataType) {
-    const Header = tw.header`p-16 space-y-8 relative`
+    const Header = tw.header`container mx-auto p-16 space-y-8 relative`
     const AwardsWrapper = tw.div`flex flex-row justify-end space-x-10`
     const Award = tw.div`h-20`
     const Titles = tw.div`w-1/2`
+    const HeroContainer = tw.div`w-full h-auto relative`
     const Main = tw.div`p-16`
 
     const filmData: FilmType = data.allContentfulLibraryFilm.nodes[0]
@@ -43,21 +52,28 @@ export default function FilmDetail({ data }: DataType) {
         >
             <Header>
                 <AwardsWrapper>
-                    {filmData.filmAward.map((item, i) => (
-                        <Award key={i}>
-                            <SVG
-                                src={item.file.url}
-                                style={tw`h-full fill-white`}
-                                description={item.title}
-                            ></SVG>
-                        </Award>
-                    ))}
+                    {filmData.filmAward &&
+                        filmData.filmAward.map((item, i) => (
+                            <Award key={i}>
+                                <SVG
+                                    src={item.file.url}
+                                    style={tw`h-full fill-white`}
+                                    description={item.title}
+                                ></SVG>
+                            </Award>
+                        ))}
                 </AwardsWrapper>
                 <Titles>
                     <Heading2>{filmData.filmTitle}</Heading2>
                     <Heading2>{engTitle}</Heading2>
                 </Titles>
             </Header>
+            <HeroContainer>
+                <HeroImage
+                    imgSrc={filmData.filmHeroImage.image.fluid}
+                    imgAlt={filmData.filmHeroImage.title}
+                />
+            </HeroContainer>
         </Layout>
     )
 }
@@ -71,6 +87,14 @@ export const query = graphql`
                     title
                     file {
                         url
+                    }
+                }
+                filmHeroImage {
+                    title
+                    image {
+                        fluid {
+                            ...GatsbyContentfulFluid_withWebp
+                        }
                     }
                 }
             }

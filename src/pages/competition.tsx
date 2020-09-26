@@ -66,6 +66,7 @@ function Sections(props: { data: SectionProps[] }) {
 }
 
 export default function Index({ data }: DataProps) {
+    const Container = tw.div`container mx-auto`
     const Main: TwComponent<"main"> = tw.main`container mx-auto grid grid-cols-12 gap-10`
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
 

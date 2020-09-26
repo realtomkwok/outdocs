@@ -101,7 +101,7 @@ export default function Index({ data }: DataProps) {
     const FaqData: FaqProps[] = data.FAQ.group
 
     return (
-        <Layout hasPadding isTop={false} isDark={fasle} title="有问必答">
+        <Layout hasPadding isTop={false} isDark={false} title="有问必答">
             <Header category="carnival" titleId={2} />
             <Main>
                 <Sidebar data={FaqData}></Sidebar>

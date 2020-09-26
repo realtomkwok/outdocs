@@ -67,8 +67,10 @@ type FotType = {
             filmInfo: string[]
             detailPage: string
             filmHeroImage: {
-                fluid: FluidObject
-                description: string
+                title: string
+                image: {
+                    fluid: FluidObject
+                }
             }
         }
     }[]
@@ -95,8 +97,10 @@ type ScreeningType = {
             filmTitle: string
             filmInfo: string[]
             filmHeroImage: {
-                description: string
-                fluid: FluidObject
+                title: string
+                image: {
+                    fluid: FluidObject
+                }
             }
         }
         dateAndTime: Date
@@ -145,7 +149,7 @@ function FilmOfToday(props: { data: FotType[] }) {
         Math.random() * Math.floor(props.data.length)
     )
 
-    const img: { fluid: FluidObject; description: string } =
+    const img: { title: string; image: { fluid: FluidObject } } =
         props.data[selectedFilm].edges[0].node.filmHeroImage //🚩 edges[locale]
 
     const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
@@ -154,7 +158,7 @@ function FilmOfToday(props: { data: FotType[] }) {
 
     return (
         <div tw="w-full h-auto relative">
-            <HeroImage imgSrc={img.fluid} imgAlt={img.description} />
+            <HeroImage imgSrc={img.image.fluid} imgAlt={img.title} />
             <FotCard
                 chnTitle={info.filmTitle}
                 engTitle={engTitle}
@@ -183,8 +187,8 @@ function Carnival(props: {
         ) : (
             screeningData.nodes.map((item, i) => (
                 <EventCard
-                    imgSrc={item.filmInfo.filmHeroImage.fluid}
-                    imgAlt={item.filmInfo.filmHeroImage.description}
+                    imgSrc={item.filmInfo.filmHeroImage.image.fluid}
+                    imgAlt={item.filmInfo.filmHeroImage.title}
                     detailPage={item.filmInfo.detailPage}
                     title={item.filmInfo.filmTitle}
                     subtitle={item.filmInfo.filmInfo.join(" | ")}
@@ -360,8 +364,11 @@ export const query = graphql`
                         filmInfo
                         detailPage
                         filmHeroImage {
-                            fluid(quality: 100, cropFocus: CENTER) {
-                                ...GatsbyContentfulFluid_withWebp
+                            image {
+                                fluid {
+                                    ...GatsbyContentfulFluid_withWebp
+                                }
+                                title
                             }
                         }
                     }
@@ -400,9 +407,11 @@ export const query = graphql`
                         filmTitle
                         filmInfo
                         filmHeroImage {
-                            description
-                            fluid(cropFocus: CENTER, maxHeight: 240) {
-                                ...GatsbyContentfulFluid_withWebp
+                            image {
+                                fluid {
+                                    ...GatsbyContentfulFluid_withWebp
+                                }
+                                title
                             }
                         }
                     }

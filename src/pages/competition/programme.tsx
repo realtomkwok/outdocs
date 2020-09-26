@@ -22,8 +22,10 @@ type FilmType = {
     category: string
     yearOfCompetition: string
     filmHeroImage: {
-        fluid: FluidObject
-        description: string
+        title: string
+        image: {
+            fluid: FluidObject
+        }
     }
     filmTitle: string
     filmInfo: string[]
@@ -97,8 +99,8 @@ export default function Index(props: { data: DataType }) {
                             <FilmCard
                                 category={item.category}
                                 year={item.yearOfCompetition}
-                                imgSrc={item.filmHeroImage.fluid}
-                                imgAlt={item.filmHeroImage.description}
+                                imgSrc={item.filmHeroImage.image.fluid}
+                                imgAlt={item.filmHeroImage.title}
                                 filmTitle={item.filmTitle}
                                 filmInfo={item.filmInfo}
                                 detailPage={item.detailPage}
@@ -123,10 +125,12 @@ export const query = graphql`
                     category
                     yearOfCompetition
                     filmHeroImage {
-                        fluid(cropFocus: CENTER, quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
+                        image {
+                            fluid {
+                                ...GatsbyContentfulFluid_withWebp
+                            }
+                            title
                         }
-                        description
                     }
                     filmTitle
                     filmInfo
