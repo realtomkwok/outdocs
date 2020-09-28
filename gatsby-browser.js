@@ -1,3 +1,6 @@
+import React from "react"
+import { ParallaxProvider } from "react-scroll-parallax"
+
 import "tailwindcss/dist/base.min.css"
 import "tailwindcss/tailwind.css"
 
@@ -7,4 +10,8 @@ export const onClientEntry = () => {
         import(`intersection-observer`)
         console.log(`# IntersectionObserver is polyfilled!`)
     }
+}
+
+export const wrapRootElement = ({ element }) => {
+    return <ParallaxProvider>{element}</ParallaxProvider>
 }

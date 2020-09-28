@@ -23,6 +23,10 @@ type ItemProps = {
     isDark: boolean
 }
 
+const defalutProps: Pick<MenuProps, "isDark"> = {
+    isDark: false,
+}
+
 function MenuItem(props: ItemProps) {
     const Item: TwComponent<"li"> = styled.li`
         //
@@ -73,7 +77,7 @@ function MenuItem(props: ItemProps) {
     )
 }
 
-export default function NavMenu(props: MenuProps) {
+function NavMenu(props: MenuProps) {
     type LinkType = {
         order: number
         link: string
@@ -106,3 +110,6 @@ export default function NavMenu(props: MenuProps) {
         </>
     )
 }
+
+NavMenu.defaultProps = defalutProps
+export default NavMenu

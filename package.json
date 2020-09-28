@@ -39,6 +39,7 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
     "react-inlinesvg": "^2.1.0",
+    "react-scroll-parallax": "^2.3.4",
     "styled-components": "^5.2.0",
     "typescript": "^4.0.2",
     "typescript-styled-plugin": "^0.15.0"

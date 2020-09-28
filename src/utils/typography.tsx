@@ -1,5 +1,5 @@
 import React from "react"
-import 'twin.macro'
+import "twin.macro"
 
 type childrenProps = {
     children: React.ReactNode
@@ -34,17 +34,19 @@ const Button = ({ children }: childrenProps) => (
 )
 
 const Body = ({ children }: childrenProps) => (
-    <div tw="font-normal text-body leading-relaxed">{children}</div>
-)
-
-const Tag = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tag uppercase whitespace-no-wrap">
+    <div tw="font-normal text-body leading-relaxed whitespace-pre-line">
         {children}
     </div>
 )
 
+const Tag = ({ children }: childrenProps) => (
+    <div tw="font-bold text-tag uppercase whitespace-no-wrap">{children}</div>
+)
+
 const Tag2 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tagSmall uppercase whitespace-no-wrap">{children}</div>
+    <div tw="font-bold text-tagSmall uppercase whitespace-no-wrap">
+        {children}
+    </div>
 )
 
 export {
@@ -57,5 +59,5 @@ export {
     Button,
     Body,
     Tag,
-    Tag2
+    Tag2,
 }

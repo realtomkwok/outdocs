@@ -20,6 +20,8 @@ type SchedulesProps = {
             contentfulid: number
             date: Date
             dateAndTime: Date
+            category: string[]
+            onlineLocation: string
             location: string
             onlineUrl: string
             ticketsUrl: string
@@ -60,15 +62,16 @@ function ScheduleList(props: { data: SchedulesProps }) {
                     </ListHeader>
                     <ItemWrapper>
                         {list.nodes.map((item, i) => {
-                            let btnText: string, btnTo: string
-                            if (item.onlineUrl !== null) {
-                                btnText = "预约"
-                                btnTo = item.onlineUrl
+                            let btnText: string, btnTo: string, location: string
+                            if (item.category.length > 1) {
+                                location = item.location
                             } else {
-                                btnText = "购票"
-                                btnTo = item.ticketsUrl
+                                if (item.category[0] === "线上展映") {
+                                    location = item.onlineLocation
+                                } else if (item.category[0] === "线下展映") {
+                                    location = item.location
+                                }
                             }
-
                             return (
                                 <FilmScheduleCard
                                     filmImgSrc={
@@ -81,7 +84,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                     filmInfo={item.filmInfo.filmInfo}
                                     filmDeatail={item.filmInfo.detailPage}
                                     dnt={item.dateAndTime}
-                                    location={item.location}
+                                    location={location}
                                     btnText={btnText}
                                     btnTo={btnTo}
                                     key={i}
@@ -117,6 +120,8 @@ export const query = graphql`
                     contentfulid
                     date(formatString: "MM/DD ddd", locale: "zh-cn")
                     dateAndTime(formatString: "HH:mm", locale: "zh-cn")
+                    category
+                    onlineLocation
                     location
                     onlineUrl
                     ticketsUrl
@@ -126,7 +131,7 @@ export const query = graphql`
                         detailPage
                         filmHeroImage {
                             image {
-                                fluid {
+                                fluid(quality: 100) {
                                     ...GatsbyContentfulFluid_withWebp
                                 }
                                 title

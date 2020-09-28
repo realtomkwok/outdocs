@@ -6,7 +6,7 @@ import { FluidObject } from "gatsby-image"
 import Layout from "components/Layout"
 import Header from "components/Header"
 import Dropdown from "components/Selects"
-import { PersonCard3Cols } from "components/Cards"
+import { PersonCard } from "components/Cards"
 import EmptyState from "components/EmptyState"
 
 type DataType = {
@@ -90,11 +90,12 @@ export default function Index(props: { data: DataType }) {
                         <EmptyState />
                     ) : (
                         filteredJuryData.map((item, i) => (
-                            <PersonCard3Cols
+                            <PersonCard
+                                size="large"
                                 imgSrc={item.photo.image.fluid}
                                 imgAlt={item.photo.title}
                                 name={item.name}
-                                titles={item.titles}
+                                description={item.titles}
                                 key={i}
                             />
                         ))
@@ -117,7 +118,7 @@ export const query = graphql`
                     photo {
                         title
                         image {
-                            fluid {
+                            fluid(quality: 100) {
                                 ...GatsbyContentfulFluid_withWebp
                             }
                         }

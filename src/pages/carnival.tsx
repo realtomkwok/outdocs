@@ -7,7 +7,7 @@ import Layout from "components/Layout"
 import Header from "components/Header"
 import { Heading2, Body, Heading4 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
-import { HeroImage, FotCard, PersonCard3Cols } from "components/Cards"
+import { HeroImage, FotCard, PersonCard } from "components/Cards"
 
 import copy from "content/Carnival-Overview-Copy.yaml"
 
@@ -65,7 +65,6 @@ function Intro() {
                     ) => (
                         <OutlinedBtn
                             btnText={item.zhHans}
-                            styles={undefined}
                             to={item.to}
                             key={i}
                         />
@@ -85,11 +84,12 @@ function Guests(props: { data: GuestProps[] }) {
             <Heading4>有玩嘉宾</Heading4>
             {props.data.map((item, i) => (
                 <CardWrapper key={i}>
-                    <PersonCard3Cols
+                    <PersonCard
+                        size="large"
                         imgSrc={item.avatar.fluid}
                         imgAlt={item.avatar.description}
                         name={item.name}
-                        titles={item.titles}
+                        description={item.titles}
                     />
                 </CardWrapper>
             ))}

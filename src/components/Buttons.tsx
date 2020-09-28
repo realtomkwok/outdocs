@@ -10,6 +10,7 @@ type BtnProps = {
     btnText: string
     styles: SerializedStyles
     isActive: boolean
+    isWhite: boolean
     disabled: boolean
     activeClassName: undefined
     partiallyActive: boolean
@@ -20,6 +21,7 @@ const defaultProps: Omit<BtnProps, "btnText" | "styles"> = {
     partiallyActive: true,
     disabled: false,
     isActive: true,
+    isWhite: false,
     to: undefined,
 }
 
@@ -27,12 +29,11 @@ TextBtn.defaultProps = defaultProps
 OutlinedBtn.defaultProps = defaultProps
 
 function ButtonBase(props: Omit<BtnProps, "isActive" | "disabled">) {
-    const TextWrapper: TwComponent<"div"> = styled.div`
+    const TextWrapper = styled.div`
         ${tw`inline-flex flex-row items-start relative top-1`}
     `
-    const Text: TwComponent<"div"> = styled.div`
+    const Text = styled.div`
         ${tw`flex-auto font-bold text-button`};
-        baseline-shift: 10%;
     `
     // const Icon: TwComponent<"div"> = styled.div`${tw`flex-auto`}`
 
@@ -65,15 +66,24 @@ function TextBtn(props: Omit<BtnProps, "styles">) {
             activeClassName={props.activeClassName}
             partiallyActive={props.partiallyActive}
             btnText={props.btnText}
+            isWhite={props.isWhite}
         />
     )
 }
 
-function OutlinedBtn(props: BtnProps) {
+function OutlinedBtn(props: Omit<BtnProps, "styles">) {
     const styles = css`
-        ${tw`px-3 border-2 border-solid h-12`} ${!props.disabled
-            ? tw`bg-transparent border-black text-black transition-colors duration-150 hover:text-white hover:bg-black `
-            : tw`bg-disabled border-disabled text-disabledText cursor-not-allowed`}
+        ${tw`px-3 border-2 border-solid h-12 outline-none`}
+        ${
+            !props.isWhite
+                ? tw`border-black text-black hover:text-white hover:bg-black`
+                : tw`border-white text-white hover:text-black hover:bg-white`
+        }
+        ${
+            !props.disabled
+                ? tw`bg-transparent transition-colors duration-150 `
+                : tw`bg-disabled border-disabled text-disabledText cursor-not-allowed hover:border-disabled hover:text-disabledText hover:bg-disabled`
+        }
     `
 
     return (
@@ -83,6 +93,7 @@ function OutlinedBtn(props: BtnProps) {
             activeClassName={props.activeClassName}
             partiallyActive={props.partiallyActive}
             btnText={props.btnText}
+            isWhite={props.isWhite}
         />
     )
 }

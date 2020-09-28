@@ -5,7 +5,7 @@ import { FluidObject } from "gatsby-image"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
-import { PersonCard3Cols } from "components/Cards"
+import { PersonCard } from "components/Cards"
 
 type DataProps = {
     data: {
@@ -36,10 +36,11 @@ export default function Index({ data }: DataProps) {
             <Main>
                 <CardWrapper>
                     {guestsData.map((item, i) => (
-                        <PersonCard3Cols
+                        <PersonCard
+                            size="large"
                             name={item.name}
-                            titles={item.titles}
-                            imgSrc={item.avatar.fluid}
+                            description={item.titles}
+                            imgFluid={item.avatar.fluid}
                             imgAlt={item.avatar.description}
                             key={i}
                         />
@@ -61,7 +62,7 @@ export const query = graphql`
                 avatar {
                     description
                     fluid(quality: 100) {
-                        srcSetWebp
+                        ...GatsbyContentfulFluid_withWebp
                     }
                 }
             }

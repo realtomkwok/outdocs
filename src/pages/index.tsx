@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import tw, { TwComponent } from "twin.macro"
 import { FluidObject } from "gatsby-image"
 import { Helmet } from "react-helmet"
+import { Parallax } from "react-scroll-parallax"
 
 import {
     HeroImage,
@@ -295,6 +296,7 @@ export default function Home({ data }: DataType) {
                 <title>OUTDOCS | 中国国际户外影像嘉年华</title>
             </Helmet>
             <NavBar isTop={true} isDark={false} />
+
             <div tw="w-full h-auto relative">
                 <HeroImage
                     imgSrc={hero.heroImage.fluid}

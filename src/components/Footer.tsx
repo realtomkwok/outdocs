@@ -10,6 +10,10 @@ type FooterProps = {
     isDark: boolean
 }
 
+const defaultProps: FooterProps = {
+    isDark: false,
+}
+
 function Footnote() {
     const tomsWebsite: string = "//realtomkwok.github.io/portfolio"
 
@@ -20,7 +24,7 @@ function Footnote() {
     )
 }
 
-export default function Footer(props: FooterProps) {
+function Footer(props: FooterProps) {
     const Container = tw.footer`container mx-auto w-full p-16 bottom-0 grid grid-rows-2 gap-20`
     const Row = styled.div<{ itemsStart: boolean }>`
         ${tw`flex justify-between h-24 `} ${({ itemsStart }) =>
@@ -44,3 +48,6 @@ export default function Footer(props: FooterProps) {
         </Container>
     )
 }
+
+Footer.defaultProps = defaultProps
+export default Footer

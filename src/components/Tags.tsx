@@ -5,7 +5,7 @@ import { Tag as TagText } from "../utils/typography"
 
 type TagProps = {
     children: React.ReactNode
-    tagStyle: string
+    tagStyle: "primary" | "secondary"
     isWhite: boolean
 }
 

@@ -1,7 +1,8 @@
 import React from "react"
 import tw, { styled, TwComponent, css } from "twin.macro"
-import Img, { FluidObject } from "gatsby-image"
+import Img, { FixedObject, FluidObject } from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
+import { SerializedStyles } from "@emotion/core"
 
 import Tag from "./Tags"
 import { Heading4, Subheading1, Subheading2, Body } from "../utils/typography"
@@ -25,7 +26,6 @@ type IndexHeroProps = {
     headline: string
     btnText: string
     btnLinkedPage: string
-    tagIsWhite: boolean
 }
 
 type FotProps = {
@@ -33,7 +33,6 @@ type FotProps = {
     engTitle: string
     detailPage: string
     info: string[]
-    tagIsWhite: boolean
 }
 
 type EventProps = {
@@ -48,12 +47,11 @@ type EventProps = {
     hasButton: boolean
     btnText: string
     btnTo: string
-    tagIsWhite: boolean
 }
 
 type FilmProps = {
-    category: string
-    year: string
+    // category: string
+    // year: string
     imgSrc: FluidObject
     imgAlt: string
     filmTitle: string
@@ -62,10 +60,12 @@ type FilmProps = {
 }
 
 type PersonProps = {
-    imgSrc: FluidObject
+    size: "large" | "small"
+    imgFluid?: FluidObject | null
+    imgFixed?: FixedObject | null
     imgAlt: string
     name: string
-    titles: string
+    description: string
 }
 
 type FSProps = {
@@ -104,14 +104,6 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
                     style={{ gridArea: `${item}`, height: "100%" }}
                     key={i}
                 />
-                // <Img
-                //     fluid={props.imgSrc}
-                //     alt={props.imgAlt}
-                //     style={{
-                //         gridArea: `${item}`,
-                //     }}
-                //     key={i}
-                // />
             ))}
         </Grid>
     )
@@ -124,9 +116,7 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
     return (
         <CardContainer>
             <Card>
-                <Tag tagStyle="primary" isWhite={props.tagIsWhite}>
-                    {props.tag}
-                </Tag>
+                <Tag tagStyle="primary">{props.tag}</Tag>
                 <Heading4>{props.headline}</Heading4>
                 <TextBtn
                     to={props.btnLinkedPage}
@@ -150,9 +140,7 @@ function FotCard(props: FotProps) {
             <Card>
                 <Link to={props.detailPage}>
                     <div tw="space-y-4">
-                        <Tag tagStyle="primary" isWhite={props.tagIsWhite}>
-                            Film Of Today
-                        </Tag>
+                        <Tag tagStyle="primary">Film Of Today</Tag>
                         <Titles>
                             <Heading4>{props.chnTitle}</Heading4>
                             <Heading4>{props.engTitle}</Heading4>
@@ -231,11 +219,7 @@ function EventCard(props: EventProps) {
                         <Subheading2>{props.location}</Subheading2>
                     </DateAndLocation>
                     {props.hasButton ? (
-                        <OutlinedBtn
-                            btnText={props.btnText}
-                            to={props.btnTo}
-                            styles={undefined}
-                        />
+                        <OutlinedBtn btnText={props.btnText} to={props.btnTo} />
                     ) : null}
                 </Actions>
             </InfoWrapper>
@@ -244,7 +228,7 @@ function EventCard(props: EventProps) {
 }
 
 function FilmCard(props: FilmProps) {
-    const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
+    const Container: TwComponent<"div"> = tw.div`flex flex-col space-y-8`
     const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
 
     return (
@@ -263,23 +247,37 @@ function FilmCard(props: FilmProps) {
     )
 }
 
-function PersonCard3Cols(props: PersonProps) {
-    const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
-    const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
-    const imgStyles = css`
-        height: 24rem;
-    `
+function PersonCard(props: PersonProps) {
+    let Container: TwComponent<"div">,
+        InfoWrapper: TwComponent<"div">,
+        imgStyles: SerializedStyles
+
+    if (props.size === "large") {
+        Container = tw.div`flex flex-col bg-white space-y-8`
+        InfoWrapper = tw.div`mt-4 space-y-2`
+        imgStyles = css`
+            ${tw`bg-center bg-cover`};
+            height: 24rem;
+        `
+    } else if (props.size === "small") {
+        Container = tw.div`flex flex-row space-x-8`
+        InfoWrapper = tw.div` space-y-2`
+        imgStyles = css`
+            ${tw`w-40 h-40 flex-shrink-0`};
+        `
+    }
 
     return (
         <Container>
             <BackgroundImage
-                fluid={props.imgSrc}
+                fixed={props.imgFixed}
+                fluid={props.imgFluid}
                 alt={props.imgAlt}
-                css={[tw`bg-center bg-cover`, imgStyles]}
+                css={imgStyles}
             />
             <InfoWrapper>
                 <Heading4>{props.name}</Heading4>
-                <Body>{props.titles}</Body>
+                <Body>{props.description}</Body>
             </InfoWrapper>
         </Container>
     )
@@ -302,6 +300,7 @@ function FilmScheduleCard(props: FSProps) {
     `
     const FilmInfo = tw.div`col-span-2`
     const ScreeningInfo = tw.div``
+    const ButtonsWrapper = tw.div`flex flex-row`
 
     return (
         <Container>
@@ -331,11 +330,12 @@ function FilmScheduleCard(props: FSProps) {
                         <Subheading2>{props.dnt}</Subheading2>
                         <Subheading2>{props.location}</Subheading2>
                     </ScreeningInfo>
-                    <OutlinedBtn
-                        to={props.btnTo}
-                        btnText={props.btnText}
-                        styles={undefined}
-                    ></OutlinedBtn>
+                    <ButtonsWrapper>
+                        <OutlinedBtn
+                            to={props.btnTo}
+                            btnText={props.btnText}
+                        ></OutlinedBtn>
+                    </ButtonsWrapper>
                 </div>
             </InfoWrapper>
         </Container>
@@ -350,6 +350,6 @@ export {
     FotCard,
     EventCard,
     FilmCard,
-    PersonCard3Cols,
+    PersonCard,
     FilmScheduleCard,
 }
