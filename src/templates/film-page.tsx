@@ -19,7 +19,7 @@ type DataProps = {
             group: {
                 nodes: Pick<
                     FilmProps,
-                    "filmTitle" | "filmInfo" | "filmHeroImage" | "detailPage"
+                    "filmTitle" | "filmInfo" | "filmHeroImage" | "detailPage" | "director"
                 >[]
             }[]
         }
@@ -50,10 +50,10 @@ type FilmProps = {
     }
     director: {
         name: string
-        info: {
+        info?: {
             info: string
         }
-        photo: ImgTypes
+        photo?: ImgTypes
     }[]
     filmPhotos: ImgTypes[]
 }
@@ -111,21 +111,18 @@ export default function FilmDetail({ data }: DataProps) {
     const Photos = tw.div`p-16 w-screen flex flex-row flex-wrap justify-between content-center`
     const OthersList = tw.div`container mx-auto p-16 grid grid-cols-3 gap-10 bg-black`
 
-    const filmData: FilmProps = data.contentfulLibraryFilm
+    const thisFilm: FilmProps = data.contentfulLibraryFilm
     const engTitle: string[] = data.allContentfulLibraryFilm.group[0].nodes
-        .filter(el => el.detailPage === filmData.detailPage)
+        .filter(el => el.detailPage === thisFilm.detailPage)
         .map(obj => obj.filmTitle)
 
-    const allOtherFilms: Pick<
-        FilmProps,
-        "filmTitle" | "filmInfo" | "filmHeroImage" | "detailPage"
-    >[] = data.allContentfulLibraryFilm.group[1].nodes
+    const allOtherFilms = data.allContentfulLibraryFilm.group[1].nodes.filter(
+        el => el.detailPage !== thisFilm.detailPage
+    )
+
 
     // 📖 ❓ A solution by usign Fisher-Yates shuffle algorithm: https://segmentfault.com/q/1010000006819233/a-1020000006822187 | https://segmentfault.com/q/1010000007449441
-    const selectedFilms: Pick<
-        FilmProps,
-        "filmTitle" | "filmInfo" | "filmHeroImage" | "detailPage"
-    >[] = allOtherFilms
+    const selectedFilms = allOtherFilms
         .map((n, i, all) => {
             const j = i + Math.floor(Math.random() * (all.length - i))
             const v = all[j]
@@ -135,11 +132,11 @@ export default function FilmDetail({ data }: DataProps) {
         .slice(0, 3)
 
     return (
-        <Layout title={filmData.filmTitle} isDark>
+        <Layout title={thisFilm.filmTitle} isDark>
             <Header>
                 <AwardsWrapper>
-                    {filmData.filmAward &&
-                        filmData.filmAward.map((item, i) => (
+                    {thisFilm.filmAward &&
+                        thisFilm.filmAward.map((item, i) => (
                             <Award key={i}>
                                 <SVG
                                     src={item.file.url}
@@ -151,29 +148,29 @@ export default function FilmDetail({ data }: DataProps) {
                         ))}
                 </AwardsWrapper>
                 <Titles>
-                    <Heading2>{filmData.filmTitle}</Heading2>
+                    <Heading2>{thisFilm.filmTitle}</Heading2>
                     <Heading2>{engTitle}</Heading2>
                 </Titles>
             </Header>
             <HeroContainer>
                 <HeroImage
-                    imgSrc={filmData.filmHeroImage.image.fluid}
-                    imgAlt={filmData.filmHeroImage.title}
+                    imgSrc={thisFilm.filmHeroImage.image.fluid}
+                    imgAlt={thisFilm.filmHeroImage.title}
                 />
             </HeroContainer>
             <Parallax y={[0, -20]}>
                 <Main>
-                    <Screening data={filmData.screening} />
+                    <Screening data={thisFilm.screening} />
                     <Content>
                         <InfoSection tagText="影片资讯">
-                            <Body>{filmData.filmInfo.join(" | ")}</Body>
+                            <Body>{thisFilm.filmInfo.join(" | ")}</Body>
                         </InfoSection>
                         <InfoSection tagText="简介">
-                            <Body>{filmData.filmSynopsis.filmSynopsis}</Body>
+                            <Body>{thisFilm.filmSynopsis.filmSynopsis}</Body>
                         </InfoSection>
                         <InfoSection tagText="导演">
                             <Directors>
-                                {filmData.director.map((item, i) => (
+                                {thisFilm.director.map((item, i) => (
                                     <PersonCard
                                         size="small"
                                         imgFluid={item.photo.image.fluid}
@@ -189,7 +186,7 @@ export default function FilmDetail({ data }: DataProps) {
                 </Main>
             </Parallax>
             <Photos>
-                {filmData.filmPhotos.map((item, i) => (
+                {thisFilm.filmPhotos.map((item, i) => (
                     <Parallax
                         y={[-30, 20]}
                         styleOuter={
@@ -212,6 +209,7 @@ export default function FilmDetail({ data }: DataProps) {
                             filmTitle={item.filmTitle}
                             filmInfo={item.filmInfo}
                             detailPage={item.detailPage}
+                            director={item.director}
                             key={i}
                         />
                     ))}
@@ -292,6 +290,9 @@ export const query = graphql`
                             }
                             description
                         }
+                    }
+                    director {
+                        name
                     }
                 }
             }

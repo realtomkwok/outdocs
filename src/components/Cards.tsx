@@ -5,7 +5,14 @@ import BackgroundImage from "gatsby-background-image"
 import { SerializedStyles } from "@emotion/core"
 
 import Tag from "./Tags"
-import { Heading4, Subheading1, Subheading2, Body } from "../utils/typography"
+import {
+    Heading4,
+    Subheading1,
+    Subheading2,
+    Body,
+    Tag as TagText,
+    Tag2,
+} from "../utils/typography"
 import { OutlinedBtn, TextBtn } from "../components/Buttons"
 import Link from "../utils/Link"
 
@@ -39,14 +46,14 @@ type EventProps = {
     detailPage: string
     tag: string
     title: string
-    subtitle: string
+    subtitle?: string
     dateAndTime: Date | string
     location: string
     imgSrc: FluidObject
     imgAlt: string
-    hasButton: boolean
-    btnText: string
-    btnTo: string
+    hasButton?: boolean
+    btnText?: string
+    btnTo?: string
 }
 
 type FilmProps = {
@@ -55,6 +62,9 @@ type FilmProps = {
     imgSrc: FluidObject
     imgAlt: string
     filmTitle: string
+    director: {
+        name: string
+    }[]
     filmInfo: string[]
     detailPage: string
 }
@@ -65,6 +75,7 @@ type PersonProps = {
     imgFixed?: FixedObject | null
     imgAlt: string
     name: string
+    titles?: string
     description: string
 }
 
@@ -209,9 +220,9 @@ function EventCard(props: EventProps) {
                 {props.tag !== null ? (
                     <Tag tagStyle="secondary">{props.tag}</Tag>
                 ) : null}
-                <Link to={props.detailPage}>
+                <Link to={props.detailPage} tw="space-y-4">
                     <Heading4>{props.title}</Heading4>
-                    <Body>{props.subtitle}</Body>
+                    <Tag2>{props.subtitle}</Tag2>
                 </Link>
                 <Actions>
                     <DateAndLocation>
@@ -231,6 +242,15 @@ function FilmCard(props: FilmProps) {
     const Container: TwComponent<"div"> = tw.div`flex flex-col space-y-8`
     const InfoWrapper: TwComponent<"div"> = tw.div`mt-4 space-y-2`
 
+    let director: string
+    if (props.director.length > 1) {
+        let directors: string[] = []
+        props.director.map(item => directors.push(item.name))
+        director = directors.join("/")
+    } else {
+        director = props.director[0].name
+    }
+
     return (
         <Link to={`..${props.detailPage}`}>
             <Container>
@@ -240,7 +260,8 @@ function FilmCard(props: FilmProps) {
                 />
                 <InfoWrapper>
                     <Heading4>{props.filmTitle}</Heading4>
-                    <Body>{props.filmInfo.join(" | ")}</Body>
+                    <Subheading1>{director}</Subheading1>
+                    <TagText>{props.filmInfo.splice(0, 3).join(" | ")}</TagText>
                 </InfoWrapper>
             </Container>
         </Link>
@@ -277,6 +298,7 @@ function PersonCard(props: PersonProps) {
             />
             <InfoWrapper>
                 <Heading4>{props.name}</Heading4>
+                <Subheading1>{props.titles}</Subheading1>
                 <Body>{props.description}</Body>
             </InfoWrapper>
         </Container>
@@ -321,7 +343,7 @@ function FilmScheduleCard(props: FSProps) {
                     <Link to={`..${props.filmDeatail}`}>
                         <div tw="space-y-2">
                             <Heading4>{props.filmTitle}</Heading4>
-                            <Body>{props.filmInfo.join(" | ")}</Body>
+                            <Tag2>{props.filmInfo.join(" | ")}</Tag2>
                         </div>
                     </Link>
                 </FilmInfo>

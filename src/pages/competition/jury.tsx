@@ -92,7 +92,7 @@ export default function Index(props: { data: DataType }) {
                         filteredJuryData.map((item, i) => (
                             <PersonCard
                                 size="large"
-                                imgSrc={item.photo.image.fluid}
+                                imgFluid={item.photo.image.fluid}
                                 imgAlt={item.photo.title}
                                 name={item.name}
                                 description={item.titles}

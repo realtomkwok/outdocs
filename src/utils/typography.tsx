@@ -44,9 +44,7 @@ const Tag = ({ children }: childrenProps) => (
 )
 
 const Tag2 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tagSmall uppercase whitespace-no-wrap">
-        {children}
-    </div>
+    <div tw="font-normal text-tag uppercase whitespace-no-wrap">{children}</div>
 )
 
 export {

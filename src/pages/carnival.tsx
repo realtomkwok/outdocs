@@ -82,17 +82,18 @@ function Guests(props: { data: GuestProps[] }) {
     return (
         <Container>
             <Heading4>有玩嘉宾</Heading4>
-            {props.data.map((item, i) => (
-                <CardWrapper key={i}>
+            <CardWrapper>
+                {props.data.map((item, i) => (
                     <PersonCard
                         size="large"
-                        imgSrc={item.avatar.fluid}
+                        imgFluid={item.avatar.fluid}
                         imgAlt={item.avatar.description}
                         name={item.name}
                         description={item.titles}
+                        key={i}
                     />
-                </CardWrapper>
-            ))}
+                ))}
+            </CardWrapper>
         </Container>
     )
 }
@@ -152,7 +153,7 @@ export const query = graphql`
                     contentfulid
                     name
                     avatar {
-                        fluid(quality: 100) {
+                        fluid {
                             ...GatsbyContentfulFluid_withWebp
                         }
                         description

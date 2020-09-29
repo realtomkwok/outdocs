@@ -30,6 +30,9 @@ type FilmType = {
     filmTitle: string
     filmInfo: string[]
     detailPage: string
+    director: {
+        name: string
+    }[]
 }
 
 export default function Index(props: { data: DataType }) {
@@ -97,13 +100,12 @@ export default function Index(props: { data: DataType }) {
                     ) : (
                         filteredFilmData.map((item, i) => (
                             <FilmCard
-                                category={item.category}
-                                year={item.yearOfCompetition}
                                 imgSrc={item.filmHeroImage.image.fluid}
                                 imgAlt={item.filmHeroImage.title}
                                 filmTitle={item.filmTitle}
                                 filmInfo={item.filmInfo}
                                 detailPage={item.detailPage}
+                                director={item.director}
                                 key={i}
                             />
                         ))
@@ -135,6 +137,9 @@ export const query = graphql`
                     filmTitle
                     filmInfo
                     detailPage
+                    director {
+                        name
+                    }
                 }
             }
         }
