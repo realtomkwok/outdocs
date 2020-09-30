@@ -49,4 +49,26 @@ exports.createPages = async ({ graphql, actions }) => {
             },
         })
     })
+
+    const figures = await graphql(`
+        query {
+            allContentfulFigure(filter: { node_locale: { eq: "zh-Hans" } }) {
+                edges {
+                    node {
+                        detailPage
+                    }
+                }
+            }
+        }
+    `).then(res => res.data)
+
+    figures.allContentfulFigure.edges.forEach(({ node }) => {
+        createPage({
+            path: node.detailPage,
+            component: path.resolve(`./src/templates/figure-page.tsx`),
+            context: {
+                slug: node.detailPage,
+            },
+        })
+    })
 }

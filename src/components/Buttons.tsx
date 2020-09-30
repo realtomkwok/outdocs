@@ -6,14 +6,14 @@ import { SerializedStyles } from "@emotion/core"
 import Link from "utils/Link"
 
 type BtnProps = {
-    to: string
+    to?: string
     btnText: string
-    styles: SerializedStyles
-    isActive: boolean
-    isWhite: boolean
-    disabled: boolean
-    activeClassName: undefined
-    partiallyActive: boolean
+    styles?: SerializedStyles
+    isActive?: boolean
+    isWhite?: boolean
+    disabled?: boolean
+    activeClassName?: undefined
+    partiallyActive?: boolean
 }
 
 const defaultProps: Omit<BtnProps, "btnText" | "styles"> = {

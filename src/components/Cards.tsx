@@ -71,12 +71,13 @@ type FilmProps = {
 
 type PersonProps = {
     size: "large" | "small"
-    imgFluid?: FluidObject | null
-    imgFixed?: FixedObject | null
+    imgFluid?: FluidObject
+    imgFixed?: FixedObject
     imgAlt: string
     name: string
     titles?: string
     description: string
+    detailPage?: string
 }
 
 type FSProps = {
@@ -289,19 +290,21 @@ function PersonCard(props: PersonProps) {
     }
 
     return (
-        <Container>
-            <BackgroundImage
-                fixed={props.imgFixed}
-                fluid={props.imgFluid}
-                alt={props.imgAlt}
-                css={imgStyles}
-            />
-            <InfoWrapper>
-                <Heading4>{props.name}</Heading4>
-                <Subheading1>{props.titles}</Subheading1>
-                <Body>{props.description}</Body>
-            </InfoWrapper>
-        </Container>
+        <Link to={props.detailPage}>
+            <Container>
+                <BackgroundImage
+                    fixed={props.imgFixed}
+                    fluid={props.imgFluid}
+                    alt={props.imgAlt}
+                    css={imgStyles}
+                />
+                <InfoWrapper>
+                    <Heading4>{props.name}</Heading4>
+                    <Subheading1>{props.titles}</Subheading1>
+                    <Body>{props.description}</Body>
+                </InfoWrapper>
+            </Container>
+        </Link>
     )
 }
 

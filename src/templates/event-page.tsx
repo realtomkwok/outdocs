@@ -58,7 +58,7 @@ type EventProps = {
 }
 
 export default function EventDetail({ data }: DataProps) {
-    const Container = tw.div`container mx-auto p-16 space-y-32`
+    const Container = tw.div`container mx-auto space-y-32`
     const Header = tw.header`grid grid-cols-2 gap-10`
     const HeaderInfo = tw.div`flex flex-col justify-between`
     const HeaderHero = styled.div`
@@ -84,7 +84,7 @@ export default function EventDetail({ data }: DataProps) {
         .slice(0, 3)
 
     return (
-        <Layout title={thisEvent.name}>
+        <Layout hasPadding title={thisEvent.name}>
             <Container>
                 <Header>
                     <HeaderInfo>
