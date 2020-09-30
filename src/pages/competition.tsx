@@ -28,16 +28,12 @@ type SectionProps = {
 }
 
 function Intro() {
-    const Container = tw.div`py-16 col-span-6 space-y-8`
+    const Container = tw.div`py-16 w-1/2 space-y-8`
 
     return (
         <Container>
             <Body>{intro.zhHans}</Body>
-            <OutlinedBtn
-                disabled
-                btnText="全球征集已截止"
-                styles={undefined}
-            ></OutlinedBtn>
+            <OutlinedBtn disabled btnText="全球征集已截止"></OutlinedBtn>
         </Container>
     )
 }
@@ -66,16 +62,12 @@ function Sections(props: { data: SectionProps[] }) {
 }
 
 export default function Index({ data }: DataProps) {
-    const Container = tw.div`container mx-auto`
-    const Main: TwComponent<"main"> = tw.main`container mx-auto grid grid-cols-12 gap-10`
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
 
     return (
         <Layout hasPadding title="全球征集">
             <Header category="competition" titleId={1} />
-            <Main>
-                <Intro />
-            </Main>
+            <Intro />
             <Sections data={sectionData} />
         </Layout>
     )

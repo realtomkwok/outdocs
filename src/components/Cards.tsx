@@ -262,7 +262,7 @@ function FilmCard(props: FilmProps) {
                 <InfoWrapper>
                     <Heading4>{props.filmTitle}</Heading4>
                     <Subheading1>{director}</Subheading1>
-                    <TagText>{props.filmInfo.splice(0, 3).join(" | ")}</TagText>
+                    <TagText>{props.filmInfo.slice(0, 3).join(" | ")}</TagText>
                 </InfoWrapper>
             </Container>
         </Link>

@@ -35,7 +35,7 @@ type FigureProps = {
 
 function Figure(props: { data: FigureProps[] }) {
     const Container = tw.div`pb-64 grid grid-cols-12 gap-10`
-    const Info = tw.div`p-8 flex flex-col justify-between space-y-4 bg-accentColor`
+    const Info = tw.div`p-8 flex flex-col justify-between space-y-4 bg-accentColor whitespace-pre-wrap`
 
     const thisFigure = props.data[0]
     const engName = props.data[1].name
@@ -47,11 +47,13 @@ function Figure(props: { data: FigureProps[] }) {
                 styleOuter={{ gridArea: " 1 / 1 / 9 / 9", zIndex: "0" }}
                 styleInner={{ height: "60vh" }}
             >
-                <BackgroundImage
-                    fluid={thisFigure.avatar.fluid}
-                    alt={thisFigure.avatar.description}
-                    style={tw`h-full bg-top`}
-                />
+                <Link to={thisFigure.detailPage}>
+                    <BackgroundImage
+                        fluid={thisFigure.avatar.fluid}
+                        alt={thisFigure.avatar.description}
+                        style={tw`h-full bg-top`}
+                    />
+                </Link>
             </Parallax>
             <Parallax
                 y={[-30, 60]}
@@ -64,14 +66,14 @@ function Figure(props: { data: FigureProps[] }) {
                 <Info>
                     <Link to={thisFigure.detailPage}>
                         <Heading2>{thisFigure.slogan.slogan}</Heading2>
-                        <div tw="flex flex-row justify-between items-end">
-                            <div>
-                                <Heading4>{thisFigure.name}</Heading4>
-                                <Heading4>{engName}</Heading4>
-                            </div>
-                            <TextBtn btnText="阅读 ta 的故事" />
-                        </div>
                     </Link>
+                    <div tw="flex flex-row justify-between items-end">
+                        <div>
+                            <Heading4>{thisFigure.name}</Heading4>
+                            <Heading4>{engName}</Heading4>
+                        </div>
+                        <TextBtn btnText="阅读 ta 的故事" />
+                    </div>
                 </Info>
             </Parallax>
         </Container>
