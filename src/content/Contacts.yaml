@@ -1,0 +1,18 @@
+---
+email:
+    - category:
+          zhHans: "影片事务"
+          enUS: "Competition & Screening"
+      address: film@outdocs.cn
+    - category:
+          zhHans: "商务合作"
+          enUS: "Business & Marketing"
+      address: biz@outdocs.cn
+    - category:
+          zhHans: "媒体与公共传播"
+          enUS: "Press"
+      address: press@outdocs.cn
+    - category:
+          zhHans: "版权合作"
+          enUS: "Copyright"
+      address: content@outdocs.cn
