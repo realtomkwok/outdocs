@@ -13,7 +13,7 @@ type MenuProps = {
         category: string
     }[] // don't forget the bracket at last!
     partiallyActive: boolean
-    isDark: boolean
+    isDark?: boolean
 }
 
 type ItemProps = {
@@ -23,13 +23,16 @@ type ItemProps = {
     isDark: boolean
 }
 
-const defalutProps: Pick<MenuProps, "isDark"> = {
-    isDark: false,
+type LinkProps = {
+    order: number
+    link: string
+    name: string
+    node_locale: string
+    category: string
 }
 
 function MenuItem(props: ItemProps) {
     const Item: TwComponent<"li"> = styled.li`
-        //
         ${tw`p-4 inline-flex font-bold relative`}
         &:before {
             content: "";
@@ -78,17 +81,10 @@ function MenuItem(props: ItemProps) {
 }
 
 function NavMenu(props: MenuProps) {
-    type LinkType = {
-        order: number
-        link: string
-        name: string
-        node_locale: string
-        category: string
-    }
-
-    const Menu = tw.ul`flex list-none`
+    const MenuXL = tw.ul`sm:hidden md:hidden lg:flex xl:flex list-none`
+    const MenuSM = tw.div`lg:hidden xl:hidden`
     //⚠️ filter by locale
-    const menuLinks: LinkType[] = props.menuLinks.filter(function (el) {
+    const menuLinks: LinkProps[] = props.menuLinks.filter(function (el) {
         return el.node_locale === "zh-Hans" && el.category === props.category
     })
     //   const menuLinks_eng = props.menuLinks.filter(function (el) {
@@ -96,7 +92,10 @@ function NavMenu(props: MenuProps) {
     //   })
     return (
         <>
-            <Menu>
+            <MenuSM>
+                {/* 🔨 responsive navbar needed */}
+            </MenuSM>
+            <MenuXL>
                 {menuLinks.map(item => (
                     <MenuItem
                         key={item.order}
@@ -106,10 +105,9 @@ function NavMenu(props: MenuProps) {
                         isDark={props.isDark}
                     />
                 ))}
-            </Menu>
+            </MenuXL>
         </>
     )
 }
 
-NavMenu.defaultProps = defalutProps
 export default NavMenu

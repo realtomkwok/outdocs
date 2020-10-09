@@ -9,11 +9,11 @@ import NavMenu from "components/NavMenu"
 const Container = styled.nav<{
     isTop: boolean
 }>`
-    ${tw`container mx-auto max-w-screen-xl w-full flex h-32 lg:p-16 xl:p-16 z-50 items-center justify-between bg-transparent`} ${({
+    ${tw`container mx-auto max-w-screen-xl w-full h-32 xl:h-32 lg:h-32 lg:p-16 xl:p-16 z-50 flex items-center justify-between bg-transparent`} ${({
         isTop,
     }) =>
         isTop &&
-        tw`absolute top-0 left-0 right-0 hover:bg-white transition duration-300`}
+        tw`absolute top-0 left-0 right-0 lg:hover:bg-white xl:hover:bg-white transition duration-300`}
 `
 const Logo = tw.div`h-12`
 // const MenuList = tw.div`flex items-center text-center`
