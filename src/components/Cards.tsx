@@ -84,12 +84,16 @@ type FSProps = {
     filmImgSrc: FluidObject
     filmImgAlt: string
     filmTitle: string
+    filmDirector: {
+        name: string
+    }[]
     filmInfo: string[]
-    filmDeatail: string
-    dnt: Date
-    location: string
-    btnText: string
-    btnTo: string
+    filmDeatail?: string
+    dnt?: Date
+    location?: string
+    noButton?: boolean
+    btnText?: string
+    btnTo?: string
 }
 
 function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
@@ -327,6 +331,15 @@ function FilmScheduleCard(props: FSProps) {
     const ScreeningInfo = tw.div``
     const ButtonsWrapper = tw.div`flex flex-row`
 
+    let director: string
+    if (props.filmDirector.length > 1) {
+        let directors: string[] = []
+        props.filmDirector.map(item => directors.push(item.name))
+        director = directors.join("/")
+    } else {
+        director = props.filmDirector[0].name
+    }
+
     return (
         <Container>
             <MediaWrapper>
@@ -343,10 +356,11 @@ function FilmScheduleCard(props: FSProps) {
             </MediaWrapper>
             <InfoWrapper>
                 <FilmInfo>
-                    <Link to={`..${props.filmDeatail}`}>
+                    <Link to={props.filmDeatail && `..${props.filmDeatail}`}>
                         <div tw="space-y-2">
                             <Heading4>{props.filmTitle}</Heading4>
-                            <Tag2>{props.filmInfo.join(" | ")}</Tag2>
+                            <Subheading1>{director}</Subheading1>
+                            <TagText>{props.filmInfo.join(" | ")}</TagText>
                         </div>
                     </Link>
                 </FilmInfo>
@@ -355,12 +369,14 @@ function FilmScheduleCard(props: FSProps) {
                         <Subheading2>{props.dnt}</Subheading2>
                         <Subheading2>{props.location}</Subheading2>
                     </ScreeningInfo>
-                    <ButtonsWrapper>
-                        <OutlinedBtn
-                            to={props.btnTo}
-                            btnText={props.btnText}
-                        ></OutlinedBtn>
-                    </ButtonsWrapper>
+                    {props.noButton ? null : (
+                        <ButtonsWrapper>
+                            <OutlinedBtn
+                                to={props.btnTo}
+                                btnText={props.btnText}
+                            ></OutlinedBtn>
+                        </ButtonsWrapper>
+                    )}
                 </div>
             </InfoWrapper>
         </Container>

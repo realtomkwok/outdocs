@@ -35,13 +35,16 @@ type SchedulesProps = {
                         fluid: FluidObject
                     }
                 }
+                director: {
+                    name: string
+                }[]
             }
         }[]
     }[]
 }
 
 function ScheduleList(props: { data: SchedulesProps }) {
-    const Container = tw.div`py-16 gap-10`
+    const Container = tw.div`py-16`
     const List = tw.div`mb-16`
     const ListHeader = styled.div`
         ${tw`w-1/2`};
@@ -81,6 +84,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                         item.filmInfo.filmHeroImage.title
                                     }
                                     filmTitle={item.filmInfo.filmTitle}
+                                    filmDirector={item.filmInfo.director}
                                     filmInfo={item.filmInfo.filmInfo}
                                     filmDeatail={item.filmInfo.detailPage}
                                     dnt={item.dateAndTime}
@@ -127,6 +131,7 @@ export const query = graphql`
                     ticketsUrl
                     filmInfo {
                         filmTitle
+
                         filmInfo
                         detailPage
                         filmHeroImage {
@@ -136,6 +141,9 @@ export const query = graphql`
                                 }
                                 title
                             }
+                        }
+                        director {
+                            name
                         }
                     }
                 }

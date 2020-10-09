@@ -2,10 +2,14 @@ const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
+
     const films = await graphql(`
-        query {
+        {
             allContentfulLibraryFilm(
-                filter: { node_locale: { eq: "zh-Hans" } }
+                filter: {
+                    node_locale: { eq: "zh-Hans" }
+                    detailPage: { ne: null }
+                }
             ) {
                 edges {
                     node {

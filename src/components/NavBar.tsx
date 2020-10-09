@@ -9,7 +9,7 @@ import NavMenu from "components/NavMenu"
 const Container = styled.nav<{
     isTop: boolean
 }>`
-    ${tw`container mx-auto max-w-screen-xl w-full flex h-32 p-16 z-50 items-center justify-between bg-transparent`} ${({
+    ${tw`container mx-auto max-w-screen-xl w-full flex h-32 lg:p-16 xl:p-16 z-50 items-center justify-between bg-transparent`} ${({
         isTop,
     }) =>
         isTop &&

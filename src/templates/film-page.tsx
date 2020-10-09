@@ -2,12 +2,11 @@ import React from "react"
 import tw from "twin.macro"
 import { graphql } from "gatsby"
 import SVG from "react-inlinesvg"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
 import Layout from "components/Layout"
 import { Heading2, Subheading2, Body } from "utils/typography"
 import { FilmCard, HeroImage, PersonCard } from "components/Cards"
-import { FluidObject } from "gatsby-image"
 import Tag from "components/Tags"
 import { OutlinedBtn } from "components/Buttons"
 import { Parallax } from "react-scroll-parallax"
@@ -19,7 +18,11 @@ type DataProps = {
             group: {
                 nodes: Pick<
                     FilmProps,
-                    "filmTitle" | "filmInfo" | "filmHeroImage" | "detailPage" | "director"
+                    | "filmTitle"
+                    | "filmInfo"
+                    | "filmHeroImage"
+                    | "detailPage"
+                    | "director"
                 >[]
             }[]
         }
@@ -119,7 +122,6 @@ export default function FilmDetail({ data }: DataProps) {
     const allOtherFilms = data.allContentfulLibraryFilm.group[1].nodes.filter(
         el => el.detailPage !== thisFilm.detailPage
     )
-
 
     // 📖 ❓ A solution by usign Fisher-Yates shuffle algorithm: https://segmentfault.com/q/1010000006819233/a-1020000006822187 | https://segmentfault.com/q/1010000007449441
     const selectedFilms = allOtherFilms
