@@ -1,6 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import tw, { styled, TwComponent } from "twin.macro"
+import { motion } from "framer-motion"
+
+import { Heading3 } from "utils/typography"
 
 type MenuProps = {
     category: string
@@ -80,9 +83,8 @@ function MenuItem(props: ItemProps) {
     )
 }
 
-function NavMenu(props: MenuProps) {
-    const MenuXL = tw.ul`sm:hidden md:hidden lg:flex xl:flex list-none`
-    const MenuSM = tw.div`lg:hidden xl:hidden`
+export default function NavMenu(props: MenuProps) {
+    const Menu = tw.ul`flex list-none z-0`
     //⚠️ filter by locale
     const menuLinks: LinkProps[] = props.menuLinks.filter(function (el) {
         return el.node_locale === "zh-Hans" && el.category === props.category
@@ -91,23 +93,65 @@ function NavMenu(props: MenuProps) {
     //     return el.node_locale === "en-US"
     //   })
     return (
-        <>
-            <MenuSM>
-                {/* 🔨 responsive navbar needed */}
-            </MenuSM>
-            <MenuXL>
-                {menuLinks.map(item => (
-                    <MenuItem
-                        key={item.order}
-                        to={item.link}
-                        name={item.name}
-                        partiallyActive={props.partiallyActive}
-                        isDark={props.isDark}
-                    />
-                ))}
-            </MenuXL>
-        </>
+        <Menu>
+            {menuLinks.map(item => (
+                <MenuItem
+                    key={item.order}
+                    to={item.link}
+                    name={item.name}
+                    partiallyActive={props.partiallyActive}
+                    isDark={props.isDark}
+                />
+            ))}
+        </Menu>
     )
 }
 
-export default NavMenu
+export function NavScreen(props: MenuProps) {
+    const menuVariants = {
+        open: {
+            transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+        },
+        closed: {
+            transition: { staggerChildren: 0.05, staggerDirection: -1 },
+        },
+    }
+
+    const itemVariants = {
+        open: {
+            y: 50,
+            opacity: 1,
+            display: "block",
+            transition: {
+                y: { stiffness: 2000, velocity: -200 },
+            },
+        },
+        closed: {
+            y: 20,
+            opacity: 0,
+            display: "none",
+            transition: {
+                y: { stiffness: 500 },
+            },
+        },
+    }
+
+    const menuLinks: LinkProps[] = props.menuLinks.filter(
+        el => el.node_locale === "zh-Hans" && el.category === props.category
+    )
+
+    return (
+        <motion.ul
+            variants={menuVariants}
+            tw="flex flex-col list-none z-20 space-y-2"
+        >
+            {menuLinks.map((item, i) => (
+                <motion.li key={i} variants={itemVariants} tw="z-30">
+                    <Link to={item.link}>
+                        <Heading3>{item.name}</Heading3>
+                    </Link>
+                </motion.li>
+            ))}
+        </motion.ul>
+    )
+}

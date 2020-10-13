@@ -279,7 +279,7 @@ export const query = graphql`
                 }
             }
         }
-        allContentfulLibraryFilm {
+        allContentfulLibraryFilm(filter: { detailPage: { ne: null } }) {
             group(field: node_locale) {
                 nodes {
                     filmTitle
@@ -288,7 +288,7 @@ export const query = graphql`
                     filmHeroImage {
                         image {
                             fluid {
-                                srcSetWebp
+                                ...GatsbyContentfulFluid_withWebp
                             }
                             description
                         }

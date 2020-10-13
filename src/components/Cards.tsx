@@ -126,7 +126,7 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
 }
 
 function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
-    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
+    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 xl:p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
     const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4 space-y-4`
 
     return (

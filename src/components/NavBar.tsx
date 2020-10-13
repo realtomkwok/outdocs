@@ -1,29 +1,84 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 import tw, { styled } from "twin.macro"
+import { AnimationProps, motion, MotionProps, useCycle } from "framer-motion"
 
 import { Cinemadow } from "assets/Logo"
-import NavMenu from "components/NavMenu"
-
-//styles
-const Container = styled.nav<{
-    isTop: boolean
-}>`
-    ${tw`container mx-auto max-w-screen-xl w-full h-32 xl:h-32 lg:h-32 lg:p-16 xl:p-16 z-50 flex items-center justify-between bg-transparent`} ${({
-        isTop,
-    }) =>
-        isTop &&
-        tw`absolute top-0 left-0 right-0 lg:hover:bg-white xl:hover:bg-white transition duration-300`}
-`
-const Logo = tw.div`h-12`
-// const MenuList = tw.div`flex items-center text-center`
+import NavMenu, { NavScreen } from "components/NavMenu"
 
 type NavBarProps = {
     isTop: boolean
     isDark: boolean
+    children?: React.ReactNode
+}
+
+type ToggleProps = {
+    toggle: React.MouseEventHandler<HTMLButtonElement>
+    isDark: boolean
+}
+
+const MenuToggle = (props: ToggleProps) => (
+    <button onClick={props.toggle} css={tw`z-20`}>
+        <svg
+            width="23"
+            height="23"
+            viewBox="0 0 23 23"
+            fill="transparent"
+            strokeWidth="3"
+            stroke={props.isDark ? "white" : "black"}
+        >
+            <motion.path
+                variants={{
+                    closed: { d: "M 2 2.5 L 20 2.5" },
+                    open: { d: "M 3 16.5 L 17 2.5" },
+                }}
+            />
+            <motion.path
+                d="M 2 9.423 L 20 9.423"
+                variants={{
+                    closed: { opacity: 1 },
+                    open: { opacity: 0 },
+                }}
+                transition={{ duration: 0.1 }}
+            />
+            <motion.path
+                variants={{
+                    closed: { d: "M 2 16.346 L 20 16.346" },
+                    open: { d: "M 3 2.5 L 17 16.346" },
+                }}
+            />
+        </svg>
+    </button>
+)
+
+const MenuBackground = {
+    open: {
+        height: "100vh",
+        transition: { type: "spring", stiffness: 40, velocity: 2 },
+    },
+    closed: {
+        height: "0",
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 40,
+        },
+    },
 }
 
 export default function NavBar(props: NavBarProps) {
+    const [isOpen, toggleOpen] = useCycle(false, true)
+    const ContainerXL = styled.nav<{
+        isTop: boolean
+    }>`
+        ${tw`sm:hidden lg:flex container mx-auto max-w-screen-xl w-full h-32 p-16 z-50 bg-transparent items-center justify-between`} ${({
+            isTop,
+        }) =>
+            isTop &&
+            tw`absolute top-0 left-0 right-0 hover:bg-white transition duration-300`}
+    `
+    const Logo = tw.div`h-12`
+
     return (
         <StaticQuery
             query={graphql`
@@ -42,19 +97,52 @@ export default function NavBar(props: NavBarProps) {
                 }
             `}
             render={data => (
-                <Container isTop={props.isTop}>
-                    <Link to="/">
-                        <Logo>
-                            <Cinemadow isWhite={props.isDark} />
-                        </Logo>
-                    </Link>
-                    <NavMenu
-                        category="navbar"
-                        menuLinks={data.allContentfulMenuLinks.nodes}
-                        partiallyActive={true}
-                        isDark={props.isDark}
-                    />
-                </Container>
+                <>
+                    <ContainerXL isTop={props.isTop}>
+                        <Link to="/">
+                            <Logo>
+                                <Cinemadow isWhite={props.isDark} />
+                            </Logo>
+                        </Link>
+                        <NavMenu
+                            category="navbar"
+                            menuLinks={data.allContentfulMenuLinks.nodes}
+                            partiallyActive={true}
+                            isDark={props.isDark}
+                        />
+                    </ContainerXL>
+                    {/* ContainerSM */}
+                    <motion.nav
+                        initial={false}
+                        animate={isOpen ? "open" : "closed"}
+                        css={[
+                            tw`sm:block lg:hidden p-8 h-32 z-50`,
+                            props.isTop && tw`absolute top-0 left-0 right-0`,
+                        ]}
+                    >
+                        <motion.div
+                            variants={MenuBackground}
+                            css={tw`absolute top-0 left-0 right-0 w-full bg-accentColor z-20`}
+                        />
+                        <div tw="flex items-center justify-between z-30">
+                            <Link to="/" css={tw`z-30`}>
+                                <Logo>
+                                    <Cinemadow isWhite={props.isDark} />
+                                </Logo>
+                            </Link>
+                            <MenuToggle
+                                toggle={() => toggleOpen()}
+                                isDark={props.isDark}
+                            />
+                        </div>
+
+                        <NavScreen
+                            category="navbar"
+                            menuLinks={data.allContentfulMenuLinks.nodes}
+                            partiallyActive={true}
+                        ></NavScreen>
+                    </motion.nav>
+                </>
             )}
         />
     )
