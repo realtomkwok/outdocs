@@ -29,7 +29,7 @@ function Layout(props: LayoutProps) {
     `
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
     const Content: TwComponent<"div"> = styled.div`
-        ${props.hasPadding && tw`container mx-auto p-16 h-full`}
+        ${props.hasPadding && tw`container mx-auto sm:py-8 lg:p-16 h-full`}
     `
 
     return (

@@ -37,7 +37,7 @@ type IconProps = {
 }
 
 function Icon(props: IconProps) {
-    const Wrapper = tw.div`w-8 ml-6`
+    const Wrapper = tw.div`w-8`
 
     return (
         <Wrapper>
@@ -53,8 +53,8 @@ function Icon(props: IconProps) {
 }
 
 export default function SocialNetworks(props: { isWhite: boolean }) {
-    const IconList = tw.div`flex flex-row`
-    const PopUp = tw.img`h-24 w-24 ml-6`
+    const IconList = tw.div`flex flex-row space-x-6`
+    const PopUp = tw.img`h-24 w-24`
 
     const target = useRef(null)
     const isHovering = useHover(target)

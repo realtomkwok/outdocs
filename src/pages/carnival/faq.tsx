@@ -27,7 +27,7 @@ type FaqProps = {
 }
 
 function Sidebar(props: { data: FaqProps[] }) {
-    const Container = tw.aside`fixed`
+    const Container = tw.aside`sm:hidden lg:block lg:fixed`
     const Item = tw.li`text-black hover:opacity-50 transition duration-150`
     const List = styled.ul`
         ${tw`flex flex-col space-y-2`};
@@ -59,8 +59,7 @@ function Sidebar(props: { data: FaqProps[] }) {
 
 function Content(props: { data: FaqProps[] }) {
     const Container = styled.div`
-        ${tw`w-2/3`};
-        margin-left: 33.3%;
+        ${tw`w-2/3 ml-1/3`};
     `
     const List = tw.div`pb-8`
     const ListHeader = tw.div``

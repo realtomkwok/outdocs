@@ -36,13 +36,14 @@ type EventProps = {
 }
 
 export default function Index({ data }: DataProps) {
-    const Main = tw.div`relative`
+    const Main = tw.div`relative pt-8 space-y-4`
     const Filter = tw.div`flex justify-center py-8`
-    const Content = tw.div`grid grid-cols-3 relative py-16`
-    const List = tw.div`col-start-2 col-end-4 mb-16`
+    const Content = tw.div`relative`
+    const Container = tw.div`flex flex-col justify-between lg:flex-row`
+    const Date = tw.aside`lg:w-1/6`
+    const List = tw.div`lg:w-4/6 mb-16`
     const Divider = tw.div`border-t-2 border-black`
-    const Date = tw.aside`col-span-1 w-3/5`
-    const ItemWrapper = tw.div`py-8 grid grid-cols-2 gap-10`
+    const ItemWrapper = tw.div`py-8 grid lg:grid-cols-2 gap-10`
 
     const eventData: EventProps[] = data.Events.group
 
@@ -82,7 +83,7 @@ export default function Index({ data }: DataProps) {
                 </Filter>
                 <Content>
                     {filteredCategoryData.map((list, i) => (
-                        <React.Fragment key={i}>
+                        <Container key={i}>
                             <Date>
                                 <Heading2>{list.nodes[0].date}</Heading2>
                             </Date>
@@ -127,7 +128,7 @@ export default function Index({ data }: DataProps) {
                                     })}
                                 </ItemWrapper>
                             </List>
-                        </React.Fragment>
+                        </Container>
                     ))}
                 </Content>
             </Main>

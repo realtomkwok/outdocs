@@ -44,7 +44,9 @@ function Tag(props: TagProps) {
             css={props.isWhite ? tw`border-white` : tw`border-black`}
         >
             <TextWrapper tagStyle={props.tagStyle}>
-                <TagText>{props.children}</TagText>
+                <TagText styles={tw`whitespace-no-wrap`}>
+                    {props.children}
+                </TagText>
             </TextWrapper>
         </Container>
     )

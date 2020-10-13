@@ -2,8 +2,7 @@ import React from "react"
 import tw, { TwComponent } from "twin.macro"
 
 export default function EmptyState() {
-    const Container: TwComponent<"div"> = tw.div`grid grid-cols-12`
-    const Shrug: TwComponent<"div"> = tw.div`col-span-12 mx-auto text-6xl`
+    const Shrug: TwComponent<"div"> = tw.div`container mx-auto lg:col-start-2 lg:col-end-3 text-6xl text-center`
 
     return <Shrug>🤷‍♂️/🤷‍♀️</Shrug>
 }

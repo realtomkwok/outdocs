@@ -39,7 +39,9 @@ type FotProps = {
     chnTitle: string
     engTitle: string
     detailPage: string
-    info: string[]
+    director: {
+        name: string
+    }[]
 }
 
 type EventProps = {
@@ -126,8 +128,8 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
 }
 
 function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
-    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 xl:p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4 space-y-4`
+    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 absolute bottom-0 left-0 right-0 grid lg:grid-cols-12 gap-10`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl lg:col-span-5 xl:col-span-4 space-y-4`
 
     return (
         <CardContainer>
@@ -147,9 +149,18 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
 }
 
 function FotCard(props: FotProps) {
-    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto p-16 absolute bottom-0 left-0 right-0 grid grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl col-span-4`
+    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 absolute bottom-0 left-0 right-0 grid lg:grid-cols-12 gap-10`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl lg:col-span-6 xl:col-span-4`
     const Titles: TwComponent<"div"> = tw.div``
+
+    let director: string
+    if (props.director.length > 1) {
+        let directors: string[] = []
+        props.director.map(item => directors.push(item.name))
+        director = directors.join("/")
+    } else {
+        director = props.director[0].name
+    }
 
     return (
         <CardContainer>
@@ -161,7 +172,7 @@ function FotCard(props: FotProps) {
                             <Heading4>{props.chnTitle}</Heading4>
                             <Heading4>{props.engTitle}</Heading4>
                         </Titles>
-                        <Subheading1>{props.info.join(" | ")}</Subheading1>
+                        <Subheading1>{director}</Subheading1>
                     </div>
                 </Link>
             </Card>
@@ -207,9 +218,9 @@ function NewsStrip(props: Omit<NewsProps, "imgSrc" | "imgAlt">) {
 }
 
 function EventCard(props: EventProps) {
-    const Container: TwComponent<"div"> = tw.div`flex flex-col bg-white space-y-8`
+    const Container: TwComponent<"div"> = tw.div`flex flex-col flex-shrink-0 bg-white space-y-8 w-full`
     const InfoWrapper: TwComponent<"div"> = tw.div`mt-4`
-    const Actions = tw.div`flex flex-wrap justify-between items-center`
+    const Actions = tw.div`flex sm:flex-col lg:flex-row flex-wrap justify-between sm:items-start lg:items-center sm:space-y-4`
     const DateAndLocation: TwComponent<"div"> = tw.div`mt-4`
 
     return (
@@ -225,7 +236,7 @@ function EventCard(props: EventProps) {
                 {props.tag !== null ? (
                     <Tag tagStyle="secondary">{props.tag}</Tag>
                 ) : null}
-                <Link to={props.detailPage} tw="space-y-4">
+                <Link to={props.detailPage} styles={tw`mt-4`}>
                     <Heading4>{props.title}</Heading4>
                     <Tag2>{props.subtitle}</Tag2>
                 </Link>
@@ -314,14 +325,13 @@ function PersonCard(props: PersonProps) {
 
 function FilmScheduleCard(props: FSProps) {
     const Container = styled.div`
-        ${tw`flex w-1/2`};
-        margin-left: 50%;
+        ${tw`flex lg:w-1/2 lg:ml-1/2`};
     `
     const InfoWrapper = styled.div`
-        ${tw`flex-1 grid grid-cols-3 space-x-8 justify-between`}
+        ${tw`flex-1 sm:space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-4 justify-between`}
     `
     const MediaWrapper = styled.div`
-        ${tw`absolute left-0 w-1/2 px-16 opacity-0 invisible transition duration-150`};
+        ${tw`sm:hidden lg:block absolute left-0 w-1/2 px-16 opacity-0 invisible transition duration-150`};
         height: 30%;
         ${Container}:hover & {
             ${tw`opacity-100 visible`}
@@ -332,7 +342,9 @@ function FilmScheduleCard(props: FSProps) {
     const ButtonsWrapper = tw.div`flex flex-row`
 
     let director: string
-    if (props.filmDirector.length > 1) {
+    if (props.filmDirector === null) {
+        director = null
+    } else if (props.filmDirector.length > 1) {
         let directors: string[] = []
         props.filmDirector.map(item => directors.push(item.name))
         director = directors.join("/")
@@ -364,7 +376,7 @@ function FilmScheduleCard(props: FSProps) {
                         </div>
                     </Link>
                 </FilmInfo>
-                <div tw="space-y-2">
+                <div tw="sm:flex sm:justify-between lg:flex-col space-y-2">
                     <ScreeningInfo>
                         <Subheading2>{props.dnt}</Subheading2>
                         <Subheading2>{props.location}</Subheading2>

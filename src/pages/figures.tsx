@@ -7,9 +7,9 @@ import BackgroundImage from "gatsby-background-image"
 
 import Layout from "../components/Layout"
 import Header from "../components/Header"
-import { Heading2, Heading4 } from "utils/typography"
+import { Heading2, Heading3, Heading4 } from "utils/typography"
 import Link from "utils/Link"
-import { TextBtn } from "components/Buttons"
+import { OutlinedBtn } from "components/Buttons"
 
 type DataProps = {
     data: {
@@ -34,8 +34,8 @@ type FigureProps = {
 }
 
 function Figure(props: { data: FigureProps[] }) {
-    const Container = tw.div`pb-64 grid grid-cols-12 gap-10`
-    const Info = tw.div`p-8 flex flex-col justify-between space-y-4 bg-accentColor whitespace-pre-wrap`
+    const Container = tw.div`pb-64 grid lg:grid-cols-2 gap-10`
+    const Info = tw.div`py-4 flex flex-col justify-between bg-white space-y-8 whitespace-pre-wrap`
 
     const thisFigure = props.data[0]
     const engName = props.data[1].name
@@ -44,7 +44,7 @@ function Figure(props: { data: FigureProps[] }) {
         <Container>
             <Parallax
                 y={[-20, 50]}
-                styleOuter={{ gridArea: " 1 / 1 / 9 / 9", zIndex: "0" }}
+                styleOuter={tw``}
                 styleInner={{ height: "60vh" }}
             >
                 <Link to={thisFigure.detailPage}>
@@ -55,24 +55,17 @@ function Figure(props: { data: FigureProps[] }) {
                     />
                 </Link>
             </Parallax>
-            <Parallax
-                y={[-30, 60]}
-                styleOuter={{
-                    gridArea: " 1 / 1 / 13 / 13",
-                    zIndex: "10",
-                    margin: "30% 0 0 50%",
-                }}
-            >
+            <Parallax y={[20, 60]} styleOuter={tw``}>
                 <Info>
                     <Link to={thisFigure.detailPage}>
-                        <Heading2>{thisFigure.slogan.slogan}</Heading2>
+                        <Heading3>{thisFigure.slogan.slogan}</Heading3>
                     </Link>
-                    <div tw="flex flex-row justify-between items-end">
+                    <div tw="w-2/3 space-y-4">
                         <div>
                             <Heading4>{thisFigure.name}</Heading4>
                             <Heading4>{engName}</Heading4>
                         </div>
-                        <TextBtn btnText="阅读 ta 的故事" />
+                        <OutlinedBtn btnText="阅读 ta 的故事" />
                     </div>
                 </Info>
             </Parallax>
@@ -81,15 +74,18 @@ function Figure(props: { data: FigureProps[] }) {
 }
 
 export default function Home({ data }: DataProps) {
+    const Container = tw.div`space-y-16`
     const figureData: { nodes: FigureProps[] }[] =
         data.allContentfulFigure.group
 
     return (
         <Layout hasPadding title="有玩人物">
             <Header category="figures" titleId={3} />
-            {figureData.map((item, i) => (
-                <Figure data={item.nodes} key={i} />
-            ))}
+            <Container>
+                {figureData.map((item, i) => (
+                    <Figure data={item.nodes} key={i} />
+                ))}
+            </Container>
         </Layout>
     )
 }

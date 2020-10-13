@@ -31,7 +31,7 @@ type NewsProps = {
 }
 
 export default function Home({ data }: DataProps) {
-    const Container = tw.div`py-16 grid grid-cols-3 gap-10`
+    const Container = tw.div`py-16 grid lg:grid-cols-3 gap-10`
     const Filters = tw.div`flex flex-row space-x-4 justify-center py-8`
 
     const newsData: NewsProps[] = data.allContentfulNews.nodes

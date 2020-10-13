@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import tw, { TwComponent } from "twin.macro"
 import { FluidObject } from "gatsby-image"
 import { Helmet } from "react-helmet"
-import { Parallax } from "react-scroll-parallax"
 
 import {
     HeroImage,
@@ -66,6 +65,9 @@ type FotType = {
         node: {
             filmTitle: string
             filmInfo: string[]
+            director: {
+                name: string
+            }[]
             detailPage: string
             filmHeroImage: {
                 title: string
@@ -111,7 +113,7 @@ type ScreeningType = {
 
 function News(props: { data: NewsType[] }) {
     const Featured: TwComponent<"div"> = tw.div`col-span-6`
-    const List: TwComponent<"div"> = tw.div`col-span-6 grid grid-rows-3`
+    const List: TwComponent<"div"> = tw.div`col-span-6 grid`
 
     const featured: NewsType = props.data[0]
     const others: NewsType[] = props.data.slice(1)
@@ -153,8 +155,11 @@ function FilmOfToday(props: { data: FotType[] }) {
     const img: { title: string; image: { fluid: FluidObject } } =
         props.data[selectedFilm].edges[0].node.filmHeroImage //🚩 edges[locale]
 
-    const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
-        props.data[selectedFilm].edges[0].node
+    const info: {
+        filmTitle: string
+        director: { name: string }[]
+        detailPage: string
+    } = props.data[selectedFilm].edges[0].node
     const engTitle: string = props.data[selectedFilm].edges[1].node.filmTitle
 
     return (
@@ -164,7 +169,7 @@ function FilmOfToday(props: { data: FotType[] }) {
                 chnTitle={info.filmTitle}
                 engTitle={engTitle}
                 detailPage={info.detailPage}
-                info={info.filmInfo}
+                director={info.director}
             />
         </div>
     )
@@ -174,9 +179,9 @@ function Carnival(props: {
     screenings: ScreeningType[]
     sessions: SessionType[]
 }) {
-    const HeadingWrapper: TwComponent<"div"> = tw.div`flex flex-row justify-between items-start`
+    const HeadingWrapper: TwComponent<"div"> = tw.div`container flex flex-row justify-between items-start`
     const BtnWrapper: TwComponent<"div"> = tw.div`inline-flex space-x-4`
-    const CardsContainer: TwComponent<"div"> = tw.div`grid grid-cols-2 grid-flow-row gap-10`
+    const CardsContainer: TwComponent<"div"> = tw.div`sm:flex sm:overflow-scroll lg:grid lg:grid-cols-2 grid-flow-row gap-10`
 
     const screeningData: ScreeningType = props.screenings[1] //0: en-US, 1: zh-Hans
     const sessionData: SessionType = props.sessions[1]
@@ -231,7 +236,7 @@ function Carnival(props: {
     }
 
     return (
-        <div tw="col-span-12 space-y-8">
+        <div tw="container lg:col-span-12 space-y-8">
             <HeadingWrapper>
                 <Heading2>嘉年华</Heading2>
                 <BtnWrapper>
@@ -281,7 +286,7 @@ function AboutUs() {
 
 export default function Home({ data }: DataType) {
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
-    const Main: TwComponent<"main"> = tw.main`container mx-auto p-16 grid grid-cols-12 gap-10`
+    const Main: TwComponent<"main"> = tw.main`container mx-auto sm:py-16 lg:p-16 grid lg:grid-cols-12 gap-10`
 
     const hero: HeroType = data.Hero
     const newsData: NewsType[] = data.News.nodes
@@ -316,7 +321,7 @@ export default function Home({ data }: DataType) {
             <Main>
                 <Carnival sessions={sessionData} screenings={screeningData} />
             </Main>
-            <AboutUs />
+            {/* <AboutUs /> */}
             <Footer />
         </Container>
     )
@@ -357,12 +362,17 @@ export const query = graphql`
                 publishedDate(fromNow: false)
             }
         }
-        FilmOfToday: allContentfulLibraryFilm {
+        FilmOfToday: allContentfulLibraryFilm(
+            filter: { detailPage: { ne: null } }
+        ) {
             group(field: contentfulid) {
                 edges {
                     node {
                         contentfulid
                         filmTitle
+                        director {
+                            name
+                        }
                         filmInfo
                         detailPage
                         filmHeroImage {

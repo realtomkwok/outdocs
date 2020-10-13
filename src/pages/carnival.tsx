@@ -98,34 +98,34 @@ function Guests(props: { data: GuestProps[] }) {
     )
 }
 
-function FeaturedFilm(props: { data: FFProps[] }) {
-    const Container = tw.section`w-full h-auto relative`
+// function FeaturedFilm(props: { data: FFProps[] }) {
+//     const Container = tw.section`w-full h-auto relative`
 
-    const selectedFilm: number = Math.floor(
-        Math.random() * Math.floor(props.data[1].nodes.length)
-    )
-    const img: { title: string; image: { fluid: FluidObject } } =
-        props.data[1].nodes[selectedFilm].filmHeroImage
+//     const selectedFilm: number = Math.floor(
+//         Math.random() * Math.floor(props.data[1].nodes.length)
+//     )
+//     const img: { title: string; image: { fluid: FluidObject } } =
+//         props.data[1].nodes[selectedFilm].filmHeroImage
 
-    const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
-        props.data[1].nodes[selectedFilm]
-    const engTitle: string = props.data[0].nodes[selectedFilm].filmTitle
+//     const info: { filmTitle: string; filmInfo: string[]; detailPage: string } =
+//         props.data[1].nodes[selectedFilm]
+//     const engTitle: string = props.data[0].nodes[selectedFilm].filmTitle
 
-    return (
-        <Container>
-            <HeroImage imgSrc={img.image.fluid} imgAlt={img.title} />
-            <FotCard
-                chnTitle={info.filmTitle}
-                engTitle={engTitle}
-                detailPage={info.detailPage}
-                info={info.filmInfo}
-            />
-        </Container>
-    )
-}
+//     return (
+//         <Container>
+//             <HeroImage imgSrc={img.image.fluid} imgAlt={img.title} />
+//             <FotCard
+//                 chnTitle={info.filmTitle}
+//                 engTitle={engTitle}
+//                 detailPage={info.detailPage}
+//                 info={info.filmInfo}
+//             />
+//         </Container>
+//     )
+// }
 
 export default function Index({ data }: DataProps) {
-    const Container = tw.div`container mx-auto p-16`
+    const Container = tw.div`container mx-auto lg:p-16`
     const Main: TwComponent<"main"> = tw.main`container mx-auto grid grid-cols-12 gap-10`
 
     const guestData: GuestProps[] = data.Guests.group[1].nodes
@@ -140,7 +140,7 @@ export default function Index({ data }: DataProps) {
                 </Main>
                 <Guests data={guestData} />
             </Container>
-            <FeaturedFilm data={filmData} />
+            {/* <FeaturedFilm data={filmData} /> */}
         </Layout>
     )
 }

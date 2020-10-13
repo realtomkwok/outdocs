@@ -1,50 +1,52 @@
 import React from "react"
-import "twin.macro"
+import tw, { TwStyle } from "twin.macro"
+import { SerializedStyles } from "@emotion/core"
 
-type childrenProps = {
+type TypeProps = {
     children: React.ReactNode
+    styles?: SerializedStyles | TwStyle
 }
 
-const Heading1 = ({ children }: childrenProps) => (
-    <div tw="font-black text-heading1 ">{children}</div>
+const Heading1 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-black text-heading1`, styles]}>{children}</div>
 )
 
-const Heading2 = ({ children }: childrenProps) => (
-    <div tw="font-black text-heading2">{children}</div>
+const Heading2 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-black text-heading2`, styles]}>{children}</div>
 )
 
-const Heading3 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-heading3">{children}</div>
+const Heading3 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-bold text-heading3`, styles]}>{children}</div>
 )
 
-const Heading4 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-heading4 relative top-1">{children}</div>
+const Heading4 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-bold text-heading4 relative`, styles]}>{children}</div>
 )
 
-const Subheading1 = ({ children }: childrenProps) => (
-    <div tw="font-normal text-subheading">{children}</div>
+const Subheading1 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-normal text-subheading`, styles]}>{children}</div>
 )
 
-const Subheading2 = ({ children }: childrenProps) => (
-    <div tw="font-bold text-subheading">{children}</div>
+const Subheading2 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-bold text-subheading`, styles]}>{children}</div>
 )
 
-const Button = ({ children }: childrenProps) => (
-    <div tw="font-bold text-button uppercase">{children}</div>
+const Button = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-bold text-button uppercase`, styles]}>{children}</div>
 )
 
-const Body = ({ children }: childrenProps) => (
-    <div tw="font-normal text-body leading-relaxed whitespace-pre-line">
+const Body = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-normal text-body leading-relaxed`, styles]}>
         {children}
     </div>
 )
 
-const Tag = ({ children }: childrenProps) => (
-    <div tw="font-bold text-tag uppercase whitespace-no-wrap">{children}</div>
+const Tag = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-bold text-tag uppercase`, styles]}>{children}</div>
 )
 
-const Tag2 = ({ children }: childrenProps) => (
-    <div tw="font-normal text-tag uppercase whitespace-no-wrap">{children}</div>
+const Tag2 = ({ children, styles }: TypeProps) => (
+    <div css={[tw`font-normal text-tag uppercase`, styles]}>{children}</div>
 )
 
 export {

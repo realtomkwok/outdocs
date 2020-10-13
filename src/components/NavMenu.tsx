@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useLayoutEffect } from "react"
 import { Link } from "gatsby"
 import tw, { styled, TwComponent } from "twin.macro"
 import { motion } from "framer-motion"
@@ -56,6 +56,7 @@ function MenuItem(props: ItemProps) {
     // 📖 How to create a CSS class for use in activeClassName: https://stackoverflow.com/questions/57117445/how-to-create-a-css-class-for-use-in-activeclassname
     const NavLink = styled(Link)`
         position: relative;
+        flex-shrink: 0;
         &.active {
             cursor: default;
             &:before {
@@ -84,7 +85,7 @@ function MenuItem(props: ItemProps) {
 }
 
 export default function NavMenu(props: MenuProps) {
-    const Menu = tw.ul`flex list-none z-0`
+    const Menu = tw.ul`flex list-none z-0 sm:overflow-x-scroll`
     //⚠️ filter by locale
     const menuLinks: LinkProps[] = props.menuLinks.filter(function (el) {
         return el.node_locale === "zh-Hans" && el.category === props.category

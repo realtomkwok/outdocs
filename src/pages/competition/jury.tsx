@@ -32,7 +32,7 @@ type JuryType = {
 
 export default function Index(props: { data: DataType }) {
     const Main: TwComponent<"main"> = tw.main`container mx-auto`
-    const CardContainer: TwComponent<"div"> = tw.div`grid grid-cols-4 grid-flow-row gap-10 py-16`
+    const CardContainer: TwComponent<"div"> = tw.div`grid lg:grid-cols-4 grid-flow-row gap-10 py-16`
     const Filters: TwComponent<"div"> = tw.div`flex flex-row space-x-4 justify-center py-8`
 
     const juryData: JuryType[] = props.data.Juries.group[1].nodes

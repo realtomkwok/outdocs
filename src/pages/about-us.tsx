@@ -22,7 +22,7 @@ type DataProps = {
 }
 
 export default function Home({ data }: DataProps) {
-    const Main = tw.main`py-16 grid grid-cols-3 gap-10`
+    const Main = tw.main`py-16 sm:flex sm:flex-col-reverse lg:grid lg:grid-cols-3 gap-10`
     const Contacts = tw.aside`col-span-1 flex flex-col space-y-4`
     const ContactItems = tw.div`space-y-8`
     const Article = tw.article`col-start-2 col-end-4`

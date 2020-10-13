@@ -45,7 +45,7 @@ type FilmProps = {
 
 export default function Index({ data }: DataProps) {
     const Main: TwComponent<"main"> = tw.main`container mx-auto`
-    const CardContainer: TwComponent<"div"> = tw.div`grid grid-cols-3 grid-flow-row gap-10 py-16`
+    const CardContainer: TwComponent<"div"> = tw.div`grid lg:grid-cols-3 grid-flow-row gap-10 py-16`
     const Filters: TwComponent<"div"> = tw.div`flex flex-row space-x-4 py-8 justify-center`
 
     // list of semi-finalists

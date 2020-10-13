@@ -43,7 +43,9 @@ module.exports = {
         extend: {
             fontSize: {
                 heading1: "4rem",
+                heading1M: "3rem",
                 heading2: "3rem",
+                heading2M: "2rem",
                 heading3: "2.5rem",
                 heading4: "1.5rem",
                 subheading: "1.125rem",
@@ -58,6 +60,11 @@ module.exports = {
                 disabled: "#BDBDBD",
                 disabledText: "#4f4f4f",
                 inactive: "#828282",
+            },
+            margin: {
+                "1/3": "33.33%",
+                "2/3": "66.66%",
+                "1/2": "50%",
             },
         },
     },

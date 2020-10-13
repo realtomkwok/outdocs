@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useState, useLayoutEffect } from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 import tw, { styled } from "twin.macro"
-import { AnimationProps, motion, MotionProps, useCycle } from "framer-motion"
+import { motion } from "framer-motion"
 
 import { Cinemadow } from "assets/Logo"
 import NavMenu, { NavScreen } from "components/NavMenu"
@@ -16,40 +16,53 @@ type ToggleProps = {
     toggle: React.MouseEventHandler<HTMLButtonElement>
     isDark: boolean
 }
+function useLockBodyScroll() {
+    useLayoutEffect(() => {
+        // Get original body overflow
+        const originalStyle = window.getComputedStyle(document.body).overflow
+        // Prevent scrolling on mount
+        document.body.style.overflow = "hidden"
+        // Re-enable scrolling when component unmounts
+        return () => (document.body.style.overflow = originalStyle)
+    }, []) // Empty array ensures effect is only run on mount and unmount
+}
 
-const MenuToggle = (props: ToggleProps) => (
-    <button onClick={props.toggle} css={tw`z-20`}>
-        <svg
-            width="23"
-            height="23"
-            viewBox="0 0 23 23"
-            fill="transparent"
-            strokeWidth="3"
-            stroke={props.isDark ? "white" : "black"}
-        >
-            <motion.path
-                variants={{
-                    closed: { d: "M 2 2.5 L 20 2.5" },
-                    open: { d: "M 3 16.5 L 17 2.5" },
-                }}
-            />
-            <motion.path
-                d="M 2 9.423 L 20 9.423"
-                variants={{
-                    closed: { opacity: 1 },
-                    open: { opacity: 0 },
-                }}
-                transition={{ duration: 0.1 }}
-            />
-            <motion.path
-                variants={{
-                    closed: { d: "M 2 16.346 L 20 16.346" },
-                    open: { d: "M 3 2.5 L 17 16.346" },
-                }}
-            />
-        </svg>
-    </button>
-)
+const MenuToggle = (props: ToggleProps) => {
+    // useLockBodyScroll()
+    return (
+        <button onClick={props.toggle} css={tw`z-20`}>
+            <svg
+                width="23"
+                height="23"
+                viewBox="0 0 23 23"
+                fill="transparent"
+                strokeWidth="3"
+                stroke={props.isDark ? "white" : "black"}
+            >
+                <motion.path
+                    variants={{
+                        closed: { d: "M 2 2.5 L 20 2.5" },
+                        open: { d: "M 3 16.5 L 17 2.5" },
+                    }}
+                />
+                <motion.path
+                    d="M 2 9.423 L 20 9.423"
+                    variants={{
+                        closed: { opacity: 1 },
+                        open: { opacity: 0 },
+                    }}
+                    transition={{ duration: 0.1 }}
+                />
+                <motion.path
+                    variants={{
+                        closed: { d: "M 2 16.346 L 20 16.346" },
+                        open: { d: "M 3 2.5 L 17 16.346" },
+                    }}
+                />
+            </svg>
+        </button>
+    )
+}
 
 const MenuBackground = {
     open: {
@@ -67,7 +80,12 @@ const MenuBackground = {
 }
 
 export default function NavBar(props: NavBarProps) {
-    const [isOpen, toggleOpen] = useCycle(false, true)
+    const [isOpen, toggleOpen] = useState(false)
+
+    function handleToggleOpen() {
+        toggleOpen(!isOpen)
+    }
+
     const ContainerXL = styled.nav<{
         isTop: boolean
     }>`
@@ -122,7 +140,7 @@ export default function NavBar(props: NavBarProps) {
                     >
                         <motion.div
                             variants={MenuBackground}
-                            css={tw`absolute top-0 left-0 right-0 w-full bg-accentColor z-20`}
+                            css={tw`absolute top-0 left-0 right-0 w-full bg-accentColor z-20 fixed`}
                         />
                         <div tw="flex items-center justify-between z-30">
                             <Link to="/" css={tw`z-30`}>
@@ -131,7 +149,7 @@ export default function NavBar(props: NavBarProps) {
                                 </Logo>
                             </Link>
                             <MenuToggle
-                                toggle={() => toggleOpen()}
+                                toggle={() => handleToggleOpen()}
                                 isDark={props.isDark}
                             />
                         </div>

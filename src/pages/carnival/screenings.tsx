@@ -44,11 +44,10 @@ type SchedulesProps = {
 }
 
 function ScheduleList(props: { data: SchedulesProps }) {
-    const Container = tw.div`py-16`
+    const Container = tw.div`pt-16`
     const List = tw.div`mb-16`
     const ListHeader = styled.div`
-        ${tw`w-1/2`};
-        margin-left: 50%;
+        ${tw`lg:w-1/2 lg:ml-1/2`};
     `
     const Divider = tw.div`border-t-2 border-black `
     const ItemWrapper = styled.div`

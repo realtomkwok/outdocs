@@ -28,7 +28,7 @@ type SectionProps = {
 }
 
 function Intro() {
-    const Container = tw.div`py-16 w-1/2 space-y-8`
+    const Container = tw.div`py-16 lg:w-1/2 space-y-8`
 
     return (
         <Container>
@@ -39,8 +39,8 @@ function Intro() {
 }
 
 function Sections(props: { data: SectionProps[] }) {
-    const Container: TwComponent<"div"> = tw.div`grid grid-cols-2 h-64 -mx-16`
-    const Section: TwComponent<"div"> = tw.div`col-span-1 bg-white space-y-2 p-16`
+    const Container: TwComponent<"div"> = tw.div`lg:grid lg:grid-cols-2 lg:-mx-16`
+    const Section: TwComponent<"div"> = tw.div`col-span-1 bg-white space-y-2 sm:py-4 lg:p-16`
     // const engTitle = props.data[0].edges[]
 
     return (

@@ -25,10 +25,11 @@ function Footnote() {
 }
 
 function Footer(props: FooterProps) {
-    const Container = tw.footer`container mx-auto w-full p-16 bottom-0 grid grid-rows-2 gap-20`
+    const Container = tw.footer`container mx-auto w-full sm:py-16 lg:p-16 bottom-0 grid grid-rows-2 sm:gap-40 lg:gap-20`
     const Row = styled.div<{ itemsStart: boolean }>`
-        ${tw`flex justify-between h-24 `} ${({ itemsStart }) =>
-            itemsStart ? tw`items-start` : tw`items-end`}
+        ${tw`flex sm:flex-col sm:space-y-8 lg:flex-row justify-between h-24 `} ${({
+            itemsStart,
+        }) => (itemsStart ? tw`lg:items-start` : tw`lg:items-end`)}
     `
     const Logo = tw.div`h-20`
 
