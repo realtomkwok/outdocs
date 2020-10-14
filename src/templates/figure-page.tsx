@@ -53,14 +53,14 @@ type DataProps = {
 
 export default function FigureDetail({ data }: DataProps) {
     const Container = tw.div`container mx-auto`
-    const Header = tw.header` p-16 grid grid-cols-2 gap-10`
+    const Header = tw.header`lg:p-16 sm:flex sm:flex-col-reverse lg:grid lg:grid-cols-2 gap-10`
     const HeaderInfo = tw.div`flex flex-col justify-between`
     const HeaderHero = styled.div`
         height: 24rem;
     `
     const Main = tw.div`py-16 w-full`
-    const Others = tw.div`p-16 space-y-8`
-    const OthersWrapper = tw.div`grid grid-cols-3 gap-10`
+    const Others = tw.div`lg:p-16 space-y-8`
+    const OthersWrapper = tw.div`sm:flex sm:flex-row sm:overflow-scroll sm:space-x-8 lg:grid lg:grid-cols-3 lg:gap-10`
 
     const thisFigure = data.contentfulFigure
     const otherFigures = data.allContentfulFigure.nodes
@@ -68,19 +68,21 @@ export default function FigureDetail({ data }: DataProps) {
     const typographyOptions = {
         renderNode: {
             [BLOCKS.HEADING_2]: (node, children) => (
-                <div tw="mx-auto w-3/5 leading-relaxed relative mb-8">
-                    <Subheading1>{children}</Subheading1>
-                </div>
+                <Subheading1
+                    styles={tw`mx-auto lg:w-3/5 leading-relaxed relative mb-8`}
+                >
+                    {children}
+                </Subheading1>
             ),
             [BLOCKS.HEADING_3]: (node, children) => (
-                <div tw="mx-auto w-3/5 my-4 relative">
-                    <Subheading2>{children}</Subheading2>
-                </div>
+                <Subheading2 styles={tw`mx-auto lg:w-3/5 mt-8 mb-4 relative`}>
+                    {children}
+                </Subheading2>
             ),
             [BLOCKS.PARAGRAPH]: (node, children) => (
-                <div tw="mx-auto w-3/5 my-2 relative">
-                    <Body>{children}</Body>
-                </div>
+                <Body styles={tw`mx-auto lg:w-3/5 my-2 relative`}>
+                    {children}
+                </Body>
             ),
             [BLOCKS.EMBEDDED_ASSET]: node => {
                 const { file, title } = node.data.target.fields
@@ -110,7 +112,7 @@ export default function FigureDetail({ data }: DataProps) {
             <Container>
                 <Header>
                     <HeaderInfo>
-                        <Heading2>「{thisFigure.slogan.slogan}」</Heading2>
+                        <Heading2>{thisFigure.slogan.slogan}</Heading2>
                         <Heading4>{thisFigure.name}</Heading4>
                     </HeaderInfo>
                     <HeaderHero>
@@ -126,16 +128,16 @@ export default function FigureDetail({ data }: DataProps) {
                     <Tag tagStyle="primary">更多有玩人物</Tag>
                     <OthersWrapper>
                         {otherFigures.map((item, i) => (
-                            <Parallax y={[20 * i, 0]}>
-                                <PersonCard
-                                    size="large"
-                                    detailPage={item.detailPage}
-                                    imgFluid={item.avatar.fluid}
-                                    imgAlt={item.avatar.description}
-                                    name={item.name}
-                                    description={item.slogan.slogan}
-                                />
-                            </Parallax>
+                            <PersonCard
+                                scrollable
+                                size="large"
+                                detailPage={item.detailPage}
+                                imgFluid={item.avatar.fluid}
+                                imgAlt={item.avatar.description}
+                                name={item.name}
+                                description={item.slogan.slogan}
+                                key={i}
+                            />
                         ))}
                     </OthersWrapper>
                 </Others>

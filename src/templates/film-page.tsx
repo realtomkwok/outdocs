@@ -5,7 +5,7 @@ import SVG from "react-inlinesvg"
 import Img, { FluidObject } from "gatsby-image"
 
 import Layout from "components/Layout"
-import { Heading2, Subheading2, Body } from "utils/typography"
+import { Heading2, Heading4, Subheading2, Body } from "utils/typography"
 import { FilmCard, HeroImage, PersonCard } from "components/Cards"
 import Tag from "components/Tags"
 import { OutlinedBtn } from "components/Buttons"
@@ -103,16 +103,18 @@ function InfoSection(props: { tagText: string; children: React.ReactNode }) {
 }
 
 export default function FilmDetail({ data }: DataProps) {
-    const Header = tw.header`container mx-auto p-16 space-y-8 relative`
+    const Header = tw.header`container mx-auto space-y-8 lg:px-16 relative`
     const AwardsWrapper = tw.div`flex flex-row justify-end space-x-10`
-    const Award = tw.div`h-20`
-    const Titles = tw.div`w-1/2`
+    const Award = tw.div`sm:h-12 lg:h-20`
+    const TitleXL = tw.div`sm:hidden lg:block lg:w-1/2 pb-16`
+    const TitleSM = tw.div`sm:block pb-8 lg:hidden `
     const HeroContainer = tw.div`w-full h-auto relative`
-    const Main = tw.div`container mx-auto p-16 grid grid-cols-3 bg-black`
-    const Content = tw.div`col-start-2 col-end-4 space-y-16`
+    const Main = tw.div`container mx-auto sm:p-8 sm:space-y-16 lg:space-y-0 lg:p-16 grid lg:grid-cols-3 bg-black`
+    const Content = tw.div`lg:col-start-2 lg:col-end-4 space-y-16`
     const Directors = tw.div`flex flex-col space-y-8`
-    const Photos = tw.div`p-16 w-screen flex flex-row flex-wrap justify-between content-center`
-    const OthersList = tw.div`container mx-auto p-16 grid grid-cols-3 gap-10 bg-black`
+    const PhotosXL = tw.div`sm:hidden lg:block p-16 w-screen flex flex-row flex-wrap justify-between content-center`
+    const PhotoSM = tw.div`sm:block lg:hidden w-screen`
+    const OthersList = tw.div`container mx-auto sm:my-16 lg:p-16 grid lg:grid-cols-3 gap-10 bg-black`
 
     const thisFilm: FilmProps = data.contentfulLibraryFilm
     const engTitle: string[] = data.allContentfulLibraryFilm.group[0].nodes
@@ -149,10 +151,16 @@ export default function FilmDetail({ data }: DataProps) {
                             </Award>
                         ))}
                 </AwardsWrapper>
-                <Titles>
+                <TitleXL>
                     <Heading2>{thisFilm.filmTitle}</Heading2>
                     <Heading2>{engTitle}</Heading2>
-                </Titles>
+                </TitleXL>
+                <TitleSM>
+                    <Heading4 styles={tw`font-black`}>
+                        {thisFilm.filmTitle}
+                    </Heading4>
+                    <Heading4 styles={tw`font-black`}>{engTitle}</Heading4>
+                </TitleSM>
             </Header>
             <HeroContainer>
                 <HeroImage
@@ -160,7 +168,7 @@ export default function FilmDetail({ data }: DataProps) {
                     imgAlt={thisFilm.filmHeroImage.title}
                 />
             </HeroContainer>
-            <Parallax y={[0, -20]}>
+            <Parallax y={[0, -30]}>
                 <Main>
                     <Screening data={thisFilm.screening} />
                     <Content>
@@ -187,7 +195,7 @@ export default function FilmDetail({ data }: DataProps) {
                     </Content>
                 </Main>
             </Parallax>
-            <Photos>
+            <PhotosXL>
                 {thisFilm.filmPhotos.map((item, i) => (
                     <Parallax
                         y={[-30, 20]}
@@ -201,8 +209,19 @@ export default function FilmDetail({ data }: DataProps) {
                         <Img fluid={item.image.fluid} alt={item.title} />
                     </Parallax>
                 ))}
-            </Photos>
-            <Parallax y={[-20, 20]}>
+            </PhotosXL>
+            <PhotoSM>
+                <Parallax y={[-20, -5]}>
+                    {thisFilm.filmPhotos.map((item, i) => (
+                        <Img
+                            fluid={item.image.fluid}
+                            alt={item.title}
+                            key={i}
+                        />
+                    ))}
+                </Parallax>
+            </PhotoSM>
+            <Parallax y={[0, 5]}>
                 <OthersList>
                     {selectedFilms.map((item, i) => (
                         <FilmCard

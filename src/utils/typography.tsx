@@ -36,7 +36,13 @@ const Button = ({ children, styles }: TypeProps) => (
 )
 
 const Body = ({ children, styles }: TypeProps) => (
-    <div css={[tw`font-normal text-body leading-relaxed`, styles]}>
+    <div
+        css={[
+            tw`font-normal text-body leading-relaxed`,
+            styles,
+            "word-break: break-word"
+        ]}
+    >
         {children}
     </div>
 )

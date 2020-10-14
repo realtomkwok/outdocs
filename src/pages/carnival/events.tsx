@@ -1,5 +1,5 @@
 import React from "react"
-import tw, { styled } from "twin.macro"
+import tw from "twin.macro"
 import { graphql } from "gatsby"
 import { FluidObject } from "gatsby-image"
 

@@ -49,7 +49,7 @@ type FFProps = {
 }
 
 function Intro() {
-    const Container: TwComponent<"div"> = tw.div`py-16 col-span-6 space-y-8`
+    const Container: TwComponent<"div"> = tw.div`py-16 lg:col-span-6 space-y-8`
     const BtnWrapper: TwComponent<"div"> = tw.div`flex flex-row space-x-4`
 
     return (
@@ -77,7 +77,7 @@ function Intro() {
 
 function Guests(props: { data: GuestProps[] }) {
     const Container = tw.section`space-y-8`
-    const CardWrapper = tw.div`grid grid-cols-4 gap-10`
+    const CardWrapper = tw.div`flex flex-row overflow-x-scroll lg:grid lg:grid-cols-4 gap-10`
 
     return (
         <Container>
@@ -85,6 +85,7 @@ function Guests(props: { data: GuestProps[] }) {
             <CardWrapper>
                 {props.data.map((item, i) => (
                     <PersonCard
+                        scrollable
                         size="large"
                         imgFluid={item.avatar.fluid}
                         imgAlt={item.avatar.description}
@@ -125,8 +126,8 @@ function Guests(props: { data: GuestProps[] }) {
 // }
 
 export default function Index({ data }: DataProps) {
-    const Container = tw.div`container mx-auto lg:p-16`
-    const Main: TwComponent<"main"> = tw.main`container mx-auto grid grid-cols-12 gap-10`
+    const Container = tw.div`container mx-auto sm:py-8 lg:p-16`
+    const Main: TwComponent<"main"> = tw.main`container mx-auto lg:grid lg:grid-cols-12 gap-10`
 
     const guestData: GuestProps[] = data.Guests.group[1].nodes
     const filmData: FFProps[] = data.FeaturedFilm.group

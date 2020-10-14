@@ -72,6 +72,7 @@ type FilmProps = {
 }
 
 type PersonProps = {
+    scrollable?: boolean
     size: "large" | "small"
     imgFluid?: FluidObject
     imgFixed?: FixedObject
@@ -98,7 +99,9 @@ type FSProps = {
     btnTo?: string
 }
 
-function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
+function HeroImage(
+    props: Pick<IndexHeroProps, "imgSrc" | "imgAlt" | "btnLinkedPage">
+) {
     const Grid: TwComponent<"div"> = styled.div`
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -114,16 +117,18 @@ function HeroImage(props: Pick<IndexHeroProps, "imgSrc" | "imgAlt">) {
     }
 
     return (
-        <Grid>
-            {gridAreaSettings.map((item, i) => (
-                <BackgroundImage
-                    fluid={props.imgSrc}
-                    alt={props.imgAlt}
-                    style={{ gridArea: `${item}`, height: "100%" }}
-                    key={i}
-                />
-            ))}
-        </Grid>
+        <Link to={props.btnLinkedPage}>
+            <Grid>
+                {gridAreaSettings.map((item, i) => (
+                    <BackgroundImage
+                        fluid={props.imgSrc}
+                        alt={props.imgAlt}
+                        style={{ gridArea: `${item}`, height: "100%" }}
+                        key={i}
+                    />
+                ))}
+            </Grid>
+        </Link>
     )
 }
 
@@ -290,17 +295,20 @@ function PersonCard(props: PersonProps) {
         imgStyles: SerializedStyles
 
     if (props.size === "large") {
-        Container = tw.div`flex flex-col bg-white space-y-8`
+        Container = styled.div`
+            ${tw`lg:w-full lg:block flex flex-col bg-white space-y-8`}
+            ${props.scrollable && tw`sm:w-64`}
+        `
         InfoWrapper = tw.div`mt-4 space-y-2`
         imgStyles = css`
             ${tw`bg-center bg-cover`};
             height: 24rem;
         `
     } else if (props.size === "small") {
-        Container = tw.div`flex flex-row space-x-8`
+        Container = tw.div`flex sm:flex-col sm:space-y-8 lg:flex-row lg:space-x-8`
         InfoWrapper = tw.div` space-y-2`
         imgStyles = css`
-            ${tw`w-40 h-40 flex-shrink-0`};
+            ${tw`sm:w-full lg:w-40 h-40 flex-shrink-0`};
         `
     }
 

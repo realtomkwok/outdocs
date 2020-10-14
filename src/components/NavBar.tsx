@@ -81,9 +81,15 @@ const MenuBackground = {
 
 export default function NavBar(props: NavBarProps) {
     const [isOpen, toggleOpen] = useState(false)
+    const [isBlack, toggleColor] = useState(props.isDark)
 
     function handleToggleOpen() {
         toggleOpen(!isOpen)
+        if (props.isDark) {
+            toggleColor(!isBlack)
+        } else {
+            toggleColor(isBlack)
+        }
     }
 
     const ContainerXL = styled.nav<{
@@ -119,14 +125,14 @@ export default function NavBar(props: NavBarProps) {
                     <ContainerXL isTop={props.isTop}>
                         <Link to="/">
                             <Logo>
-                                <Cinemadow isWhite={props.isDark} />
+                                <Cinemadow isWhite={isBlack} />
                             </Logo>
                         </Link>
                         <NavMenu
                             category="navbar"
                             menuLinks={data.allContentfulMenuLinks.nodes}
                             partiallyActive={true}
-                            isDark={props.isDark}
+                            isDark={isBlack}
                         />
                     </ContainerXL>
                     {/* ContainerSM */}
@@ -142,15 +148,15 @@ export default function NavBar(props: NavBarProps) {
                             variants={MenuBackground}
                             css={tw`absolute top-0 left-0 right-0 w-full bg-accentColor z-20 fixed`}
                         />
-                        <div tw="flex items-center justify-between z-30">
+                        <div tw="container mx-auto flex items-center justify-between z-30">
                             <Link to="/" css={tw`z-30`}>
                                 <Logo>
-                                    <Cinemadow isWhite={props.isDark} />
+                                    <Cinemadow isWhite={isBlack} />
                                 </Logo>
                             </Link>
                             <MenuToggle
                                 toggle={() => handleToggleOpen()}
-                                isDark={props.isDark}
+                                isDark={isBlack}
                             />
                         </div>
 

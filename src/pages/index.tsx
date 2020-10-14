@@ -16,6 +16,7 @@ import { Heading2, Button as BtnText, Heading4 } from "utils/typography"
 import NavBar from "components/NavBar"
 import Footer from "components/Footer"
 import EmptyState from "components/EmptyState"
+import Link from "utils/Link"
 
 type DataType = {
     data: {
@@ -164,7 +165,11 @@ function FilmOfToday(props: { data: FotType[] }) {
 
     return (
         <div tw="w-full h-auto relative">
-            <HeroImage imgSrc={img.image.fluid} imgAlt={img.title} />
+            <HeroImage
+                imgSrc={img.image.fluid}
+                imgAlt={img.title}
+                btnLinkedPage={info.detailPage}
+            />
             <FotCard
                 chnTitle={info.filmTitle}
                 engTitle={engTitle}
@@ -181,7 +186,7 @@ function Carnival(props: {
 }) {
     const HeadingWrapper: TwComponent<"div"> = tw.div`container flex flex-row justify-between items-start`
     const BtnWrapper: TwComponent<"div"> = tw.div`inline-flex space-x-4`
-    const CardsContainer: TwComponent<"div"> = tw.div`sm:flex sm:overflow-scroll lg:grid lg:grid-cols-2 grid-flow-row gap-10`
+    const CardsContainer: TwComponent<"div"> = tw.div`sm:flex sm:overflow-scroll sm:space-x-8 lg:grid lg:grid-cols-2 grid-flow-row gap-10`
 
     const screeningData: ScreeningType = props.screenings[1] //0: en-US, 1: zh-Hans
     const sessionData: SessionType = props.sessions[1]
@@ -271,18 +276,18 @@ function Carnival(props: {
     )
 }
 
-function AboutUs() {
-    const Container: TwComponent<"div"> = tw.div`h-24 w-full bg-gray-200 grid items-center`
-    const Title: TwComponent<"div"> = tw.div`mx-auto`
+// function AboutUs() {
+//     const Container: TwComponent<"div"> = tw.div`h-24 w-full bg-gray-200 grid items-center`
+//     const Title: TwComponent<"div"> = tw.div`mx-auto`
 
-    return (
-        <Container>
-            <Title>
-                <Heading4>我们是谁？</Heading4>
-            </Title>
-        </Container>
-    )
-}
+//     return (
+//         <Container>
+//             <Title>
+//                 <Heading4>我们是谁？</Heading4>
+//             </Title>
+//         </Container>
+//     )
+// }
 
 export default function Home({ data }: DataType) {
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
@@ -306,7 +311,9 @@ export default function Home({ data }: DataType) {
                 <HeroImage
                     imgSrc={hero.heroImage.fluid}
                     imgAlt={hero.heroImage.description}
+                    btnLinkedPage={hero.linkTo}
                 />
+
                 <IndexHeroCard
                     tag={hero.tag}
                     headline={hero.title}

@@ -59,12 +59,12 @@ function Sidebar(props: { data: FaqProps[] }) {
 
 function Content(props: { data: FaqProps[] }) {
     const Container = styled.div`
-        ${tw`w-2/3 ml-1/3`};
+        ${tw`lg:w-2/3 lg:ml-1/3`};
     `
     const List = tw.div`pb-8`
     const ListHeader = tw.div``
     const Divider = tw.div`border-t-2 border-black`
-    const ItemWrapper = tw.div`py-8 grid grid-cols-2 gap-10`
+    const ItemWrapper = tw.div`py-8 grid md:grid-cols-2 gap-10`
     const Item = tw.div`space-y-2`
 
     return (

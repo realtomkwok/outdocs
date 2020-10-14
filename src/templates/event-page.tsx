@@ -59,17 +59,17 @@ type EventProps = {
 
 export default function EventDetail({ data }: DataProps) {
     const Container = tw.div`container mx-auto space-y-32`
-    const Header = tw.header`grid grid-cols-2 gap-10`
+    const Header = tw.header`grid lg:grid-cols-2 gap-10`
     const HeaderInfo = tw.div`flex flex-col justify-between`
     const HeaderHero = styled.div`
         height: 24rem;
     `
     const Main = tw.div`space-y-32`
-    const Info = tw.div`space-y-8 w-2/3`
+    const Info = tw.div`space-y-8 lg:w-2/3`
     const Guests = tw.div`space-y-8`
-    const GuestWrapper = tw.div`grid grid-cols-2 gap-16`
+    const GuestWrapper = tw.div`grid lg:grid-cols-2 gap-16`
     const Others = tw.div`space-y-8`
-    const OthersWrapper = tw.div`grid grid-cols-3 gap-10`
+    const OthersWrapper = tw.div`grid lg:grid-cols-3 gap-10`
 
     const thisEvent = data.contentfulEventsSessions
     const allOtherEvents = data.allContentfulEventsSessions.nodes
@@ -122,50 +122,45 @@ export default function EventDetail({ data }: DataProps) {
                     </HeaderHero>
                 </Header>
                 <Main>
-                    <Parallax y={[0, 20]}>
-                        <Info>
-                            <Tag tagStyle="primary">简介</Tag>
-                            <Body>{thisEvent.info.info}</Body>
-                        </Info>
-                    </Parallax>
-                    <Parallax y={[0, 20]}>
-                        <Guests>
-                            <Tag tagStyle="primary">嘉宾</Tag>
-                            <GuestWrapper>
-                                {thisEvent.guest &&
-                                    thisEvent.guest.map((item, i) => (
-                                        <PersonCard
-                                            key={i}
-                                            size="small"
-                                            imgFluid={item.avatar.fluid}
-                                            imgAlt={item.avatar.description}
-                                            name={item.name}
-                                            titles={item.titles}
-                                            description={item.info.info}
-                                        />
-                                    ))}
-                            </GuestWrapper>
-                        </Guests>
-                    </Parallax>
-                    <Parallax y={[0, 20]}>
-                        <Others>
-                            <Tag tagStyle="primary">你可能会感兴趣的活动</Tag>
-                            <OthersWrapper>
-                                {selectedEvents.map((item, i) => (
-                                    <EventCard
-                                        detailPage={item.detailPage}
-                                        tag={item.category}
-                                        title={item.name}
-                                        location={item.location}
-                                        dateAndTime={item.dateAndTime}
-                                        imgSrc={item.heroImage.fluid}
-                                        imgAlt={item.heroImage.description}
+                    <Info>
+                        <Tag tagStyle="primary">简介</Tag>
+                        <Body>{thisEvent.info.info}</Body>
+                    </Info>
+                    <Guests>
+                        <Tag tagStyle="primary">嘉宾</Tag>
+                        <GuestWrapper>
+                            {thisEvent.guest &&
+                                thisEvent.guest.map((item, i) => (
+                                    <PersonCard
                                         key={i}
+                                        size="small"
+                                        imgFluid={item.avatar.fluid}
+                                        imgAlt={item.avatar.description}
+                                        name={item.name}
+                                        titles={item.titles}
+                                        description={item.info.info}
                                     />
                                 ))}
-                            </OthersWrapper>
-                        </Others>
-                    </Parallax>
+                        </GuestWrapper>
+                    </Guests>
+
+                    <Others>
+                        <Tag tagStyle="primary">你可能会感兴趣的活动</Tag>
+                        <OthersWrapper>
+                            {selectedEvents.map((item, i) => (
+                                <EventCard
+                                    detailPage={item.detailPage}
+                                    tag={item.category}
+                                    title={item.name}
+                                    location={item.location}
+                                    dateAndTime={item.dateAndTime}
+                                    imgSrc={item.heroImage.fluid}
+                                    imgAlt={item.heroImage.description}
+                                    key={i}
+                                />
+                            ))}
+                        </OthersWrapper>
+                    </Others>
                 </Main>
             </Container>
         </Layout>

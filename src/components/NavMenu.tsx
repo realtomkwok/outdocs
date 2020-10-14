@@ -149,7 +149,7 @@ export function NavScreen(props: MenuProps) {
             {menuLinks.map((item, i) => (
                 <motion.li key={i} variants={itemVariants} tw="z-30">
                     <Link to={item.link}>
-                        <Heading3>{item.name}</Heading3>
+                        <Heading3 styles={tw`text-black`}>{item.name}</Heading3>
                     </Link>
                 </motion.li>
             ))}

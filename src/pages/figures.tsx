@@ -65,7 +65,10 @@ function Figure(props: { data: FigureProps[] }) {
                             <Heading4>{thisFigure.name}</Heading4>
                             <Heading4>{engName}</Heading4>
                         </div>
-                        <OutlinedBtn btnText="阅读 ta 的故事" />
+                        <OutlinedBtn
+                            btnText="阅读 ta 的故事"
+                            to={thisFigure.detailPage}
+                        />
                     </div>
                 </Info>
             </Parallax>
