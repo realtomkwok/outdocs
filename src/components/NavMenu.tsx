@@ -144,7 +144,7 @@ export function NavScreen(props: MenuProps) {
     return (
         <motion.ul
             variants={menuVariants}
-            tw="flex flex-col list-none z-20 space-y-2"
+            tw="container mx-auto flex flex-col list-none z-20 space-y-2"
         >
             {menuLinks.map((item, i) => (
                 <motion.li key={i} variants={itemVariants} tw="z-30">

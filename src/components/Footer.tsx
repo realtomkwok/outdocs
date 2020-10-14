@@ -4,7 +4,7 @@ import tw, { styled } from "twin.macro"
 import { BrandName } from "assets/Logo"
 import SocialNetworks from "components/SocialNetworks"
 import SponsorLogos from "components/SponsorLogos"
-import { Body } from "utils/typography"
+import { Tag2 } from "utils/typography"
 
 type FooterProps = {
     isDark: boolean
@@ -18,29 +18,30 @@ function Footnote() {
     const tomsWebsite: string = "//realtomkwok.github.io/portfolio"
 
     return (
-        <Body>
-            ©2020 OUTDOCS. Site by <a href={tomsWebsite}>Tom Kwok.</a>
-        </Body>
+        <Tag2>
+            ©2020 OUTDOCS. <br tw="md:hidden" />
+            Site by <a href={tomsWebsite}>Tom Kwok.</a>
+        </Tag2>
     )
 }
 
 function Footer(props: FooterProps) {
-    const Container = tw.footer`container mx-auto w-full sm:py-16 lg:p-16 bottom-0 grid grid-rows-2 sm:gap-40 lg:gap-20`
+    const Container = tw.footer`w-full bg-white text-black sm:py-16 bottom-0 grid grid-rows-2 gap-20 `
     const Row = styled.div<{ itemsStart: boolean }>`
-        ${tw`flex sm:flex-col sm:space-y-8 lg:flex-row justify-between h-24 `} ${({
+        ${tw`container mx-auto flex sm:flex-col sm:px-4 md:px-8 lg:px-16 sm:space-y-4 md:space-y-0 md:flex-row justify-between lg:h-24 `} ${({
             itemsStart,
-        }) => (itemsStart ? tw`lg:items-start` : tw`lg:items-end`)}
+        }) => (itemsStart ? tw`md:items-start` : tw`md:items-end`)}
     `
-    const Logo = tw.div`h-20`
+    const Logo = tw.div`md:h-20`
 
     return (
         <Container>
             <Row itemsStart={true}>
                 <Logo>
-                    <BrandName isWhite={props.isDark} />
+                    <BrandName isWhite={false} />
                 </Logo>
                 {/* <SNSLinks /> */}
-                <SocialNetworks isWhite={props.isDark} />
+                <SocialNetworks isWhite={false} />
             </Row>
             <Row itemsStart={false}>
                 <SponsorLogos />

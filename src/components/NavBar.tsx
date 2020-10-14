@@ -91,8 +91,8 @@ export default function NavBar(props: NavBarProps) {
             toggleColor(isBlack)
         }
     }
-
-    const ContainerXL = styled.nav<{
+    
+    const ContainerXL = styled.div<{
         isTop: boolean
     }>`
         ${tw`sm:hidden lg:flex container mx-auto max-w-screen-xl w-full h-32 p-16 z-50 bg-transparent items-center justify-between`} ${({

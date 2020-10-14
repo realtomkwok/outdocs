@@ -33,7 +33,7 @@ type DataProps = {
 
 export default function Home({ data }: DataProps) {
     const Intro = tw.div`py-16 space-y-8 lg:w-1/2`
-    const CardContainer = tw.div`grid lg:grid-cols-3 gap-10`
+    const CardContainer = tw.div`grid md:grid-cols-2 lg:grid-cols-3 gap-10`
     const Card = tw.div`flex flex-col justify-between h-64`
     const TextContainer = tw.div`space-y-2`
     const Logo = tw.a`flex justify-center items-center h-full`

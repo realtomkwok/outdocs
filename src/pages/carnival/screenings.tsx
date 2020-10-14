@@ -7,6 +7,7 @@ import Layout from "components/Layout"
 import Header from "components/Header"
 import { FilmScheduleCard } from "components/Cards"
 import { Subheading2 } from "utils/typography"
+import { OutlinedBtn } from "components/Buttons"
 
 type DataProps = {
     data: {
@@ -51,8 +52,9 @@ function ScheduleList(props: { data: SchedulesProps }) {
     `
     const Divider = tw.div`border-t-2 border-black `
     const ItemWrapper = styled.div`
-        ${tw`space-y-8 py-4`};
+        ${tw`space-y-4 py-4`};
     `
+    const ButtonWrapper = tw.div`flex lg:w-1/2 lg:ml-1/2`
 
     return (
         <Container>
@@ -64,9 +66,10 @@ function ScheduleList(props: { data: SchedulesProps }) {
                     </ListHeader>
                     <ItemWrapper>
                         {list.nodes.map((item, i) => {
-                            let btnText: string, btnTo: string, location: string
+                            let location: string
                             if (item.category.length > 1) {
-                                location = item.location
+                                location =
+                                    item.location + "/" + item.onlineLocation
                             } else {
                                 if (item.category[0] === "线上展映") {
                                     location = item.onlineLocation
@@ -75,23 +78,38 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                 }
                             }
                             return (
-                                <FilmScheduleCard
-                                    filmImgSrc={
-                                        item.filmInfo.filmHeroImage.image.fluid
-                                    }
-                                    filmImgAlt={
-                                        item.filmInfo.filmHeroImage.title
-                                    }
-                                    filmTitle={item.filmInfo.filmTitle}
-                                    filmDirector={item.filmInfo.director}
-                                    filmInfo={item.filmInfo.filmInfo}
-                                    filmDeatail={item.filmInfo.detailPage}
-                                    dnt={item.dateAndTime}
-                                    location={location}
-                                    btnText={btnText}
-                                    btnTo={btnTo}
-                                    key={i}
-                                />
+                                <>
+                                    <FilmScheduleCard
+                                        filmImgSrc={
+                                            item.filmInfo.filmHeroImage.image
+                                                .fluid
+                                        }
+                                        filmImgAlt={
+                                            item.filmInfo.filmHeroImage.title
+                                        }
+                                        filmTitle={item.filmInfo.filmTitle}
+                                        filmDirector={item.filmInfo.director}
+                                        filmInfo={item.filmInfo.filmInfo}
+                                        filmDeatail={item.filmInfo.detailPage}
+                                        dnt={item.dateAndTime}
+                                        location={location}
+                                        key={i}
+                                    />
+                                    <ButtonWrapper>
+                                        {item.ticketsUrl && (
+                                            <OutlinedBtn
+                                                to={item.ticketsUrl}
+                                                btnText="线下购票"
+                                            />
+                                        )}
+                                        {item.onlineUrl && (
+                                            <OutlinedBtn
+                                                to={item.onlineUrl}
+                                                btnText="在线观影"
+                                            />
+                                        )}
+                                    </ButtonWrapper>
+                                </>
                             )
                         })}
                     </ItemWrapper>

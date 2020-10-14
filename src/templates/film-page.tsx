@@ -81,7 +81,20 @@ function Screening(props: { data: ScreeningProps | null }) {
                     <Subheading2>{props.data.dateAndTime}</Subheading2>
                     <Subheading2>{props.data.location}</Subheading2>
                 </div>
-                {/* <OutlinedBtn to={btnTo} btnText={btnText} isWhite /> */}
+                {props.data.ticketUrl && (
+                    <OutlinedBtn
+                        to={props.data.ticketUrl}
+                        btnText="线下购票"
+                        isWhite
+                    />
+                )}
+                {props.data.onlineUrl && (
+                    <OutlinedBtn
+                        to={props.data.onlineUrl}
+                        btnText="在线观影"
+                        isWhite
+                    />
+                )}
             </Container>
         )
     } else {
@@ -103,18 +116,18 @@ function InfoSection(props: { tagText: string; children: React.ReactNode }) {
 }
 
 export default function FilmDetail({ data }: DataProps) {
-    const Header = tw.header`container mx-auto space-y-8 lg:px-16 relative`
+    const Header = tw.header`container mx-auto space-y-8 sm:px-8 lg:px-16 relative`
     const AwardsWrapper = tw.div`flex flex-row justify-end space-x-10`
-    const Award = tw.div`sm:h-12 lg:h-20`
-    const TitleXL = tw.div`sm:hidden lg:block lg:w-1/2 pb-16`
-    const TitleSM = tw.div`sm:block pb-8 lg:hidden `
+    const Award = tw.div`sm:h-12 md:h-20`
+    const TitleXL = tw.div`sm:hidden md:block md:w-2/3 lg:w-1/2 pb-16`
+    const TitleSM = tw.div`sm:block  md:hidden pb-8`
     const HeroContainer = tw.div`w-full h-auto relative`
     const Main = tw.div`container mx-auto sm:p-8 sm:space-y-16 lg:space-y-0 lg:p-16 grid lg:grid-cols-3 bg-black`
     const Content = tw.div`lg:col-start-2 lg:col-end-4 space-y-16`
     const Directors = tw.div`flex flex-col space-y-8`
-    const PhotosXL = tw.div`sm:hidden lg:block p-16 w-screen flex flex-row flex-wrap justify-between content-center`
-    const PhotoSM = tw.div`sm:block lg:hidden w-screen`
-    const OthersList = tw.div`container mx-auto sm:my-16 lg:p-16 grid lg:grid-cols-3 gap-10 bg-black`
+    const PhotosXL = tw.div`sm:hidden md:block p-16 w-screen flex flex-row flex-wrap justify-between content-center`
+    const PhotoSM = tw.div`sm:block md:hidden w-screen`
+    const OthersList = tw.div`container mx-auto sm:my-16 sm:px-8 lg:p-16 grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-black`
 
     const thisFilm: FilmProps = data.contentfulLibraryFilm
     const engTitle: string[] = data.allContentfulLibraryFilm.group[0].nodes
@@ -201,8 +214,8 @@ export default function FilmDetail({ data }: DataProps) {
                         y={[-30, 20]}
                         styleOuter={
                             item.image.fluid.aspectRatio >= 1
-                                ? { margin: "10% auto 10%", width: "55%" }
-                                : { margin: "10% 0", width: "40%" }
+                                ? { margin: "10% auto 10%", width: "65%" }
+                                : { margin: "10% 40% 10%", width: "45%" }
                         }
                         key={i}
                     >

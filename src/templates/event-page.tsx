@@ -69,7 +69,7 @@ export default function EventDetail({ data }: DataProps) {
     const Guests = tw.div`space-y-8`
     const GuestWrapper = tw.div`grid lg:grid-cols-2 gap-16`
     const Others = tw.div`space-y-8`
-    const OthersWrapper = tw.div`grid lg:grid-cols-3 gap-10`
+    const OthersWrapper = tw.div`grid md:grid-cols-2 lg:grid-cols-3 gap-10`
 
     const thisEvent = data.contentfulEventsSessions
     const allOtherEvents = data.allContentfulEventsSessions.nodes

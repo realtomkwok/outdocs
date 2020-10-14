@@ -26,7 +26,7 @@ type GuestProps = {
 
 export default function Index({ data }: DataProps) {
     const Main = tw.div`py-16`
-    const CardWrapper = tw.div`grid lg:grid-cols-4 gap-10`
+    const CardWrapper = tw.div`grid md:grid-cols-2 lg:grid-cols-4 gap-10`
 
     const guestsData: GuestProps[] = data.Guests.nodes
 

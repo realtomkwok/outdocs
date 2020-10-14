@@ -32,7 +32,7 @@ type IndexHeroProps = {
     tag: string
     headline: string
     btnText: string
-    btnLinkedPage: string
+    btnLinkedPage?: string
 }
 
 type FotProps = {
@@ -94,9 +94,6 @@ type FSProps = {
     filmDeatail?: string
     dnt?: Date
     location?: string
-    noButton?: boolean
-    btnText?: string
-    btnTo?: string
 }
 
 function HeroImage(
@@ -133,8 +130,8 @@ function HeroImage(
 }
 
 function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
-    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 absolute bottom-0 left-0 right-0 grid lg:grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl lg:col-span-5 xl:col-span-4 space-y-4`
+    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 md:p-8 lg:p-16 absolute bottom-0 left-0 right-0 grid md:grid-cols-12 gap-10`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl md:col-span-6 xl:col-span-4 space-y-4`
 
     return (
         <CardContainer>
@@ -154,8 +151,8 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
 }
 
 function FotCard(props: FotProps) {
-    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 lg:p-16 absolute bottom-0 left-0 right-0 grid lg:grid-cols-12 gap-10`
-    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl lg:col-span-6 xl:col-span-4`
+    const CardContainer: TwComponent<"div"> = tw.div`container mx-auto sm:pb-8 md:p-8 lg:p-16 absolute bottom-0 left-0 right-0 grid md:grid-cols-12 gap-10`
+    const Card: TwComponent<"div"> = tw.div`flex flex-col p-8 bg-white shadow-2xl md:col-span-6 xl:col-span-4`
     const Titles: TwComponent<"div"> = tw.div``
 
     let director: string
@@ -297,7 +294,7 @@ function PersonCard(props: PersonProps) {
     if (props.size === "large") {
         Container = styled.div`
             ${tw`lg:w-full lg:block flex flex-col bg-white space-y-8`}
-            ${props.scrollable && tw`sm:w-64`}
+            ${props.scrollable && tw`sm:w-64 md:w-full`}
         `
         InfoWrapper = tw.div`mt-4 space-y-2`
         imgStyles = css`
@@ -305,10 +302,10 @@ function PersonCard(props: PersonProps) {
             height: 24rem;
         `
     } else if (props.size === "small") {
-        Container = tw.div`flex sm:flex-col sm:space-y-8 lg:flex-row lg:space-x-8`
+        Container = tw.div`flex sm:flex-col sm:space-y-8 md:flex-row md:space-x-8 md:space-y-0`
         InfoWrapper = tw.div` space-y-2`
         imgStyles = css`
-            ${tw`sm:w-full lg:w-40 h-40 flex-shrink-0`};
+            ${tw`sm:w-full md:w-40 h-40 flex-shrink-0`};
         `
     }
 
@@ -347,7 +344,6 @@ function FilmScheduleCard(props: FSProps) {
     `
     const FilmInfo = tw.div`col-span-2`
     const ScreeningInfo = tw.div``
-    const ButtonsWrapper = tw.div`flex flex-row`
 
     let director: string
     if (props.filmDirector === null) {
@@ -384,20 +380,10 @@ function FilmScheduleCard(props: FSProps) {
                         </div>
                     </Link>
                 </FilmInfo>
-                <div tw="sm:flex sm:justify-between lg:flex-col space-y-2">
-                    <ScreeningInfo>
-                        <Subheading2>{props.dnt}</Subheading2>
-                        <Subheading2>{props.location}</Subheading2>
-                    </ScreeningInfo>
-                    {props.noButton ? null : (
-                        <ButtonsWrapper>
-                            <OutlinedBtn
-                                to={props.btnTo}
-                                btnText={props.btnText}
-                            ></OutlinedBtn>
-                        </ButtonsWrapper>
-                    )}
-                </div>
+                <ScreeningInfo>
+                    <Subheading2>{props.dnt}</Subheading2>
+                    <Subheading2>{props.location}</Subheading2>
+                </ScreeningInfo>
             </InfoWrapper>
         </Container>
     )

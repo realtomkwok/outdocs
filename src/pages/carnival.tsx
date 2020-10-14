@@ -126,7 +126,7 @@ function Guests(props: { data: GuestProps[] }) {
 // }
 
 export default function Index({ data }: DataProps) {
-    const Container = tw.div`container mx-auto sm:py-8 lg:p-16`
+    const Container = tw.div`container mx-auto sm:p-4 md:p-8 lg:p-16`
     const Main: TwComponent<"main"> = tw.main`container mx-auto lg:grid lg:grid-cols-12 gap-10`
 
     const guestData: GuestProps[] = data.Guests.group[1].nodes

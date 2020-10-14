@@ -53,14 +53,14 @@ type DataProps = {
 
 export default function FigureDetail({ data }: DataProps) {
     const Container = tw.div`container mx-auto`
-    const Header = tw.header`lg:p-16 sm:flex sm:flex-col-reverse lg:grid lg:grid-cols-2 gap-10`
+    const Header = tw.header`sm:px-4 md:px-8 lg:p-16 sm:flex sm:flex-col-reverse lg:grid lg:grid-cols-2 gap-10`
     const HeaderInfo = tw.div`flex flex-col justify-between`
     const HeaderHero = styled.div`
         height: 24rem;
     `
     const Main = tw.div`py-16 w-full`
-    const Others = tw.div`lg:p-16 space-y-8`
-    const OthersWrapper = tw.div`sm:flex sm:flex-row sm:overflow-scroll sm:space-x-8 lg:grid lg:grid-cols-3 lg:gap-10`
+    const Others = tw.div`sm:p-4 md:p-8 lg:p-16 space-y-8`
+    const OthersWrapper = tw.div`sm:flex sm:flex-row sm:overflow-scroll sm:space-x-8 md:grid md:overflow-auto md:space-x-0 md:grid-cols-2 lg:grid-cols-3 md:gap-10`
 
     const thisFigure = data.contentfulFigure
     const otherFigures = data.allContentfulFigure.nodes
@@ -69,18 +69,22 @@ export default function FigureDetail({ data }: DataProps) {
         renderNode: {
             [BLOCKS.HEADING_2]: (node, children) => (
                 <Subheading1
-                    styles={tw`mx-auto lg:w-3/5 leading-relaxed relative mb-8`}
+                    styles={tw`mx-auto sm:px-4 md:px-8 lg:w-3/5 leading-relaxed relative mb-8`}
                 >
                     {children}
                 </Subheading1>
             ),
             [BLOCKS.HEADING_3]: (node, children) => (
-                <Subheading2 styles={tw`mx-auto lg:w-3/5 mt-8 mb-4 relative`}>
+                <Subheading2
+                    styles={tw`mx-auto sm:px-4 md:px-8 lg:w-3/5 mt-8 mb-4 relative`}
+                >
                     {children}
                 </Subheading2>
             ),
             [BLOCKS.PARAGRAPH]: (node, children) => (
-                <Body styles={tw`mx-auto lg:w-3/5 my-2 relative`}>
+                <Body
+                    styles={tw`mx-auto sm:px-4 md:px-8 lg:w-3/5 my-2 relative`}
+                >
                     {children}
                 </Body>
             ),

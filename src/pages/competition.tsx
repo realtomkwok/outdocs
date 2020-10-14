@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
-import { Body, Heading4, Heading1 } from "utils/typography"
+import { Body, Heading4, Heading2 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import Link from "utils/Link"
 
@@ -39,7 +39,7 @@ function Intro() {
 }
 
 function Sections(props: { data: SectionProps[] }) {
-    const Container: TwComponent<"div"> = tw.div`lg:grid lg:grid-cols-2 lg:-mx-16`
+    const Container: TwComponent<"div"> = tw.div`md:grid md:grid-cols-2 lg:-mx-16`
     const Section: TwComponent<"div"> = tw.div`col-span-1 bg-white space-y-2 sm:py-4 lg:p-16`
     // const engTitle = props.data[0].edges[]
 
@@ -53,7 +53,7 @@ function Sections(props: { data: SectionProps[] }) {
                                 {item.edges[1].node.name}
                             </span>
                         </Heading4>
-                        <Heading1>{item.edges[0].node.name}</Heading1>
+                        <Heading2>{item.edges[0].node.name}</Heading2>
                     </Section>
                 </Link>
             ))}

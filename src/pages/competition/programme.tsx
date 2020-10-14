@@ -45,7 +45,7 @@ type FilmProps = {
 
 export default function Index({ data }: DataProps) {
     const Main: TwComponent<"main"> = tw.main`container mx-auto`
-    const CardContainer: TwComponent<"div"> = tw.div`grid lg:grid-cols-3 grid-flow-row gap-10 py-16`
+    const CardContainer: TwComponent<"div"> = tw.div`grid md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-10`
     const Filters: TwComponent<"div"> = tw.div`flex flex-row space-x-4 py-8 justify-center`
 
     // list of semi-finalists
@@ -62,7 +62,7 @@ export default function Index({ data }: DataProps) {
     const yearsOptions: string[] = [
         ...new Set(semiFinalists.map(x => x.yearOfCompetition)),
     ]
-    const defaultYear: string = yearsOptions[0] // set default value of the 'Year' dropdown filter.
+    const defaultYear: string = yearsOptions[1] // set default value of the 'Year' dropdown filter.
     const [year, setYear] = useState(defaultYear)
     function handleYearChange(newValue: string) {
         setYear(newValue)
@@ -114,23 +114,25 @@ export default function Index({ data }: DataProps) {
                         onChange={handleCategoryChange}
                     />
                 </Filters>
-                <CardContainer>
+                <div tw="py-16">
                     {filteredfinalists.length === 0 ? (
                         <EmptyState />
                     ) : (
-                        filteredfinalists.map((item, i) => (
-                            <FilmCard
-                                imgSrc={item.filmHeroImage.image.fluid}
-                                imgAlt={item.filmHeroImage.title}
-                                filmTitle={item.filmTitle}
-                                filmInfo={item.filmInfo}
-                                detailPage={item.detailPage}
-                                director={item.director}
-                                key={i}
-                            />
-                        ))
+                        <CardContainer>
+                            {filteredfinalists.map((item, i) => (
+                                <FilmCard
+                                    imgSrc={item.filmHeroImage.image.fluid}
+                                    imgAlt={item.filmHeroImage.title}
+                                    filmTitle={item.filmTitle}
+                                    filmInfo={item.filmInfo}
+                                    detailPage={item.detailPage}
+                                    director={item.director}
+                                    key={i}
+                                />
+                            ))}
+                        </CardContainer>
                     )}
-                </CardContainer>
+                </div>
                 <List>
                     <div tw="flex justify-center mb-8">
                         <Heading3>复评入围影片</Heading3>
@@ -146,7 +148,6 @@ export default function Index({ data }: DataProps) {
                                     filmInfo={item.filmInfo}
                                     filmDeatail={null}
                                     filmDirector={item.director}
-                                    noButton
                                 />
                             ))}
                         </ItemWrapper>

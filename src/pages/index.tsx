@@ -186,7 +186,7 @@ function Carnival(props: {
 }) {
     const HeadingWrapper: TwComponent<"div"> = tw.div`container flex flex-row justify-between items-start`
     const BtnWrapper: TwComponent<"div"> = tw.div`inline-flex space-x-4`
-    const CardsContainer: TwComponent<"div"> = tw.div`sm:flex sm:overflow-scroll sm:space-x-8 lg:grid lg:grid-cols-2 grid-flow-row gap-10`
+    const CardsContainer: TwComponent<"div"> = tw.div`sm:flex sm:overflow-scroll sm:space-x-8 md:space-x-0 md:grid md:grid-cols-2 md:grid-flow-row md:gap-10`
 
     const screeningData: ScreeningType = props.screenings[1] //0: en-US, 1: zh-Hans
     const sessionData: SessionType = props.sessions[1]
@@ -241,7 +241,7 @@ function Carnival(props: {
     }
 
     return (
-        <div tw="container lg:col-span-12 space-y-8">
+        <div tw="container md:col-span-12 space-y-8">
             <HeadingWrapper>
                 <Heading2>嘉年华</Heading2>
                 <BtnWrapper>
@@ -291,7 +291,7 @@ function Carnival(props: {
 
 export default function Home({ data }: DataType) {
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
-    const Main: TwComponent<"main"> = tw.main`container mx-auto sm:py-16 lg:p-16 grid lg:grid-cols-12 gap-10`
+    const Main: TwComponent<"main"> = tw.main`container mx-auto sm:py-16 md:px-8 lg:p-16 grid md:grid-cols-12 gap-10`
 
     const hero: HeroType = data.Hero
     const newsData: NewsType[] = data.News.nodes

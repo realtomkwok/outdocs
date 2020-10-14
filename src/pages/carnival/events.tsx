@@ -43,7 +43,7 @@ export default function Index({ data }: DataProps) {
     const Date = tw.aside`lg:w-1/6`
     const List = tw.div`lg:w-4/6 mb-16`
     const Divider = tw.div`border-t-2 border-black`
-    const ItemWrapper = tw.div`py-8 grid lg:grid-cols-2 gap-10`
+    const ItemWrapper = tw.div`py-8 grid md:grid-cols-2 gap-10`
 
     const eventData: EventProps[] = data.Events.group
 
