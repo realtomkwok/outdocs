@@ -66,5 +66,14 @@ module.exports = {
                 defaultQuality: 100,
             },
         },
+        {
+            resolve: `gatsby-plugin-web-font-loader`,
+            options: {
+                custom: {
+                    families: ["Nimbus Sans Ext D, Glow Sans SC"],
+                    urls: ["/fonts/fonts.css"],
+                },
+            },
+        },
     ],
 }
