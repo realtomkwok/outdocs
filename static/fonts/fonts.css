@@ -26,33 +26,6 @@
         url(./NimbusSanExtD-Bla/font.woff) format("woff"),
         url(./NimbusSanExtD-Bla/font.woff2) format("woff2");
 }
-/* 
-@font-face {
-  font-family: "Noto Sans SC";
-  font-style: normal;
-  font-weight: 400;
-  src: local("NotoSansSC-Regular"),
-    url(./NotoSansSC-400/font.woff) format("woff"),
-    url(./NotoSansSC-400/font.woff2) format("woff2");
-}
-
-@font-face {
-  font-family: "Noto Sans SC";
-  font-style: normal;
-  font-weight: 700;
-  src: local("NotoSansSC-Bold"),
-    url(./NotoSansSC-700/font.woff) format("woff"),
-    url(./NotoSansSC-700/font.woff2) format("woff2");
-}
-
-@font-face {
-  font-family: "Noto Sans SC";
-  font-style: normal;
-  font-weight: 900;
-  src: local("NotoSansSC-Black"),
-    url(./NotoSansSC-900/font.woff) format("woff"),
-    url(./NotoSansSC-900/font.woff2) format("woff2");
-} */
 
 @font-face {
     font-family: "Glow Sans SC";
