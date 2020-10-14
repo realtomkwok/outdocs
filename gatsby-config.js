@@ -71,7 +71,7 @@ module.exports = {
             options: {
                 custom: {
                     families: ["Nimbus Sans Ext D, Glow Sans SC"],
-                    urls: ["/fonts/fonts.css"],
+                    urls: ["/static/fonts/fonts.css"],
                 },
             },
         },
