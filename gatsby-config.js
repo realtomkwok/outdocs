@@ -70,15 +70,15 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: "fonts",
-                path: `${__dirname}/src/fonts`
-            }
-        }
+                path: `${__dirname}/src/fonts`,
+            },
+        },
         {
             resolve: `gatsby-plugin-web-font-loader`,
             options: {
                 custom: {
                     families: ["Nimbus Sans Ext D, Glow Sans SC"],
-                    urls: ["/fonts/fonts.css"],
+                    urls: ["/static/fonts/fonts.css"],
                 },
             },
         },

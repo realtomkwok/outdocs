@@ -2,7 +2,7 @@ import React from "react"
 import tw from "twin.macro"
 
 import Layout from "components/Layout"
-import { Heading1, Body, Subheading1 } from "utils/typography"
+import { Heading1, Subheading1 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 
 export default function FourOFour() {
