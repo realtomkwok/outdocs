@@ -336,8 +336,7 @@ function FilmScheduleCard(props: FSProps) {
         ${tw`flex-1 sm:space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-4 justify-between`}
     `
     const MediaWrapper = styled.div`
-        ${tw`sm:hidden lg:block absolute left-0 w-1/2 px-16 opacity-0 invisible transition duration-150`};
-        height: 30%;
+        ${tw`sm:hidden lg:block absolute left-0 w-1/2 h-64 px-16 opacity-0 invisible transition duration-150`};
         ${Container}:hover & {
             ${tw`opacity-100 visible`}
         }
