@@ -9,6 +9,7 @@ const path = require(`path`)
 module.exports = {
     siteMetadata: {
         title: "OUTDOCS Film Festival",
+        siteUrl: "https://www.outdocs.cn",
     },
     plugins: [
         `gatsby-plugin-typescript`,
@@ -16,6 +17,15 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-transition-link`,
         `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-sitemap`,
+        {
+            resolve: `gatsby-plugin-robots-txt`,
+            options: {
+                host: 'https://www.outdocs.cn',
+                siteMap: 'https://www.outdocs.cn/sitemap.xml',
+                policy: [{ userAgent: '*', allow: '/' }]
+            }
+        }
         {
             resolve: `gatsby-plugin-sass`,
             options: {
@@ -64,6 +74,18 @@ module.exports = {
                 useMozJpeg: process.env.GATSBY_JPEG_ENCODER === `MOZJPEG`,
                 stripMetadata: true,
                 defaultQuality: 100,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-web-font-loader`,
+            options: {
+                custom: {
+                    families: [
+                        "Nimbus Sans Ext D:n4,n7,n9",
+                        "Glow Sans SC:n4,n7,n9",
+                    ],
+                    urls: ["/fonts/fonts.css"],
+                },
             },
         },
     ],

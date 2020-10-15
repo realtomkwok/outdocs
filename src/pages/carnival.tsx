@@ -77,7 +77,7 @@ function Intro() {
 
 function Guests(props: { data: GuestProps[] }) {
     const Container = tw.section`space-y-8`
-    const CardWrapper = tw.div`flex flex-row overflow-x-scroll lg:grid lg:grid-cols-4 gap-10`
+    const CardWrapper = tw.div`flex flex-row overflow-x-scroll md:grid md:grid-cols-2 lg:grid-cols-4 gap-10`
 
     return (
         <Container>

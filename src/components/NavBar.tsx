@@ -30,7 +30,7 @@ function useLockBodyScroll() {
 const MenuToggle = (props: ToggleProps) => {
     // useLockBodyScroll()
     return (
-        <button onClick={props.toggle} css={tw`z-20`}>
+        <button aria-label="菜单 Menu" onClick={props.toggle} css={tw`z-20`}>
             <svg
                 width="23"
                 height="23"

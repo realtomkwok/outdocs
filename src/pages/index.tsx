@@ -12,11 +12,10 @@ import {
     FotCard,
     EventCard,
 } from "components/Cards"
-import { Heading2, Button as BtnText, Heading4 } from "utils/typography"
+import { Heading2, Button as BtnText } from "utils/typography"
 import NavBar from "components/NavBar"
 import Footer from "components/Footer"
 import EmptyState from "components/EmptyState"
-import Link from "utils/Link"
 
 type DataType = {
     data: {

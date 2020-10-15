@@ -29,7 +29,8 @@ function Layout(props: LayoutProps) {
     `
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
     const Content: TwComponent<"div"> = styled.div`
-        ${props.hasPadding && tw`container mx-auto sm:p-4 md:p-8 lg:p-16 h-full`}
+        ${props.hasPadding &&
+        tw`container mx-auto sm:p-4 md:p-8 lg:p-16 h-full`}
     `
 
     return (
@@ -37,7 +38,21 @@ function Layout(props: LayoutProps) {
             <GlobalStyle />
             <Helmet>
                 <meta charSet="utf-8" />
+                <html lang="zh-Hans" />
                 <title>{`${props.title} | OUTDOCS`}</title>
+                meta=
+                {[
+                    {
+                        name: "description",
+                        content:
+                            "OUTDOCS 中国国际户外影像嘉年华旨在用纪录片定格壮美的世界景观致敬人类不断进取的运动与探险精神。",
+                    },
+                    {
+                        name: "keywords",
+                        content:
+                            "中国国际户外影像嘉年华, OUTDOCS, 户外影像嘉年华, outdoor Films, outdoor documentary, 山地电影节, 户外电影节, 户外嘉年华, 纪录片, outdoor carnival, outdoor festival, mountain films",
+                    },
+                ]}
             </Helmet>
             <NavBar isTop={props.isTop} isDark={props.isDark} />
             <Content>{props.children}</Content>
