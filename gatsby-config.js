@@ -70,8 +70,8 @@ module.exports = {
             resolve: `gatsby-plugin-web-font-loader`,
             options: {
                 custom: {
-                    families: ["Nimbus Sans Ext D, Glow Sans SC"],
-                    urls: ["/static/fonts/fonts.css"],
+                    families: ["Glow Sans SC", "Nimbus Sans Ext D"],
+                    urls: ["/fonts/fonts.css"],
                 },
             },
         },

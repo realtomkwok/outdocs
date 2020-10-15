@@ -32,7 +32,7 @@
     font-style: normal;
     font-weight: 400;
     src: local("GlowSansSC-Extended-Book"),
-        url(./GlowSans-400/GlowSansSC-Extended-Book.ttf) format("ttf");
+        url(./GlowSans-400/font.ttf) format("ttf");
 }
 
 @font-face {
@@ -40,7 +40,7 @@
     font-style: normal;
     font-weight: 700;
     src: local("GlowSansSC-Extended-ExtraBold"),
-        url(./GlowSans-700/GlowSansSC-Extended-ExtraBold.ttf) format("ttf");
+        url(./GlowSans-700/font.ttf) format("ttf");
 }
 
 @font-face {
@@ -48,5 +48,5 @@
     font-style: normal;
     font-weight: 900;
     src: local("GlowSansSC-Extended-Heavy"),
-        url(./GlowSans-900/GlowSansSC-Extended-Heavy.ttf) format("ttf");
+        url(./GlowSans-900/font.ttf) format("ttf");
 }
