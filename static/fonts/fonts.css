@@ -4,6 +4,7 @@
     font-family: "Nimbus Sans Ext D";
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: local("NimbusSansExtd-Reg"),
         url(./NimbusSanExtD-Reg/font.woff) format("woff"),
         url(./NimbusSanExtD-Reg/font.woff2) format("woff2");
@@ -13,6 +14,7 @@
     font-family: "Nimbus Sans Ext D";
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: local("NimbusSansExtd-Bol"),
         url(./NimbusSanExtD-Bol/font.woff) format("woff"),
         url(./NimbusSanExtD-Bla/font.woff2) format("woff2");
@@ -22,6 +24,7 @@
     font-family: "Nimbus Sans Ext D";
     font-style: normal;
     font-weight: 900;
+    font-display: swap;
     src: local("NimbusSansExtd-Bla"),
         url(./NimbusSanExtD-Bla/font.woff) format("woff"),
         url(./NimbusSanExtD-Bla/font.woff2) format("woff2");
@@ -31,6 +34,7 @@
     font-family: "Glow Sans SC";
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: local("GlowSansSC-Extended-Book"),
         url(./GlowSans-400/font.woff) format("woff"),
         url(./GlowSans-400/font.woff2) format("woff2");
@@ -40,6 +44,7 @@
     font-family: "Glow Sans SC";
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: local("GlowSansSC-Extended-ExtraBold"),
         url(./GlowSans-700/font.woff) format("woff"),
         url(./GlowSans-700/font.woff2) format("woff2");
@@ -49,6 +54,7 @@
     font-family: "Glow Sans SC";
     font-style: normal;
     font-weight: 900;
+    font-display: swap;
     src: local("GlowSansSC-Extended-Heavy"),
         url(./GlowSans-900/font.woff) format("woff"),
         url(./GlowSans-900/font.woff2) format("woff2");
