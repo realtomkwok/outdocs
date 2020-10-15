@@ -25,7 +25,7 @@ module.exports = {
                 siteMap: 'https://www.outdocs.cn/sitemap.xml',
                 policy: [{ userAgent: '*', allow: '/' }]
             }
-        }
+        },
         {
             resolve: `gatsby-plugin-sass`,
             options: {
