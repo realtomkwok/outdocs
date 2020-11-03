@@ -157,7 +157,7 @@ export default function FilmDetail({ data }: DataProps) {
                             <Award key={i}>
                                 <SVG
                                     src={item.file.url}
-                                    style={tw`h-full fill-white`}
+                                    css={tw`h-full fill-white`}
                                     title={item.title}
                                     description={item.title}
                                 ></SVG>

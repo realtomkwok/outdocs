@@ -1,9 +1,8 @@
 import React, { useRef } from "react"
-import tw, { styled } from "twin.macro"
+import tw, { TwStyle } from "twin.macro"
 import { graphql, useStaticQuery } from "gatsby"
 import useHover from "@react-hook/hover"
 import SVG from "react-inlinesvg"
-import { CSSProperties } from "styled-components"
 
 import Link from "utils/Link"
 
@@ -32,7 +31,7 @@ type SNProps = {
 type IconProps = {
     to: string
     imgSrc: string
-    style: CSSProperties
+    style: TwStyle
     description: string
 }
 
@@ -44,7 +43,7 @@ function Icon(props: IconProps) {
             <Link to={props.to}>
                 <SVG
                     src={props.imgSrc}
-                    style={props.style}
+                    css={props.style}
                     description={props.description}
                 />
             </Link>

@@ -117,7 +117,7 @@ export default function EventDetail({ data }: DataProps) {
                         <BackgroundImage
                             fluid={thisEvent.heroImage.fluid}
                             alt={thisEvent.heroImage.description}
-                            style={tw`h-full`}
+                            css={tw`h-full`}
                         />
                     </HeaderHero>
                 </Header>
