@@ -31,7 +31,7 @@ type SNProps = {
 type IconProps = {
     to: string
     imgSrc: string
-    style: TwStyle
+    styles: TwStyle
     description: string
 }
 
@@ -96,7 +96,7 @@ export default function SocialNetworks(props: { isWhite: boolean }) {
                                 <Icon
                                     to={item.link}
                                     imgSrc={item.platformIcon.file.url}
-                                    style={
+                                    styles={
                                         props.isWhite
                                             ? tw`fill-white hover:opacity-50`
                                             : tw`fill-black hover:opacity-50`
@@ -112,7 +112,7 @@ export default function SocialNetworks(props: { isWhite: boolean }) {
                             key={i}
                             to={item.link}
                             imgSrc={item.platformIcon.file.url}
-                            style={
+                            styles={
                                 props.isWhite
                                     ? tw`fill-white hover:opacity-50`
                                     : tw`fill-black hover:opacity-50`
