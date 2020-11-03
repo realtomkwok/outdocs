@@ -95,7 +95,7 @@ export default function FigureDetail({ data }: DataProps) {
                     <div tw="my-8 relative">
                         <ParallaxBanner
                             layers={[{ image: image.file["url"], amount: 0.2 }]}
-                            style={{
+                            css={{
                                 width: "100%",
                                 height: "80vh",
                             }}
@@ -123,7 +123,7 @@ export default function FigureDetail({ data }: DataProps) {
                         <BackgroundImage
                             fluid={thisFigure.avatar.fluid}
                             alt={thisFigure.avatar.description}
-                            style={tw`h-full`}
+                            css={tw`h-full`}
                         />
                     </HeaderHero>
                 </Header>

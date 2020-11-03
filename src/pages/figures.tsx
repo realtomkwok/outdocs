@@ -51,7 +51,7 @@ function Figure(props: { data: FigureProps[] }) {
                     <BackgroundImage
                         fluid={thisFigure.avatar.fluid}
                         alt={thisFigure.avatar.description}
-                        style={tw`h-full bg-top`}
+                        css={tw`h-full bg-top`}
                     />
                 </Link>
             </Parallax>

@@ -66,9 +66,9 @@ export default function SponsorLogos() {
                 return (
                     <Container>
                         <Body>感谢以下有趣机构支持</Body>
-                        <Link to="/sponsorship">
+                        <Link to="/sponsorship" tw="h-10">
                             <CrossfadeImage
-                                style={tw`h-10`}
+                                css={tw`h-10`}
                                 src={images[imageIndex]}
                                 duration={2000}
                                 timeFunction={"ease-in"}
