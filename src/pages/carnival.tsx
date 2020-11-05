@@ -56,7 +56,7 @@ function Intro() {
         <Container>
             <Heading4>{copy.date}</Heading4>
             <Heading2>{copy.slogan.zhHans}</Heading2>
-            <Body>{copy.body.zhHans}</Body>
+            <Body styles={tw`whitespace-pre-wrap`}>{copy.body.zhHans}</Body>
             <BtnWrapper>
                 {copy.buttons.map(
                     (
