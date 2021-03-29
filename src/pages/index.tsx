@@ -324,9 +324,9 @@ export default function Home({ data }: DataType) {
                 <News data={newsData} />
             </Main>
             <FilmOfToday data={fotData} />
-            <Main>
+            {/* <Main>
                 <Carnival sessions={sessionData} screenings={screeningData} />
-            </Main>
+            </Main> */}
             {/* <AboutUs /> */}
             <Footer />
         </Container>
