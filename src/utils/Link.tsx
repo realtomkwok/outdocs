@@ -2,7 +2,7 @@ import React from "react"
 import { Link as GatsbyLink } from "gatsby"
 import { TwStyle } from "twin.macro"
 import { SerializedStyles } from "@emotion/core"
-;``
+;
 type LinkProps = {
     children: React.ReactNode
     to: string
