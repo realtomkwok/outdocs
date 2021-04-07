@@ -40,7 +40,7 @@ module.exports = {
             options: {
                 spaceId: `dptre6qdgst5`,
                 accessToken: `tKR8cP5Wpy49RIzS7pWmwa-bclLB_kg4PC514BDaNsc`,
-                downloadLocal: true,
+                // downloadLocal: true,
             },
         },
         {
