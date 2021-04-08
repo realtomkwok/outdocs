@@ -1,8 +1,6 @@
 import React from "react"
 import tw, { css, styled, TwComponent } from "twin.macro"
 import { SerializedStyles } from "@emotion/core"
-// import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
-// import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import Link from "utils/Link"
 
 type BtnProps = {

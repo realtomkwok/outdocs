@@ -18,10 +18,15 @@ function Footnote() {
     const tomsWebsite: string = "//realtomkwok.github.io/portfolio"
 
     return (
-        <Tag2>
-            ©2020 OUTDOCS. <br tw="md:hidden" />
-            Site by <a href={tomsWebsite}>Tom Kwok.</a>
-        </Tag2>
+        <>
+            <Tag2>
+                ©2020 OUTDOCS. <br tw="md:hidden" />
+                Site by <a href={tomsWebsite}>Tom Kwok.</a>
+            </Tag2>
+            <Tag2>
+                <a href="http://beian.miit.gov.cn">粤ICP备2021042570号-1</a>
+            </Tag2>
+        </>
     )
 }
 
