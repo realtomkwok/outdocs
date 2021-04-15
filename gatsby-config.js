@@ -18,13 +18,14 @@ module.exports = {
         `gatsby-plugin-transition-link`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
+        `gatsby-plugin-modal-routing`,
         {
             resolve: `gatsby-plugin-robots-txt`,
             options: {
-                host: 'https://www.outdocs.cn',
-                siteMap: 'https://www.outdocs.cn/sitemap.xml',
-                policy: [{ userAgent: '*', allow: '/' }]
-            }
+                host: "https://www.outdocs.cn",
+                siteMap: "https://www.outdocs.cn/sitemap.xml",
+                policy: [{ userAgent: "*", allow: "/" }],
+            },
         },
         {
             resolve: `gatsby-plugin-sass`,

@@ -8,6 +8,8 @@ import Layout from "components/Layout"
 import Header from "components/Header"
 import { Body, Button, Subheading2 } from "utils/typography"
 
+import EmptyState from "components/EmptyState"
+
 type DataProps = {
     data: {
         FAQ: {
@@ -102,10 +104,14 @@ export default function Index({ data }: DataProps) {
     return (
         <Layout hasPadding title="有问必答">
             <Header category="carnival" titleId={2} />
-            <Main>
+            {/* temporally closed */}
+            <div tw="pt-16">
+                <EmptyState />
+            </div>
+            {/* <Main>
                 <Sidebar data={FaqData}></Sidebar>
                 <Content data={FaqData}></Content>
-            </Main>
+            </Main> */}
         </Layout>
     )
 }

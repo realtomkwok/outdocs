@@ -57,7 +57,7 @@ function Intro() {
             <Heading4>{copy.date}</Heading4>
             <Heading2>{copy.slogan.zhHans}</Heading2>
             <Body styles={tw`whitespace-pre-wrap`}>{copy.body.zhHans}</Body>
-            <BtnWrapper>
+            {/* <BtnWrapper>
                 {copy.buttons.map(
                     (
                         item: { zhHans: string; enUS: string; to: string },
@@ -70,7 +70,7 @@ function Intro() {
                         />
                     )
                 )}
-            </BtnWrapper>
+            </BtnWrapper> */}
         </Container>
     )
 }
@@ -139,7 +139,7 @@ export default function Index({ data }: DataProps) {
                 <Main>
                     <Intro />
                 </Main>
-                <Guests data={guestData} />
+                {/* <Guests data={guestData} /> */}
             </Container>
             {/* <FeaturedFilm data={filmData} /> */}
         </Layout>

@@ -8,6 +8,7 @@ import Header from "components/Header"
 import Dropdown from "components/Selects"
 import { EventCard } from "components/Cards"
 import { Heading2 } from "utils/typography"
+import EmptyState from 'components/EmptyState'
 
 type DataProps = {
     data: {
@@ -70,7 +71,11 @@ export default function Index({ data }: DataProps) {
     return (
         <Layout hasPadding title="活动">
             <Header category="carnival" titleId={2} />
-            <Main>
+            {/* temporally closed */}
+            <div tw="pt-16">
+                <EmptyState />
+            </div>
+            {/* <Main>
                 <Filter>
                     <Dropdown
                         allowUndefined
@@ -131,7 +136,7 @@ export default function Index({ data }: DataProps) {
                         </Container>
                     ))}
                 </Content>
-            </Main>
+            </Main> */}
         </Layout>
     )
 }

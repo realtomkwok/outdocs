@@ -8,12 +8,15 @@ import { Body, Heading4, Heading2 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import Link from "utils/Link"
 
-import intro from "content/Competition-Overview-Copy.yaml"
+import copy from "content/Competition-Overview-Copy.yaml"
 
 type DataProps = {
     data: {
         allContentfulMenuLinks: {
             group: SectionProps[]
+        }
+        allContentfulLibraryFile: {
+            nodes: FileProps[]
         }
     }
 }
@@ -27,13 +30,35 @@ type SectionProps = {
     }[]
 }
 
-function Intro() {
-    const Container = tw.div`py-16 lg:w-1/2 space-y-8`
+type FileProps = {
+    fileName: {
+        file: {
+            url: string
+        }
+        description: string
+    }
+}
+
+function Intro(props: { data: FileProps[] }) {
+    const Container: TwComponent<"div"> = tw.div`py-16 lg:w-1/2 space-y-8`
+    const BtnWrapper: TwComponent<"div"> = tw.div`flex flex-row space-x-4`
+
+    console.log(props.data)
 
     return (
         <Container>
-            <Body>{intro.zhHans}</Body>
-            <OutlinedBtn disabled btnText="全球征集已截止"></OutlinedBtn>
+            <Heading4>{copy.date}</Heading4>
+            <Heading2>{copy.headline}</Heading2>
+            <Body>{copy.intro.zhHans}</Body>
+            <BtnWrapper>
+                {props.data.map((item, i) => (
+                    <OutlinedBtn
+                        to={item.fileName.file.url}
+                        btnText={item.fileName.description}
+                        key={i}
+                    />
+                ))}
+            </BtnWrapper>
         </Container>
     )
 }
@@ -63,11 +88,12 @@ function Sections(props: { data: SectionProps[] }) {
 
 export default function Index({ data }: DataProps) {
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
+    const btnData: FileProps[] = data.allContentfulLibraryFile.nodes
 
     return (
         <Layout hasPadding title="全球征集">
             <Header category="competition" titleId={1} />
-            <Intro />
+            <Intro data={btnData} />
             <Sections data={sectionData} />
         </Layout>
     )
@@ -86,6 +112,16 @@ export const query = graphql`
                         name
                         link
                     }
+                }
+            }
+        }
+        allContentfulLibraryFile {
+            nodes {
+                fileName {
+                    file {
+                        url
+                    }
+                    description
                 }
             }
         }

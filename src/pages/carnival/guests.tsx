@@ -6,6 +6,7 @@ import { FluidObject } from "gatsby-image"
 import Layout from "components/Layout"
 import Header from "components/Header"
 import { PersonCard } from "components/Cards"
+import EmptyState from 'components/EmptyState'
 
 type DataProps = {
     data: {
@@ -33,7 +34,10 @@ export default function Index({ data }: DataProps) {
     return (
         <Layout hasPadding title="嘉宾">
             <Header category="carnival" titleId={2} />
-            <Main>
+            <div tw="pt-16">
+                <EmptyState />
+            </div>
+            {/* <Main>
                 <CardWrapper>
                     {guestsData.map((item, i) => (
                         <PersonCard
@@ -46,7 +50,7 @@ export default function Index({ data }: DataProps) {
                         />
                     ))}
                 </CardWrapper>
-            </Main>
+            </Main> */}
         </Layout>
     )
 }
