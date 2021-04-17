@@ -8,6 +8,7 @@ import Header from "components/Header"
 import { FilmScheduleCard } from "components/Cards"
 import { Subheading2 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
+import EmptyState from "components/EmptyState"
 
 type DataProps = {
     data: {
@@ -125,7 +126,11 @@ export default function Index({ data }: DataProps) {
     return (
         <Layout hasPadding title="展映">
             <Header category="carnival" titleId={2} />
-            <ScheduleList data={scheduleData} />
+            {/* temporally closed */}
+            <div tw="pt-16">
+                <EmptyState />
+            </div>
+            {/* <ScheduleList data={scheduleData} /> */}
         </Layout>
     )
 }

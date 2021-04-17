@@ -18,6 +18,7 @@ module.exports = {
         `gatsby-plugin-transition-link`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
+        `gatsby-plugin-modal-routing`,
         {
             resolve: `gatsby-source-strapi`,
             options: {
