@@ -108,15 +108,17 @@ function HeroImage(
         height: 80vh;
         max-height: 800px;
     `
-    const gridAreaSettings: Array<string> = []
-    for (let i: number = 13; i > 9; i--) {
-        gridAreaSettings.push(`1/1/${i}/${i}`)
-    }
+    const gridAreaSet: Array<string> = ["1/1/13/13", "2/2/12/12", "3/4/11/10"]
+
+    // const gridAreaSettings: Array<string> = []
+    // for (let i: number = 13; i > 9; i--) {
+    //     gridAreaSettings.push(`1/1/${i}/${i}`)
+    // }
 
     return (
         <Link to={props.btnLinkedPage}>
             <Grid>
-                {gridAreaSettings.map((item, i) => (
+                {gridAreaSet.map((item, i) => (
                     <BackgroundImage
                         fluid={props.imgSrc}
                         alt={props.imgAlt}
