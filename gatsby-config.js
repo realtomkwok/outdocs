@@ -19,12 +19,27 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
         {
+            resolve: `gatsby-source-strapi`,
+            options: {
+                apiURL: `http://localhost:1337`,
+                queryLimit: 1000, // Default to 100
+                contentTypes: [`film`],
+                //If using single types place them in this array.
+                // singleTypes: [`home-page`, `contact`],
+                // Possibility to login with a strapi user, when content types are not publically available (optional).
+                // loginData: {
+                //     identifier: "",
+                //     password: "",
+                // },
+            },
+        },
+        {
             resolve: `gatsby-plugin-robots-txt`,
             options: {
-                host: 'https://www.outdocs.cn',
-                siteMap: 'https://www.outdocs.cn/sitemap.xml',
-                policy: [{ userAgent: '*', allow: '/' }]
-            }
+                host: "https://www.outdocs.cn",
+                siteMap: "https://www.outdocs.cn/sitemap.xml",
+                policy: [{ userAgent: "*", allow: "/" }],
+            },
         },
         {
             resolve: `gatsby-plugin-sass`,
