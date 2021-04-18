@@ -1,5 +1,5 @@
 import React from "react"
-import tw, { css, styled, TwComponent } from "twin.macro"
+import tw, { css, styled } from "twin.macro"
 import { SerializedStyles } from "@emotion/core"
 import Link from "utils/Link"
 

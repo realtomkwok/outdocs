@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
-import { Body, Heading4, Heading2 } from "utils/typography"
+import { Body, Heading4, Heading2, Heading3 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
 import Link from "utils/Link"
 
@@ -14,9 +14,6 @@ type DataProps = {
     data: {
         allContentfulMenuLinks: {
             group: SectionProps[]
-        }
-        allContentfulLibraryFile: {
-            nodes: FileProps[]
         }
     }
 }
@@ -30,34 +27,29 @@ type SectionProps = {
     }[]
 }
 
-type FileProps = {
-    fileName: {
-        file: {
-            url: string
-        }
-        description: string
-    }
-}
 
-function Intro(props: { data: FileProps[] }) {
+function Intro() {
     const Container: TwComponent<"div"> = tw.div`py-16 lg:w-1/2 space-y-8`
     const BtnWrapper: TwComponent<"div"> = tw.div`flex flex-row space-x-4`
-
-    console.log(props.data)
 
     return (
         <Container>
             <Heading4>{copy.date}</Heading4>
-            <Heading2>{copy.headline}</Heading2>
+            <div>
+                <Heading2>{copy.headline.zhHans}</Heading2>
+                <Heading3 styles={tw`uppercase`}>{copy.headline.enUS}</Heading3>
+            </div>
             <Body>{copy.intro.zhHans}</Body>
+            <Body>{copy.intro.enUS}</Body>
             <BtnWrapper>
-                {props.data.map((item, i) => (
-                    <OutlinedBtn
-                        to={item.fileName.file.url}
-                        btnText={item.fileName.description}
-                        key={i}
-                    />
-                ))}
+                <OutlinedBtn
+                    to={copy.btnTo.zhHans.url}
+                    btnText={copy.btnTo.zhHans.text}
+                />
+                <OutlinedBtn
+                    to={copy.btnTo.enUS.url}
+                    btnText={copy.btnTo.enUS.text}
+                />
             </BtnWrapper>
         </Container>
     )
@@ -88,12 +80,11 @@ function Sections(props: { data: SectionProps[] }) {
 
 export default function Index({ data }: DataProps) {
     const sectionData: SectionProps[] = data.allContentfulMenuLinks.group
-    const btnData: FileProps[] = data.allContentfulLibraryFile.nodes
 
     return (
         <Layout hasPadding title="全球征集">
             <Header category="competition" titleId={1} />
-            <Intro data={btnData} />
+            <Intro />
             <Sections data={sectionData} />
         </Layout>
     )

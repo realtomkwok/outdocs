@@ -1,6 +1,15 @@
 ---
-date: "2021/04/15 - 08/15"
-headline: "全球征集现已启动。"
+date: 2021/04/15 - 08/15
+headline:
+    zhHans: 全球征集现已启动。
+    enUS: We are calling for entries.
 intro:
-    zhHans: 中国国际户外影像嘉年华（OUTDOCS）旨在用纪录片定格与致敬壮美的世界景观和人类不断进取的探险精神，以影像的力量去传播人们以生命的敬畏与热爱，启发人们对生活的创造力。OUTDOCS通过挖掘、表彰兼具艺术价值和人文关怀的优秀作品、鼓励和支持世界各地优秀创作者，打造体育运动、户外文化、旅行人文、自然探险与环保等题材影像的人文价值高地。
-    enUS: The International Outdoor Documentary Film Festival of China（OUTDOCS）adhered to its goal of recording and paying respect to magnificent nature landscape and indomitable spirit of human beings. With films,  we promotes a positive lifestyle for the public and inspires the creativity of life. By exploring, encouraging  excellent outdoor films and its artistic and cultural contribution, OUTDOCS is striving to  create a humanistic value highland for documentary films on outdoor adventures, sports, travel and humanities, as well as environmental protection.
+    zhHans: 中国国际户外影像嘉年华（OUTDOCS）旨在用纪录片定格与致敬壮美的世界景观和人类不断进取的运动与探险精神。OUTDOCS以影像为载体，为大众推广积极的生活方式，启发生命创造力，打造体育运动、户外文化、旅行探险、自然生物与环保等题材影像的人文价值高地，实现户外文化价值共创，全民共享体育盛宴。
+    enUS: The International Outdoor Documentary Film Festival of China (OUTDOCS) adhered to its goal of recording and paying respect to magnificent nature landscape and indomitable spirit of human beings. To award excellent outdoor films and its artistic and cultural contribution, create a humanistic value highland for documentary films on outdoor adventures, sports, travel and humanities, environmental protection, as well as wildlife conservation.
+btnTo:
+    zhHans:
+        text: 立即报名
+        url: /competition/submission/zhHans
+    enUS:
+        text: Sign Up Today
+        url: /competition/submission/enUS
