@@ -1,6 +1,7 @@
 import React from "react"
 import tw, { styled, TwComponent, css } from "twin.macro"
 import Img, { FixedObject, FluidObject } from "gatsby-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import BackgroundImage from "gatsby-background-image"
 import { SerializedStyles } from "@emotion/core"
 
@@ -61,13 +62,13 @@ type EventProps = {
 type FilmProps = {
     // category: string
     // year: string
-    imgSrc: FluidObject
+    imgSrc: IGatsbyImageData
     imgAlt: string
     filmTitle: string
     director: {
         name: string
     }[]
-    filmInfo: string[]
+    filmInfo: string
     detailPage: string
 }
 
@@ -84,13 +85,13 @@ type PersonProps = {
 }
 
 type FSProps = {
-    filmImgSrc: FluidObject
+    filmImgSrc: IGatsbyImageData
     filmImgAlt: string
     filmTitle: string
     filmDirector: {
         name: string
     }[]
-    filmInfo: string[]
+    filmInfo: string
     filmDeatail?: string
     dnt?: Date
     location?: string
@@ -274,14 +275,15 @@ function FilmCard(props: FilmProps) {
     return (
         <Link to={`..${props.detailPage}`}>
             <Container>
-                <BackgroundImage
-                    fluid={props.imgSrc}
+                <GatsbyImage
+                    image={props.imgSrc}
                     tw="h-64 bg-center bg-cover"
+                    alt={props.filmTitle}
                 />
                 <InfoWrapper>
                     <Heading4>{props.filmTitle}</Heading4>
                     <Subheading1>{director}</Subheading1>
-                    <TagText>{props.filmInfo.slice(0, 3).join(" | ")}</TagText>
+                    <TagText>{props.filmInfo}</TagText>
                 </InfoWrapper>
             </Container>
         </Link>
@@ -360,9 +362,9 @@ function FilmScheduleCard(props: FSProps) {
     return (
         <Container>
             <MediaWrapper>
-                <BackgroundImage
-                    fluid={props.filmImgSrc}
-                    alt={props.filmImgAlt}
+                <GatsbyImage
+                    image={props.filmImgSrc}
+                    alt={props.filmTitle}
                     css={[
                         tw`bg-center bg-cover`,
                         css`
@@ -377,7 +379,7 @@ function FilmScheduleCard(props: FSProps) {
                         <div tw="space-y-2">
                             <Heading4>{props.filmTitle}</Heading4>
                             <Subheading1>{director}</Subheading1>
-                            <TagText>{props.filmInfo.join(" | ")}</TagText>
+                            <TagText>{props.filmInfo}</TagText>
                         </div>
                     </Link>
                 </FilmInfo>
