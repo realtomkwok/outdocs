@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import tw, { styled, TwComponent } from "twin.macro"
 import { graphql } from "gatsby"
-import { FluidObject } from "gatsby-image"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
@@ -9,36 +8,32 @@ import { FilmCard, FilmScheduleCard } from "components/Cards"
 import Dropdown from "components/Selects"
 import EmptyState from "components/EmptyState"
 import { Heading3 } from "utils/typography"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 type DataProps = {
     data: {
         Finalists: {
-            group: {
-                nodes: FilmProps[]
-            }[]
+            nodes: FilmProps[]
         }
         SemiFinalists: {
-            group: {
-                nodes: FilmProps[]
-            }
+            nodes: FilmProps[]
         }
     }
 }
 
 type FilmProps = {
-    contentfulid: number
+    filmId: number
     category?: string
     yearOfCompetition: string
-    filmHeroImage: {
-        title: string
-        image: {
-            fluid: FluidObject
+    heroImage: {
+        childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
         }
     }
-    filmTitle: string
-    filmInfo: string[]
-    detailPage?: string
-    director: {
+    title: string
+    info: string
+    detailPageUrl?: string
+    directors: {
         name: string
     }[]
 }
@@ -55,13 +50,14 @@ export default function Index({ data }: DataProps) {
         ${tw`space-y-8 py-4`};
     `
 
-    const finalists: FilmProps[] = data.Finalists.group[1].nodes //0: en-US 1: zh-Hans
-    const semiFinalists: FilmProps[] = data.SemiFinalists.group[1].nodes
+    const finalists: FilmProps[] = data.Finalists.nodes
+    const semiFinalists: FilmProps[] = data.SemiFinalists.nodes
 
     // 📖 Utilizing ES6 'Set' object to get distinct values from an array: https://codeburst.io/javascript-array-distinct-5edc93501dc4
     const yearsOptions: string[] = [
         ...new Set(semiFinalists.map(x => x.yearOfCompetition)),
     ]
+    console.log(yearsOptions)
     const defaultYear: string = yearsOptions[1] // set default value of the 'Year' dropdown filter.
     const [year, setYear] = useState(defaultYear)
     function handleYearChange(newValue: string) {
@@ -121,12 +117,15 @@ export default function Index({ data }: DataProps) {
                         <CardContainer>
                             {filteredfinalists.map((item, i) => (
                                 <FilmCard
-                                    imgSrc={item.filmHeroImage.image.fluid}
-                                    imgAlt={item.filmHeroImage.title}
-                                    filmTitle={item.filmTitle}
-                                    filmInfo={item.filmInfo}
-                                    detailPage={item.detailPage}
-                                    director={item.director}
+                                    imgSrc={
+                                        item.heroImage.childImageSharp
+                                            .gatsbyImageData
+                                    }
+                                    imgAlt={item.title}
+                                    filmTitle={item.title}
+                                    filmInfo={item.info}
+                                    detailPage={item.detailPageUrl}
+                                    director={item.directors}
                                     key={i}
                                 />
                             ))}
@@ -142,12 +141,15 @@ export default function Index({ data }: DataProps) {
                             {filteredSemiFinalists.map((item, i) => (
                                 <FilmScheduleCard
                                     key={i}
-                                    filmImgSrc={item.filmHeroImage.image.fluid}
-                                    filmImgAlt={item.filmHeroImage.title}
-                                    filmTitle={item.filmTitle}
-                                    filmInfo={item.filmInfo}
+                                    filmImgSrc={
+                                        item.heroImage.childImageSharp
+                                            .gatsbyImageData
+                                    }
+                                    filmImgAlt={item.title}
+                                    filmTitle={item.title}
+                                    filmInfo={item.info}
                                     filmDeatail={null}
-                                    filmDirector={item.director}
+                                    filmDirector={item.directors}
                                 />
                             ))}
                         </ItemWrapper>
@@ -160,54 +162,47 @@ export default function Index({ data }: DataProps) {
 
 export const query = graphql`
     {
-        Finalists: allContentfulLibraryFilm(
-            sort: { order: ASC, fields: contentfulid }
-            filter: { category: { nin: ["复评入围", "Semi-Finalist"] } }
+        Finalists: allStrapiFilm(
+            sort: { order: ASC, fields: filmId }
+            filter: { category: { ne: "复评入围" } }
         ) {
-            group(field: node_locale) {
-                nodes {
-                    contentfulid
-                    category
-                    yearOfCompetition
-                    filmHeroImage {
-                        image {
-                            title
-                            fluid {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                        }
-                    }
-                    filmTitle
-                    filmInfo
-                    detailPage
-                    director {
-                        name
+            nodes {
+                filmId
+                category
+                yearOfCompetition
+                heroImage {
+                    childImageSharp {
+                        gatsbyImageData(formats: WEBP)
                     }
                 }
+                title
+                title_eng
+                detailPageUrl
+                directors {
+                    name
+                }
+                info
             }
         }
-        SemiFinalists: allContentfulLibraryFilm(
-            sort: { order: ASC, fields: contentfulid }
-            filter: { category: { in: ["复评入围", "Semi-Finalist"] } }
+        SemiFinalists: allStrapiFilm(
+            sort: { order: ASC, fields: filmId }
+            filter: { category: { in: "复评入围" } }
         ) {
-            group(field: node_locale) {
-                nodes {
-                    contentfulid
-                    yearOfCompetition
-                    filmHeroImage {
-                        image {
-                            title
-                            fluid {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                        }
-                    }
-                    filmTitle
-                    filmInfo
-                    director {
-                        name
+            nodes {
+                filmId
+                yearOfCompetition
+                heroImage {
+                    childImageSharp {
+                        gatsbyImageData(formats: WEBP)
                     }
                 }
+                title
+                title_eng
+                detailPageUrl
+                directors {
+                    name
+                }
+                info
             }
         }
     }

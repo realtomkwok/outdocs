@@ -12,9 +12,11 @@ module.exports = {
         siteUrl: "https://www.outdocs.cn",
     },
     plugins: [
+        `gatsby-plugin-image`,
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         `gatsby-plugin-typescript`,
         `gatsby-plugin-emotion`,
-        `gatsby-transformer-sharp`,
         `gatsby-plugin-transition-link`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,
@@ -22,11 +24,11 @@ module.exports = {
         {
             resolve: `gatsby-source-strapi`,
             options: {
-                apiURL: `http://localhost:1337`,
+                apiURL: `https://outdocs-db.21cloudbox.com`,
                 queryLimit: 1000, // Default to 100
-                contentTypes: [`film`],
+                contentTypes: [`film`, `director`, `screening`],
                 //If using single types place them in this array.
-                // singleTypes: [`home-page`, `contact`],
+                // singleTypes: [`newsTag`],
                 // Possibility to login with a strapi user, when content types are not publically available (optional).
                 // loginData: {
                 //     identifier: "",
