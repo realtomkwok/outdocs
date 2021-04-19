@@ -1,6 +1,6 @@
 import React from "react"
 import tw, { styled, TwComponent, css } from "twin.macro"
-import Img, { FixedObject, FluidObject } from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import BackgroundImage from "gatsby-background-image"
 import { SerializedStyles } from "@emotion/core"
@@ -28,7 +28,7 @@ type NewsProps = {
 }
 
 type IndexHeroProps = {
-    imgSrc: FluidObject
+    imgSrc: IGatsbyImageData
     imgAlt: string
     tag: string
     headline: string
@@ -75,8 +75,7 @@ type FilmProps = {
 type PersonProps = {
     scrollable?: boolean
     size: "large" | "small"
-    imgFluid?: FluidObject
-    imgFixed?: FixedObject
+    imgSrc: IGatsbyImageData
     imgAlt: string
     name: string
     titles?: string
@@ -120,8 +119,8 @@ function HeroImage(
         <Link to={props.btnLinkedPage}>
             <Grid>
                 {gridAreaSet.map((item, i) => (
-                    <BackgroundImage
-                        fluid={props.imgSrc}
+                    <GatsbyImage
+                        image={props.imgSrc}
                         alt={props.imgAlt}
                         style={{ gridArea: `${item}`, height: "100%" }}
                         key={i}
@@ -316,9 +315,8 @@ function PersonCard(props: PersonProps) {
     return (
         <Link to={props.detailPage}>
             <Container>
-                <BackgroundImage
-                    fixed={props.imgFixed}
-                    fluid={props.imgFluid}
+                <GatsbyImage
+                    image={props.imgSrc}
                     alt={props.imgAlt}
                     css={imgStyles}
                 />

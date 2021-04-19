@@ -2,10 +2,16 @@ import React from "react"
 import tw from "twin.macro"
 import { graphql } from "gatsby"
 import SVG from "react-inlinesvg"
-import Img, { FluidObject } from "gatsby-image"
+import { IGatsbyImageData, StaticImage } from "gatsby-plugin-image"
 
 import Layout from "components/Layout"
-import { Heading2, Heading4, Subheading2, Body } from "utils/typography"
+import {
+    Heading2,
+    Heading4,
+    Subheading2,
+    Body,
+    Subheading1,
+} from "utils/typography"
 import { FilmCard, HeroImage, PersonCard } from "components/Cards"
 import Tag from "components/Tags"
 import { OutlinedBtn } from "components/Buttons"
@@ -13,59 +19,57 @@ import { Parallax } from "react-scroll-parallax"
 
 type DataProps = {
     data: {
-        contentfulLibraryFilm: FilmProps
-        allContentfulLibraryFilm: {
-            group: {
-                nodes: Pick<
-                    FilmProps,
-                    | "filmTitle"
-                    | "filmInfo"
-                    | "filmHeroImage"
-                    | "detailPage"
-                    | "director"
-                >[]
-            }[]
+        strapiFilm: FilmProps
+        allStrapiFilm: {
+            nodes: Pick<
+                FilmProps,
+                "title" | "info" | "detailPageUrl" | "heroImage" | "directors"
+            >[]
         }
-    }
-}
-
-type ImgTypes = {
-    title: string
-    image: {
-        fluid: FluidObject
     }
 }
 
 type FilmProps = {
-    detailPage: string
-    filmTitle: string
-    filmAward: {
-        title: string
-        file: {
-            url: string
-        }
+    filmId: string
+    detailPageUrl: string
+    title: string
+    title_eng: string
+    award: {
+        url: string
+        caption: string
     }[]
-    filmHeroImage: ImgTypes
-    screening: ScreeningProps
-    filmInfo: string[]
-    filmSynopsis: {
-        filmSynopsis: string
+    heroImage: {
+        childImageSharp: ImgProps
     }
-    director: {
-        name: string
-        info?: {
-            info: string
-        }
-        photo?: ImgTypes
+    screnning?: ScreeningProps
+    info: string
+    synopsis: string
+    directors: DirectorsProps[]
+    filmStills: {
+        url: string
+        width: number
+        height: number
     }[]
-    filmPhotos: ImgTypes[]
+}
+
+type ImgProps = {
+    gatsbyImageData: IGatsbyImageData
 }
 
 type ScreeningProps = {
-    dateAndTime: Date
-    location: string
-    onlineUrl: string
-    ticketUrl: string
+    category: string
+    date: Date
+    screeningUnit: string
+    locationOffline: string
+}
+
+type DirectorsProps = {
+    name: string
+    name_eng: string
+    bio: string
+    avatar: {
+        childImageSharp: ImgProps
+    }
 }
 
 function Screening(props: { data: ScreeningProps | null }) {
@@ -78,10 +82,11 @@ function Screening(props: { data: ScreeningProps | null }) {
                     展映信息
                 </Tag>
                 <div>
-                    <Subheading2>{props.data.dateAndTime}</Subheading2>
-                    <Subheading2>{props.data.location}</Subheading2>
+                    <Subheading1>{props.data.screeningUnit}</Subheading1>
+                    <Subheading2>{props.data.date}</Subheading2>
+                    <Subheading2>{props.data.locationOffline}</Subheading2>
                 </div>
-                {props.data.ticketUrl && (
+                {/* {props.data.ticketUrl && (
                     <OutlinedBtn
                         to={props.data.ticketUrl}
                         btnText="线下购票"
@@ -94,7 +99,7 @@ function Screening(props: { data: ScreeningProps | null }) {
                         btnText="在线观影"
                         isWhite
                     />
-                )}
+                )} */}
             </Container>
         )
     } else {
@@ -129,14 +134,9 @@ export default function FilmDetail({ data }: DataProps) {
     const PhotoSM = tw.div`sm:block md:hidden w-screen`
     const OthersList = tw.div`container mx-auto sm:my-16 sm:px-8 lg:p-16 grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-black`
 
-    const thisFilm: FilmProps = data.contentfulLibraryFilm
-    const engTitle: string[] = data.allContentfulLibraryFilm.group[0].nodes
-        .filter(el => el.detailPage === thisFilm.detailPage)
-        .map(obj => obj.filmTitle)
+    const thisFilm: FilmProps = data.strapiFilm
 
-    const allOtherFilms = data.allContentfulLibraryFilm.group[1].nodes.filter(
-        el => el.detailPage !== thisFilm.detailPage
-    )
+    const allOtherFilms = data.allStrapiFilm.nodes
 
     // 📖 ❓ A solution by usign Fisher-Yates shuffle algorithm: https://segmentfault.com/q/1010000006819233/a-1020000006822187 | https://segmentfault.com/q/1010000007449441
     const selectedFilms = allOtherFilms
@@ -149,57 +149,61 @@ export default function FilmDetail({ data }: DataProps) {
         .slice(0, 3)
 
     return (
-        <Layout title={thisFilm.filmTitle} isDark>
+        <Layout title={thisFilm.title} isDark>
             <Header>
                 <AwardsWrapper>
-                    {thisFilm.filmAward &&
-                        thisFilm.filmAward.map((item, i) => (
+                    {thisFilm.award &&
+                        thisFilm.award.map((item, i) => (
                             <Award key={i}>
                                 <SVG
-                                    src={item.file.url}
+                                    src={item.url}
                                     css={tw`h-full fill-white`}
-                                    title={item.title}
-                                    description={item.title}
+                                    description={item.caption}
                                 ></SVG>
                             </Award>
                         ))}
                 </AwardsWrapper>
                 <TitleXL>
-                    <Heading2>{thisFilm.filmTitle}</Heading2>
-                    <Heading2>{engTitle}</Heading2>
+                    <Heading2>{thisFilm.title}</Heading2>
+                    <Heading2>{thisFilm.title_eng}</Heading2>
                 </TitleXL>
                 <TitleSM>
                     <Heading4 styles={tw`font-black`}>
-                        {thisFilm.filmTitle}
+                        {thisFilm.title}
                     </Heading4>
-                    <Heading4 styles={tw`font-black`}>{engTitle}</Heading4>
+                    <Heading4 styles={tw`font-black`}>
+                        {thisFilm.title_eng}
+                    </Heading4>
                 </TitleSM>
             </Header>
             <HeroContainer>
                 <HeroImage
-                    imgSrc={thisFilm.filmHeroImage.image.fluid}
-                    imgAlt={thisFilm.filmHeroImage.title}
+                    imgSrc={thisFilm.heroImage.childImageSharp.gatsbyImageData}
+                    imgAlt={thisFilm.title}
                 />
             </HeroContainer>
             <Parallax y={[0, -30]}>
                 <Main>
-                    <Screening data={thisFilm.screening} />
+                    <Screening data={thisFilm.screnning} />
                     <Content>
                         <InfoSection tagText="影片资讯">
-                            <Body>{thisFilm.filmInfo.join(" | ")}</Body>
+                            <Body>{thisFilm.info}</Body>
                         </InfoSection>
                         <InfoSection tagText="简介">
-                            <Body>{thisFilm.filmSynopsis.filmSynopsis}</Body>
+                            <Body>{thisFilm.synopsis}</Body>
                         </InfoSection>
                         <InfoSection tagText="导演">
                             <Directors>
-                                {thisFilm.director.map((item, i) => (
+                                {thisFilm.directors.map((item, i) => (
                                     <PersonCard
                                         size="small"
-                                        imgFluid={item.photo.image.fluid}
-                                        imgAlt={item.photo.title}
+                                        imgSrc={
+                                            item.avatar.childImageSharp
+                                                .gatsbyImageData
+                                        }
+                                        imgAlt={item.name}
                                         name={item.name}
-                                        description={item.info.info}
+                                        description={item.bio}
                                         key={i}
                                     />
                                 ))}
@@ -209,28 +213,33 @@ export default function FilmDetail({ data }: DataProps) {
                 </Main>
             </Parallax>
             <PhotosXL>
-                {thisFilm.filmPhotos.map((item, i) => (
-                    <Parallax
-                        y={[-30, 20]}
-                        styleOuter={
-                            item.image.fluid.aspectRatio >= 1
-                                ? { margin: "10% auto 10%", width: "65%" }
-                                : { margin: "10% 40% 10%", width: "45%" }
-                        }
-                        key={i}
-                    >
-                        <Img fluid={item.image.fluid} alt={item.title} />
-                    </Parallax>
-                ))}
+                {thisFilm.filmStills.map((item, i) => {
+                    const aspectRatio = item.width / item.height
+                    return (
+                        <Parallax
+                            y={[-30, 20]}
+                            styleOuter={
+                                aspectRatio >= 1
+                                    ? {
+                                          margin: "10% auto 10%",
+                                          width: "65%",
+                                      }
+                                    : {
+                                          margin: "10% 40% 10%",
+                                          width: "45%",
+                                      }
+                            }
+                            key={i}
+                        >
+                            <StaticImage src={item.url} alt="" />
+                        </Parallax>
+                    )
+                })}
             </PhotosXL>
             <PhotoSM>
                 <Parallax y={[-20, -5]}>
-                    {thisFilm.filmPhotos.map((item, i) => (
-                        <Img
-                            fluid={item.image.fluid}
-                            alt={item.title}
-                            key={i}
-                        />
+                    {thisFilm.filmStills.map((item, i) => (
+                        <StaticImage src={item.url} alt="" key={i} />
                     ))}
                 </Parallax>
             </PhotoSM>
@@ -238,12 +247,12 @@ export default function FilmDetail({ data }: DataProps) {
                 <OthersList>
                     {selectedFilms.map((item, i) => (
                         <FilmCard
-                            imgSrc={item.filmHeroImage.image.fluid}
-                            imgAlt={item.filmHeroImage.title}
-                            filmTitle={item.filmTitle}
-                            filmInfo={item.filmInfo}
-                            detailPage={item.detailPage}
-                            director={item.director}
+                            imgSrc={item.heroImage.childImageSharp.gatsbyImageData}
+                            imgAlt={item.title}
+                            filmTitle={item.title}
+                            filmInfo={item.info}
+                            detailPage={item.detailPageUrl}
+                            director={item.directors}
                             key={i}
                         />
                     ))}
@@ -255,79 +264,56 @@ export default function FilmDetail({ data }: DataProps) {
 
 export const query = graphql`
     query($slug: String!) {
-        contentfulLibraryFilm(
-            node_locale: { eq: "zh-Hans" }
-            detailPage: { eq: $slug }
-        ) {
-            detailPage
-            filmTitle
-            filmAward {
-                title
-                file {
-                    url
-                }
+        strapiFilm(detailPageUrl: { eq: $slug }) {
+            filmId
+            detailPageUrl
+            title
+            title_eng
+            award {
+                url
+                caption
             }
-            filmHeroImage {
-                image {
-                    fluid(quality: 100) {
-                        ...GatsbyContentfulFluid_withWebp
-                    }
-                    description
+            heroImage {
+                childImageSharp {
+                    gatsbyImageData(formats: WEBP)
                 }
             }
             screening {
-                dateAndTime(formatString: "MM/DD ddd HH:mm", locale: "zh-cn")
                 category
-                location
-                onlineLocation
-                ticketsUrl
-                onlineUrl
+                date(formatString: "MM/DD ddd HH:mm", locale: "zh-cn")
+                screeningUnit
+                locationOffline
             }
-            filmInfo
-            filmSynopsis {
-                filmSynopsis
-            }
-            director {
+            info
+            synopsis
+            directors {
                 name
-                info {
-                    info
-                }
-                photo {
-                    title
-                    image {
-                        fluid(quality: 100) {
-                            ...GatsbyContentfulFluid_withWebp
-                        }
+                name_eng
+                bio
+                avatar {
+                    childImageSharp {
+                        gatsbyImageData(formats: WEBP)
                     }
                 }
             }
-            filmPhotos {
-                title
-                image {
-                    fluid(quality: 100) {
-                        aspectRatio
-                        ...GatsbyContentfulFluid_withWebp
-                    }
-                }
+            filmStills {
+                url
+                width
+                height
             }
         }
-        allContentfulLibraryFilm(filter: { detailPage: { ne: null } }) {
-            group(field: node_locale) {
-                nodes {
-                    filmTitle
-                    filmInfo
-                    detailPage
-                    filmHeroImage {
-                        image {
-                            fluid {
-                                ...GatsbyContentfulFluid_withWebp
-                            }
-                            description
-                        }
+        allStrapiFilm(filter: { detailPageUrl: { ne: $slug } }) {
+            nodes {
+                title
+                info
+                detailPageUrl
+                heroImage {
+                    childImageSharp {
+                        gatsbyImageData(formats: WEBP)
                     }
-                    director {
-                        name
-                    }
+                }
+                directors {
+                    name
                 }
             }
         }

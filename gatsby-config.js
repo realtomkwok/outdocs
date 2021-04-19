@@ -28,7 +28,7 @@ module.exports = {
                 queryLimit: 1000, // Default to 100
                 contentTypes: [`film`, `director`, `screening`],
                 //If using single types place them in this array.
-                // singleTypes: [`newsTag`],
+                singleTypes: [`hero-index-page`],
                 // Possibility to login with a strapi user, when content types are not publically available (optional).
                 // loginData: {
                 //     identifier: "",
