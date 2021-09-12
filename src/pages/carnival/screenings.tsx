@@ -1,14 +1,13 @@
 import React from "react"
 import tw, { styled } from "twin.macro"
 import { graphql } from "gatsby"
-import { FluidObject } from "gatsby-image"
 
 import Layout from "components/Layout"
 import Header from "components/Header"
 import { FilmScheduleCard } from "components/Cards"
 import { Subheading2 } from "utils/typography"
 import { OutlinedBtn } from "components/Buttons"
-import EmptyState from "components/EmptyState"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 type DataProps = {
     data: {
@@ -18,29 +17,18 @@ type DataProps = {
 
 type SchedulesProps = {
     group: {
+        fieldValue: Date
         nodes: {
-            contentfulid: number
+            screeningUnit: string
+            locationOffline: string
             date: Date
-            dateAndTime: Date
-            category: string[]
-            onlineLocation: string
-            location: string
-            onlineUrl: string
-            ticketsUrl: string
-            filmInfo: {
-                filmTitle: string
-                filmInfo: string[]
-                detailPage: string
-                filmHeroImage: {
-                    title: string
-                    image: {
-                        fluid: FluidObject
+            films: {
+                heroImage: {
+                    childImageSharp: {
+                        gatsbyImageData: IGatsbyImageData
                     }
                 }
-                director: {
-                    name: string
-                }[]
-            }
+            }[]
         }[]
     }[]
 }
@@ -62,10 +50,12 @@ function ScheduleList(props: { data: SchedulesProps }) {
             {props.data.group.map((list, i) => (
                 <List key={i}>
                     <ListHeader>
-                        <Subheading2>{list.nodes[0].date}</Subheading2>
+                        <Subheading2>
+                            {list.fieldValue.toLocaleDateString("zh-cn")}
+                        </Subheading2>
                         <Divider />
                     </ListHeader>
-                    <ItemWrapper>
+                    {/* <ItemWrapper>
                         {list.nodes.map((item, i) => {
                             let location: string
                             if (item.category.length > 1) {
@@ -113,7 +103,7 @@ function ScheduleList(props: { data: SchedulesProps }) {
                                 </>
                             )
                         })}
-                    </ItemWrapper>
+                    </ItemWrapper> */}
                 </List>
             ))}
         </Container>
@@ -126,46 +116,26 @@ export default function Index({ data }: DataProps) {
     return (
         <Layout hasPadding title="展映">
             <Header category="carnival" titleId={2} />
-            {/* temporally closed */}
-            <div tw="pt-16">
-                <EmptyState />
-            </div>
-            {/* <ScheduleList data={scheduleData} /> */}
+            1
+            <ScheduleList data={scheduleData} />
         </Layout>
     )
 }
 
 export const query = graphql`
     {
-        Schedules: allContentfulEventsScreening(
-            sort: { fields: dateAndTime, order: ASC }
-            filter: { node_locale: { eq: "zh-Hans" } }
-        ) {
+        Schedules: allStrapiScreening(sort: { fields: date }) {
             group(field: date) {
+                fieldValue
                 nodes {
-                    contentfulid
+                    screeningUnit
+                    locationOffline
                     date(formatString: "MM/DD ddd", locale: "zh-cn")
-                    dateAndTime(formatString: "HH:mm", locale: "zh-cn")
-                    category
-                    onlineLocation
-                    location
-                    onlineUrl
-                    ticketsUrl
-                    filmInfo {
-                        filmTitle
-
-                        filmInfo
-                        detailPage
-                        filmHeroImage {
-                            image {
-                                fluid(quality: 100) {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                                title
+                    films {
+                        heroImage {
+                            childImageSharp {
+                                gatsbyImageData
                             }
-                        }
-                        director {
-                            name
                         }
                     }
                 }

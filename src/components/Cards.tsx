@@ -33,13 +33,13 @@ type IndexHeroProps = {
     tag: string
     headline: string
     btnText: string
-    btnLinkedPage?: string
+    btnUrl?: string
 }
 
 type FotProps = {
-    chnTitle: string
-    engTitle: string
-    detailPage: string
+    titleChn: string
+    titleEng: string
+    detailPageUrl: string
     director: {
         name: string
     }[]
@@ -97,7 +97,7 @@ type FSProps = {
 }
 
 function HeroImage(
-    props: Pick<IndexHeroProps, "imgSrc" | "imgAlt" | "btnLinkedPage">
+    props: Pick<IndexHeroProps, "imgSrc" | "imgAlt" | "btnUrl">
 ) {
     const Grid: TwComponent<"div"> = styled.div`
         display: grid;
@@ -116,7 +116,7 @@ function HeroImage(
     // }
 
     return (
-        <Link to={props.btnLinkedPage}>
+        <Link to={props.btnUrl}>
             <Grid>
                 {gridAreaSet.map((item, i) => (
                     <GatsbyImage
@@ -141,7 +141,7 @@ function IndexHeroCard(props: Omit<IndexHeroProps, "imgSrc" | "imgAlt">) {
                 <Tag tagStyle="primary">{props.tag}</Tag>
                 <Heading4>{props.headline}</Heading4>
                 <TextBtn
-                    to={props.btnLinkedPage}
+                    to={props.btnUrl}
                     activeClassName={undefined}
                     partiallyActive={undefined}
                     btnText={props.btnText}
@@ -161,7 +161,7 @@ function FotCard(props: FotProps) {
     if (props.director.length > 1) {
         let directors: string[] = []
         props.director.map(item => directors.push(item.name))
-        director = directors.join("/")
+        director = directors.join(" / ")
     } else {
         director = props.director[0].name
     }
@@ -169,12 +169,12 @@ function FotCard(props: FotProps) {
     return (
         <CardContainer>
             <Card>
-                <Link to={props.detailPage}>
+                <Link to={props.detailPageUrl}>
                     <div tw="space-y-4">
                         <Tag tagStyle="primary">Film Of Today</Tag>
                         <Titles>
-                            <Heading4>{props.chnTitle}</Heading4>
-                            <Heading4>{props.engTitle}</Heading4>
+                            <Heading4>{props.titleChn}</Heading4>
+                            <Heading4>{props.titleEng}</Heading4>
                         </Titles>
                         <Subheading1>{director}</Subheading1>
                     </div>

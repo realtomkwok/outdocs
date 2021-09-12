@@ -57,7 +57,6 @@ export default function Index({ data }: DataProps) {
     const yearsOptions: string[] = [
         ...new Set(semiFinalists.map(x => x.yearOfCompetition)),
     ]
-    console.log(yearsOptions)
     const defaultYear: string = yearsOptions[1] // set default value of the 'Year' dropdown filter.
     const [year, setYear] = useState(defaultYear)
     function handleYearChange(newValue: string) {

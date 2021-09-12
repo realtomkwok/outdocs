@@ -26,9 +26,9 @@ module.exports = {
             options: {
                 apiURL: `https://outdocs-db.21cloudbox.com`,
                 queryLimit: 1000, // Default to 100
-                contentTypes: [`film`, `director`, `screening`],
+                contentTypes: [`film`, `director`, `screening`, `jury`],
                 //If using single types place them in this array.
-                singleTypes: [`hero-index-page`],
+                singleTypes: [`hero-index-page`, `submission-info`],
                 // Possibility to login with a strapi user, when content types are not publically available (optional).
                 // loginData: {
                 //     identifier: "",

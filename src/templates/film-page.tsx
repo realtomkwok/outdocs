@@ -19,8 +19,8 @@ import { Parallax } from "react-scroll-parallax"
 
 type DataProps = {
     data: {
-        strapiFilm: FilmProps
-        allStrapiFilm: {
+        thisFilm: FilmProps
+        allOtherFilms: {
             nodes: Pick<
                 FilmProps,
                 "title" | "info" | "detailPageUrl" | "heroImage" | "directors"
@@ -134,9 +134,9 @@ export default function FilmDetail({ data }: DataProps) {
     const PhotoSM = tw.div`sm:block md:hidden w-screen`
     const OthersList = tw.div`container mx-auto sm:my-16 sm:px-8 lg:p-16 grid md:grid-cols-2 lg:grid-cols-3 gap-10 bg-black`
 
-    const thisFilm: FilmProps = data.strapiFilm
+    const thisFilm: FilmProps = data.thisFilm
 
-    const allOtherFilms = data.allStrapiFilm.nodes
+    const allOtherFilms = data.allOtherFilms.nodes
 
     // 📖 ❓ A solution by usign Fisher-Yates shuffle algorithm: https://segmentfault.com/q/1010000006819233/a-1020000006822187 | https://segmentfault.com/q/1010000007449441
     const selectedFilms = allOtherFilms
@@ -147,6 +147,8 @@ export default function FilmDetail({ data }: DataProps) {
             return v
         })
         .slice(0, 3)
+
+    console.log(allOtherFilms)
 
     return (
         <Layout title={thisFilm.title} isDark>
@@ -212,7 +214,8 @@ export default function FilmDetail({ data }: DataProps) {
                     </Content>
                 </Main>
             </Parallax>
-            <PhotosXL>
+            {/* Feature disabled bc multiple images are not supported by `gatsby-source-strapi` at this moment. */}
+            {/* <PhotosXL>
                 {thisFilm.filmStills.map((item, i) => {
                     const aspectRatio = item.width / item.height
                     return (
@@ -242,12 +245,14 @@ export default function FilmDetail({ data }: DataProps) {
                         <StaticImage src={item.url} alt="" key={i} />
                     ))}
                 </Parallax>
-            </PhotoSM>
+            </PhotoSM> */}
             <Parallax y={[0, 5]}>
                 <OthersList>
                     {selectedFilms.map((item, i) => (
                         <FilmCard
-                            imgSrc={item.heroImage.childImageSharp.gatsbyImageData}
+                            imgSrc={
+                                item.heroImage.childImageSharp.gatsbyImageData
+                            }
                             imgAlt={item.title}
                             filmTitle={item.title}
                             filmInfo={item.info}
@@ -264,7 +269,7 @@ export default function FilmDetail({ data }: DataProps) {
 
 export const query = graphql`
     query($slug: String!) {
-        strapiFilm(detailPageUrl: { eq: $slug }) {
+        thisFilm: strapiFilm(detailPageUrl: { eq: $slug }) {
             filmId
             detailPageUrl
             title
@@ -302,7 +307,9 @@ export const query = graphql`
                 height
             }
         }
-        allStrapiFilm(filter: { detailPageUrl: { ne: $slug } }) {
+        allOtherFilms: allStrapiFilm(
+            filter: { detailPageUrl: { nin: [$slug, "", null] } }
+        ) {
             nodes {
                 title
                 info

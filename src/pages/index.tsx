@@ -16,15 +16,20 @@ import { Heading2, Button as BtnText } from "utils/typography"
 import NavBar from "components/NavBar"
 import Footer from "components/Footer"
 import EmptyState from "components/EmptyState"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 type DataType = {
     data: {
-        Hero: HeroType
+        Hero: {
+            edges: {
+                node: HeroType
+            }[]
+        }
         News: {
             nodes: NewsType[]
         }
         FilmOfToday: {
-            group: FotType[]
+            nodes: FotType[]
         }
         Sessions: {
             group: SessionType[]
@@ -37,13 +42,14 @@ type DataType = {
 
 type HeroType = {
     heroImage: {
-        fluid: FluidObject
-        description: string
+        childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+        }
     }
-    title: string
     tag: string
-    linkText: string
-    linkTo: string
+    url: string
+    headline: string
+    btnText: string
 }
 
 type NewsType = {
@@ -61,22 +67,19 @@ type NewsType = {
 }
 
 type FotType = {
-    edges: {
-        node: {
-            filmTitle: string
-            filmInfo: string[]
-            director: {
-                name: string
-            }[]
-            detailPage: string
-            filmHeroImage: {
-                title: string
-                image: {
-                    fluid: FluidObject
-                }
-            }
+    filmId: string
+    title: string
+    title_eng: string
+    detailPageUrl: string
+    heroImage: {
+        childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
         }
+    }
+    directors: {
+        name: string
     }[]
+    info: string
 }
 
 type SessionType = {
@@ -148,32 +151,23 @@ function News(props: { data: NewsType[] }) {
 }
 
 function FilmOfToday(props: { data: FotType[] }) {
-    const selectedFilm: number = Math.floor(
+    const selectedId: number = Math.floor(
         Math.random() * Math.floor(props.data.length)
     )
-
-    const img: { title: string; image: { fluid: FluidObject } } =
-        props.data[selectedFilm].edges[0].node.filmHeroImage //🚩 edges[locale]
-
-    const info: {
-        filmTitle: string
-        director: { name: string }[]
-        detailPage: string
-    } = props.data[selectedFilm].edges[0].node
-    const engTitle: string = props.data[selectedFilm].edges[1].node.filmTitle
+    const selectedFilm: FotType = props.data[selectedId]
 
     return (
         <div tw="w-full h-auto relative">
             <HeroImage
-                imgSrc={img.image.fluid}
-                imgAlt={img.title}
-                btnLinkedPage={info.detailPage}
+                imgSrc={selectedFilm.heroImage.childImageSharp.gatsbyImageData}
+                imgAlt={selectedFilm.title}
+                btnUrl={selectedFilm.detailPageUrl}
             />
             <FotCard
-                chnTitle={info.filmTitle}
-                engTitle={engTitle}
-                detailPage={info.detailPage}
-                director={info.director}
+                titleChn={selectedFilm.title}
+                titleEng={selectedFilm.title_eng}
+                detailPageUrl={selectedFilm.detailPageUrl}
+                director={selectedFilm.directors}
             />
         </div>
     )
@@ -292,9 +286,9 @@ export default function Home({ data }: DataType) {
     const Container: TwComponent<"div"> = tw.div`mx-auto font-sans h-full`
     const Main: TwComponent<"main"> = tw.main`container mx-auto sm:py-16 md:px-8 lg:p-16 grid md:grid-cols-12 gap-10`
 
-    const hero: HeroType = data.Hero
+    const hero: HeroType = data.Hero.edges[0].node
     const newsData: NewsType[] = data.News.nodes
-    const fotData: FotType[] = data.FilmOfToday.group
+    const fotData: FotType[] = data.FilmOfToday.nodes
     const sessionData: SessionType[] = data.Sessions.group
     const screeningData: ScreeningType[] = data.Screenings.group
 
@@ -308,16 +302,15 @@ export default function Home({ data }: DataType) {
 
             <div tw="w-full h-auto relative">
                 <HeroImage
-                    imgSrc={hero.heroImage.fluid}
-                    imgAlt={hero.heroImage.description}
-                    btnLinkedPage={hero.linkTo}
+                    imgSrc={hero.heroImage.childImageSharp.gatsbyImageData}
+                    imgAlt={hero.headline}
+                    btnUrl={hero.url}
                 />
-
                 <IndexHeroCard
                     tag={hero.tag}
-                    headline={hero.title}
-                    btnText={hero.linkText}
-                    btnLinkedPage={hero.linkTo}
+                    headline={hero.headline}
+                    btnText={hero.btnText}
+                    btnUrl={hero.url}
                 />
             </div>
             <Main>
@@ -335,14 +328,18 @@ export default function Home({ data }: DataType) {
 
 export const query = graphql`
     {
-        Hero: contentfulIndexHero(node_locale: { eq: "zh-Hans" }) {
-            linkText
-            linkTo
-            title
-            tag
-            heroImage {
-                fluid(maxHeight: 800, cropFocus: CENTER, quality: 100) {
-                    ...GatsbyContentfulFluid_withWebp
+        Hero: allStrapiHeroIndexPage {
+            edges {
+                node {
+                    heroImage {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                    tag
+                    url
+                    headline
+                    btnText
                 }
             }
         }
@@ -368,29 +365,23 @@ export const query = graphql`
                 publishedDate(fromNow: false)
             }
         }
-        FilmOfToday: allContentfulLibraryFilm(
-            filter: { detailPage: { ne: null } }
+        FilmOfToday: allStrapiFilm(
+            filter: { detailPageUrl: { nin: ["", null] } }
         ) {
-            group(field: contentfulid) {
-                edges {
-                    node {
-                        contentfulid
-                        filmTitle
-                        director {
-                            name
-                        }
-                        filmInfo
-                        detailPage
-                        filmHeroImage {
-                            image {
-                                fluid {
-                                    ...GatsbyContentfulFluid_withWebp
-                                }
-                                title
-                            }
-                        }
+            nodes {
+                filmId
+                title
+                title_eng
+                detailPageUrl
+                heroImage {
+                    childImageSharp {
+                        gatsbyImageData
                     }
                 }
+                directors {
+                    name
+                }
+                info
             }
         }
         Sessions: allContentfulEventsSessions(

@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from "gatsby"
 import tw from "twin.macro"
 
 import Layout from "components/Layout"
@@ -8,27 +7,11 @@ import { OutlinedBtn, TextBtn } from "components/Buttons"
 import { Body, Heading2, Heading4 } from "utils/typography"
 import Link from "utils/Link"
 
-type DataProps = {
-    data: {
-        allContentfulLibraryFile: {
-            nodes: FileProps[]
-        }
-    }
-}
-
-type FileProps = {
-    fileName: {
-        file: {
-            url: string
-        }
-    }
-}
-
 function Header() {
     return <TextBtn btnText="← 全球征集" to="/competition" />
 }
 
-function Copies(props: { data: FileProps[] }) {
+function Copies() {
     return (
         <>
             <Heading2>报名指引</Heading2>
@@ -44,6 +27,7 @@ function Copies(props: { data: FileProps[] }) {
             </div>
             <Heading4>报名时间</Heading4>
             <div>
+                　
                 <Body>
                     北京时间 2021 年 4 月 15 日 00:00 至 8 月 15 日 24:00。
                 </Body>
@@ -67,19 +51,17 @@ function Copies(props: { data: FileProps[] }) {
                 <Body>7、导演照片1-2张（JPG格式，150 DPI以上）</Body>
             </div>
             <OutlinedBtn
-                to={props.data[0].fileName.file.url}
+                to="/uploads/OUTDOCS_2021_a3366ed793.zip"
                 btnText="↘ 下载报名材料"
             />
         </>
     )
 }
 
-export default function SubmissonChn({ data }: DataProps) {
+export default function SubmissonChn() {
     const Main = tw.main`py-16 sm:flex sm:flex-col-reverse lg:grid lg:grid-cols-3 gap-10`
     const Side = tw.aside`col-span-1 flex flex-col space-y-4`
     const Article = tw.article`col-start-2 col-end-4 space-y-8`
-
-    const urlData: FileProps[] = data.allContentfulLibraryFile.nodes
 
     return (
         <Layout hasPadding title="报名指引">
@@ -87,23 +69,9 @@ export default function SubmissonChn({ data }: DataProps) {
             <Main>
                 <Side></Side>
                 <Article>
-                    <Copies data={urlData} />
+                    <Copies />
                 </Article>
             </Main>
         </Layout>
     )
 }
-
-export const query = graphql`
-    query SubmissionChn {
-        allContentfulLibraryFile(filter: { node_locale: { eq: "zh-Hans" } }) {
-            nodes {
-                fileName {
-                    file {
-                        url
-                    }
-                }
-            }
-        }
-    }
-`
