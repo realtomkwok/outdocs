@@ -65,7 +65,7 @@
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sass": "^2.3.13",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prettier": "2.0.5",
     "react-refresh": "^0.8.3",
     "tailwindcss": "^1.7.5",
